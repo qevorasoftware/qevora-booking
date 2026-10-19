@@ -91,6 +91,7 @@ if ( $qvb_late_activation ) {
 }
 
 qvb_assert( class_exists( 'QVB_Bookings' ), 'plugin classes loaded' );
+
 qvb_assert( current_user_can( QVB_Capabilities::MANAGE ), 'administrator has the manage capability' );
 
 $tables = QVB_Database::status();
@@ -318,6 +319,18 @@ require_once QVB_DIR . 'admin/class-customers-table.php';
 
 QVB_Admin::init();
 set_current_screen( 'dashboard' );
+
+// The staff/service/category forms open wp.media(). The admin script must pull
+// in the media library so it can never be printed before media-views.js.
+QVB_Admin::enqueue( 'toplevel_page_qevora-booking' );
+
+$qvb_admin_deps = isset( wp_scripts()->registered['qvb-admin'] ) ? (array) wp_scripts()->registered['qvb-admin']->deps : array();
+
+qvb_assert(
+	did_action( 'wp_enqueue_media' ) > 0 && in_array( 'qvb-admin', (array) wp_scripts()->queue, true ),
+	'admin assets enqueue with the media library',
+	wp_json_encode( $qvb_admin_deps )
+);
 
 $booking_id  = (int) $rebook['id'];
 $customer_id = (int) $rebook['booking']->customer_id;

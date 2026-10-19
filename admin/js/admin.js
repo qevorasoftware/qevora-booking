@@ -118,14 +118,14 @@
 	/* Media picker                                                        */
 	/* ------------------------------------------------------------------ */
 
-	document.querySelectorAll('[data-qvb-media]').forEach(function (picker) {
+	function initMediaPicker(picker) {
 		var input = picker.querySelector('[data-qvb-media-input]');
 		var preview = picker.querySelector('[data-qvb-media-preview]');
 		var select = picker.querySelector('[data-qvb-media-select]');
 		var remove = picker.querySelector('[data-qvb-media-remove]');
 		var frame = null;
 
-		if (!input || !preview || !select || !window.wp || !window.wp.media) {
+		if (!input || !preview || !select) {
 			return;
 		}
 
@@ -154,6 +154,13 @@
 		}
 
 		select.addEventListener('click', function () {
+			// `wp.media` is defined by media-views.js. Resolve it at click time so
+			// the picker also works when this script is printed before the media
+			// library (WordPress does not guarantee the order otherwise).
+			if (!window.wp || !window.wp.media) {
+				return;
+			}
+
 			if (frame) {
 				frame.open();
 				return;
@@ -189,6 +196,10 @@
 				setPreview('');
 			});
 		}
+	}
+
+	ready(function () {
+		document.querySelectorAll('[data-qvb-media]').forEach(initMediaPicker);
 	});
 
 	/* ------------------------------------------------------------------ */
@@ -424,6 +435,34 @@
 		return row;
 	}
 
+	function seedFromBusinessHours() {
+		var data = {};
+
+		try {
+			data = JSON.parse(schedule.getAttribute('data-qvb-business-hours') || '{}');
+		} catch (error) {
+			data = {};
+		}
+
+		rowContainer.innerHTML = '';
+
+		Object.keys(data).forEach(function (day) {
+			var hours = data[day];
+
+			if (!hours || parseInt(hours.enabled, 10) !== 1) {
+				return;
+			}
+
+			addScheduleRow({
+				day_of_week: parseInt(day, 10),
+				start: hours.start,
+				end: hours.end,
+				break_start: hours.break_start || '',
+				break_end: hours.break_end || ''
+			});
+		});
+	}
+
 	document.querySelectorAll('[data-qvb-mode]').forEach(function (radio) {
 		radio.addEventListener('change', function () {
 			if (!schedule || !radio.checked) {
@@ -431,6 +470,12 @@
 			}
 
 			schedule.hidden = radio.value !== 'custom';
+
+			// Switching to a custom schedule with no rows would silently make the
+			// staff member unbookable. Seed it from the business hours instead.
+			if (radio.value === 'custom' && rowContainer && !rowContainer.querySelector('[data-qvb-schedule-row]')) {
+				seedFromBusinessHours();
+			}
 		});
 	});
 
@@ -503,31 +548,7 @@
 			return;
 		}
 
-		var data = {};
-
-		try {
-			data = JSON.parse(schedule.getAttribute('data-qvb-business-hours') || '{}');
-		} catch (error) {
-			data = {};
-		}
-
-		rowContainer.innerHTML = '';
-
-		Object.keys(data).forEach(function (day) {
-			var hours = data[day];
-
-			if (!hours || parseInt(hours.enabled, 10) !== 1) {
-				return;
-			}
-
-			addScheduleRow({
-				day_of_week: parseInt(day, 10),
-				start: hours.start,
-				end: hours.end,
-				break_start: hours.break_start || '',
-				break_end: hours.break_end || ''
-			});
-		});
+		seedFromBusinessHours();
 	});
 
 	document.querySelectorAll('.qvb-hours-row').forEach(function (row) {

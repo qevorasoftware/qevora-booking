@@ -1,6 +1,6 @@
 # Qevora Booking — Release Test Checklist
 
-Version: **1.0.1**
+Version: **1.0.2**
 Target: WordPress **6.2 – 7.1**, PHP **7.4 – 8.3**, MySQL 5.7+/MariaDB 10.3+, SQLite via the WordPress SQLite integration.
 
 Legend: `[ ]` not run · `[x]` passed · `[!]` failed (open an issue with the reference number).
@@ -271,7 +271,7 @@ Legend: `[ ]` not run · `[x]` passed · `[!]` failed (open an issue with the re
 | 15.3 | Developer ZIP contents | Includes `bin/`, `docs/`, test checklist and source files |
 | 15.4 | Install the production ZIP into a clean WordPress | Activates, all screens render, one booking completes |
 | 15.5 | ZIP size | Under 5 MB |
-| 15.6 | Version headers | `1.0.1` in the plugin header, `QVB_VERSION` and `readme.txt` |
+| 15.6 | Version headers | `1.0.2` in the plugin header, `QVB_VERSION` and `readme.txt` |
 
 ---
 

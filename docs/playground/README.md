@@ -14,10 +14,10 @@ Booking installed, activated and filled with a realistic demo salon:
 ## Open it
 
 ```
-https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/qevorasoftware/qevora-booking/v1.0.1/docs/playground/blueprint.json
+https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/qevorasoftware/qevora-booking/v1.0.2/docs/playground/blueprint.json
 ```
 
-The blueprint pulls the production ZIP from the `v1.0.1` tag, so the demo always matches a
+The blueprint pulls the production ZIP from the `v1.0.2` tag, so the demo always matches a
 released build. Everything runs in the browser — the WordPress database is temporary and vanishes
 when the tab is closed.
 

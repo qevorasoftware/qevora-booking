@@ -224,8 +224,16 @@ final class QVB_Admin {
 		}
 
 		wp_enqueue_style( 'qvb-admin', QVB_URL . 'admin/css/admin.css', array(), QVB_VERSION );
-		wp_enqueue_script( 'qvb-admin', QVB_URL . 'admin/js/admin.js', array(), QVB_VERSION, true );
+
+		// Load the media library first and declare it as a dependency: the staff,
+		// service and category screens use `wp.media()` for image picking, and
+		// without the dependency the plugin script can be printed before
+		// media-views.js, leaving `window.wp.media` undefined.
 		wp_enqueue_media();
+
+		$script_deps = wp_script_is( 'media-editor', 'registered' ) ? array( 'media-editor' ) : array();
+
+		wp_enqueue_script( 'qvb-admin', QVB_URL . 'admin/js/admin.js', $script_deps, QVB_VERSION, true );
 
 		wp_localize_script(
 			'qvb-admin',

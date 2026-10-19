@@ -4,7 +4,7 @@ Tags: appointment booking, salon booking, spa booking, massage booking, staff sc
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -101,6 +101,10 @@ By default nothing except scheduled tasks and caches. If you enable **Delete all
 
 == Changelog ==
 
+= 1.0.2 =
+* Fixed: “Choose photo” (and the service/category image pickers) did nothing because the admin script could be printed before WordPress’ media library. `admin.js` now depends on `media-editor` and resolves `wp.media` at click time.
+* Fixed: switching a staff member to a custom schedule with no rows left them silently unbookable; the schedule is now pre-filled from the business hours.
+
 = 1.0.1 =
 * Fixed: every admin screen now renders inside the standard WordPress `.wrap` container, so cards no longer sit flush against (or run past) the right edge of the window on wide screens.
 * Fixed: admin action buttons ("Add booking", "Open calendar", …) now render as buttons instead of bare underlined links, and list-table columns are sized by content instead of evenly split.
@@ -122,6 +126,9 @@ By default nothing except scheduled tasks and caches. If you enable **Delete all
 * Uninstall respects an explicit opt-in before deleting data.
 
 == Upgrade Notice ==
+
+= 1.0.2 =
+Fixes the image picker buttons in the staff, service and category forms.
 
 = 1.0.1 =
 Admin layout fix: screens now keep the standard WordPress gutter on the right.
