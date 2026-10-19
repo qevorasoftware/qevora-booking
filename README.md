@@ -26,6 +26,12 @@ All-in-one appointment booking for spas, salons, beauty parlours and massage cen
 | **Integrations** | `[qevora_booking]` shortcode, Gutenberg block, Elementor widget, REST API |
 | **Settings** | Timezone, currency + formats, approval mode, booking window, buffers, cancellation rules, retention |
 
+## Screens
+
+| Admin dashboard | Public booking form |
+|---|---|
+| ![Admin dashboard](docs/screenshots/admin-dashboard.png) | ![Booking form](docs/screenshots/booking-form.png) |
+
 ## Why “pay at the salon”?
 
 Small salons lose bookings to prepayment friction and lose margin to gateway fees. Qevora Booking
