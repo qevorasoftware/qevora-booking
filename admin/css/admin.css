@@ -46,7 +46,7 @@
 	flex-wrap: wrap;
 	gap: 16px;
 	justify-content: space-between;
-	margin: 18px 0 20px;
+	margin: 8px 0 20px;
 	padding: 4px 2px 0;
 }
 
@@ -1486,4 +1486,50 @@
 	font-size: 13px;
 	margin-bottom: 6px;
 	padding: 0;
+}
+
+/* Layout containment ------------------------------------------------------ */
+
+/*
+ * WordPress gives `.wrap` the standard admin gutter (20px on the right, 12px on
+ * small screens). Every Qevora screen uses that container so cards never sit
+ * flush against, or bleed past, the right edge of the window. The rules below
+ * only add containment; the gutter itself comes from core.
+ */
+.wrap.qvb-wrap {
+	box-sizing: border-box;
+	max-width: 100%;
+}
+
+.qvb-wrap > * {
+	max-width: 100%;
+}
+
+.qvb-wrap .qvb-stat-grid,
+.qvb-wrap .qvb-columns,
+.qvb-wrap .qvb-columns--sidebar,
+.qvb-wrap .qvb-quick,
+.qvb-wrap .qvb-table-wrap,
+.qvb-wrap .qvb-calendar {
+	max-width: 100%;
+}
+
+.qvb-inline-block {
+	margin: 0 0 16px;
+}
+
+/* Long words in table cells and cards must wrap instead of pushing the layout. */
+.qvb-wrap .qvb-table td,
+.qvb-wrap .qvb-table th,
+.qvb-wrap .qvb-card,
+.qvb-wrap .qvb-stat {
+	overflow-wrap: anywhere;
+}
+
+/* The admin header buttons keep their own line on medium screens instead of
+ * pushing the header past the gutter. */
+@media screen and (max-width: 960px) {
+	.qvb-admin-header__actions {
+		width: 100%;
+	}
 }

@@ -17,7 +17,7 @@ if ( ! $selected && $staff_all ) {
 }
 
 if ( $selected_id && ! $selected ) {
-	echo '<div class="wrap"><div class="notice notice-error"><p>' . esc_html__( 'That staff member could not be found.', 'qevora-booking' ) . '</p></div></div>';
+	echo '<div class="qvb-inline-block"><div class="notice notice-error"><p>' . esc_html__( 'That staff member could not be found.', 'qevora-booking' ) . '</p></div></div>';
 	return;
 }
 

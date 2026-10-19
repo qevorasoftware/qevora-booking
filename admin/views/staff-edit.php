@@ -11,7 +11,7 @@ $staff_id = isset( $_GET['id'] ) ? absint( $_GET['id'] ) : 0; // phpcs:ignore Wo
 $member   = $staff_id ? QVB_Staff::get( $staff_id ) : null;
 
 if ( $staff_id && ! $member ) {
-	echo '<div class="wrap"><div class="notice notice-error"><p>' . esc_html__( 'That staff member could not be found.', 'qevora-booking' ) . '</p></div></div>';
+	echo '<div class="qvb-inline-block"><div class="notice notice-error"><p>' . esc_html__( 'That staff member could not be found.', 'qevora-booking' ) . '</p></div></div>';
 	return;
 }
 

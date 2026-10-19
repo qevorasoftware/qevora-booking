@@ -304,14 +304,22 @@ final class QVB_Admin {
 		$file = QVB_DIR . 'admin/views/' . $view . '.php';
 
 		if ( ! file_exists( $file ) ) {
-			echo '<div class="wrap"><p>' . esc_html__( 'This screen could not be found.', 'qevora-booking' ) . '</p></div>';
+			echo '<div class="wrap qvb-wrap"><p>' . esc_html__( 'This screen could not be found.', 'qevora-booking' ) . '</p></div>';
 			return;
 		}
 
 		$current_page = $page;
 		wp_enqueue_style( 'qvb-admin' );
 
+		/*
+		 * Every screen is rendered inside WordPress' standard `.wrap` container.
+		 * Core CSS gives `.wrap` the 20px gutter on the right (and 10px on the
+		 * left); without it the cards sat flush against the window edge and the
+		 * last column looked clipped on wide screens.
+		 */
+		echo '<div class="wrap qvb-wrap">';
 		include $file;
+		echo '</div>';
 	}
 
 	/**

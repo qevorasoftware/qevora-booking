@@ -11,12 +11,12 @@ $customer_id = isset( $_GET['customer'] ) ? absint( $_GET['customer'] ) : 0; // 
 $customer    = QVB_Customers::get( $customer_id );
 
 if ( ! $customer ) {
-	echo '<div class="wrap"><div class="notice notice-error"><p>' . esc_html__( 'That customer could not be found.', 'qevora-booking' ) . '</p></div></div>';
+	echo '<div class="qvb-inline-block"><div class="notice notice-error"><p>' . esc_html__( 'That customer could not be found.', 'qevora-booking' ) . '</p></div></div>';
 	return;
 }
 
 if ( ! current_user_can( QVB_Capabilities::PII ) ) {
-	echo '<div class="wrap"><div class="notice notice-error"><p>' . esc_html__( 'You do not have permission to view customer contact details.', 'qevora-booking' ) . '</p></div></div>';
+	echo '<div class="qvb-inline-block"><div class="notice notice-error"><p>' . esc_html__( 'You do not have permission to view customer contact details.', 'qevora-booking' ) . '</p></div></div>';
 	return;
 }
 

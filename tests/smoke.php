@@ -345,6 +345,8 @@ $screens = array(
 	'help'         => array( 'qevora-booking-help' ),
 );
 
+$wrapped_screens = 0;
+
 foreach ( $screens as $label => $definition ) {
 	$_GET     = array( 'page' => $definition[0] );
 	$_REQUEST = $_GET;
@@ -386,7 +388,13 @@ foreach ( $screens as $label => $definition ) {
 	}
 
 	qvb_assert( strlen( $markup ) > 500, "screen {$label} renders", strlen( $markup ) . ' bytes' );
+
+	if ( false !== strpos( $markup, 'class="wrap qvb-wrap"' ) ) {
+		++$wrapped_screens;
+	}
 }
+
+qvb_assert( count( $screens ) === $wrapped_screens, 'every admin screen uses the WordPress .wrap container', $wrapped_screens . '/' . count( $screens ) );
 
 echo "\n== Public output\n";
 

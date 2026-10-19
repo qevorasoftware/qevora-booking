@@ -4,7 +4,7 @@ Tags: appointment booking, salon booking, spa booking, massage booking, staff sc
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -101,6 +101,11 @@ By default nothing except scheduled tasks and caches. If you enable **Delete all
 
 == Changelog ==
 
+= 1.0.1 =
+* Fixed: every admin screen now renders inside the standard WordPress `.wrap` container, so cards no longer sit flush against (or run past) the right edge of the window on wide screens.
+* Added: `tests/smoke.php` — a 61-assertion Playground suite covering schema, booking engine, all admin screens, shortcode, manage page, REST and email.
+* Added: `bin/test-playground.sh` runner and the WordPress Playground demo blueprint.
+
 = 1.0.0 =
 * Initial release.
 * Eight database tables with versioned schema and upgrade routine.
@@ -115,6 +120,9 @@ By default nothing except scheduled tasks and caches. If you enable **Delete all
 * Uninstall respects an explicit opt-in before deleting data.
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+Admin layout fix: screens now keep the standard WordPress gutter on the right.
 
 = 1.0.0 =
 First public release.

@@ -11,7 +11,7 @@ $exception_id = isset( $_GET['id'] ) ? absint( $_GET['id'] ) : 0; // phpcs:ignor
 $exception    = $exception_id ? QVB_Availability::get_exception( $exception_id ) : null;
 
 if ( $exception_id && ! $exception ) {
-	echo '<div class="wrap"><div class="notice notice-error"><p>' . esc_html__( 'That exception could not be found.', 'qevora-booking' ) . '</p></div></div>';
+	echo '<div class="qvb-inline-block"><div class="notice notice-error"><p>' . esc_html__( 'That exception could not be found.', 'qevora-booking' ) . '</p></div></div>';
 	return;
 }
 

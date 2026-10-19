@@ -11,7 +11,7 @@ $service_id = isset( $_GET['id'] ) ? absint( $_GET['id'] ) : 0; // phpcs:ignore 
 $service    = $service_id ? QVB_Services::get( $service_id ) : null;
 
 if ( $service_id && ! $service ) {
-	echo '<div class="wrap"><div class="notice notice-error"><p>' . esc_html__( 'That service could not be found.', 'qevora-booking' ) . '</p></div></div>';
+	echo '<div class="qvb-inline-block"><div class="notice notice-error"><p>' . esc_html__( 'That service could not be found.', 'qevora-booking' ) . '</p></div></div>';
 	return;
 }
 

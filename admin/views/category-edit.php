@@ -11,7 +11,7 @@ $category_id = isset( $_GET['id'] ) ? absint( $_GET['id'] ) : 0; // phpcs:ignore
 $category    = $category_id ? QVB_Categories::get( $category_id ) : null;
 
 if ( $category_id && ! $category ) {
-	echo '<div class="wrap"><div class="notice notice-error"><p>' . esc_html__( 'That category could not be found.', 'qevora-booking' ) . '</p></div></div>';
+	echo '<div class="qvb-inline-block"><div class="notice notice-error"><p>' . esc_html__( 'That category could not be found.', 'qevora-booking' ) . '</p></div></div>';
 	return;
 }
 
