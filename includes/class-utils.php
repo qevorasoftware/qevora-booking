@@ -494,6 +494,31 @@ final class QVB_Utils {
 	}
 
 	/**
+	 * One or two letter monogram for a name, used when no image is available.
+	 *
+	 * @param string $name Name.
+	 * @return string
+	 */
+	public static function initials( $name ) {
+		$name = trim( wp_strip_all_tags( (string) $name ) );
+
+		if ( '' === $name ) {
+			return '?';
+		}
+
+		$parts = preg_split( '/\s+/u', $name );
+		$first = mb_substr( (string) $parts[0], 0, 1 );
+
+		if ( count( $parts ) > 1 ) {
+			$last = mb_substr( (string) $parts[ count( $parts ) - 1 ], 0, 1 );
+
+			return mb_strtoupper( $first . $last );
+		}
+
+		return mb_strtoupper( mb_substr( (string) $parts[0], 0, 2 ) );
+	}
+
+	/**
 	 * Date N days from today.
 	 *
 	 * @param int $days Days (can be negative).

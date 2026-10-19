@@ -223,10 +223,32 @@
 
 /* Choice cards ------------------------------------------------------------- */
 
+.qvb-app {
+	container-type: inline-size;
+	container-name: qvb;
+}
+
 .qvb-choice-grid {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
 	gap: 12px;
+}
+
+/* ~390px per card is the minimum where a thumbnail + title + price + duration
+ * still reads well. Below that, one card per row. */
+@container qvb (max-width: 780px) {
+	.qvb-choice-grid,
+	.qvb-choice-grid--staff {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+@container qvb (max-width: 460px) {
+	.qvb-choice__media {
+		flex-basis: 44px;
+		width: 44px;
+		height: 44px;
+	}
 }
 
 .qvb-choice-grid--staff {
@@ -318,19 +340,27 @@
 .qvb-choice__top {
 	display: flex;
 	align-items: baseline;
+	flex-wrap: wrap;
 	justify-content: space-between;
-	gap: 8px;
+	gap: 2px 10px;
 }
 
 .qvb-choice__title {
 	color: var(--qvb-ink);
+	flex: 1 1 auto;
 	font-weight: 650;
 	font-size: 0.96rem;
 	line-height: 1.3;
+	min-width: 0;
+}
+
+.qvb-choice__price {
+	white-space: nowrap;
 }
 
 .qvb-choice__price {
 	flex: 0 0 auto;
+	margin-left: auto;
 	color: var(--qvb-ink);
 	font-size: 0.9rem;
 	font-weight: 700;
@@ -1118,4 +1148,13 @@
 		transition-duration: 0.01ms !important;
 		scroll-behavior: auto !important;
 	}
+}
+
+/* Monogram fallback when a service or staff member has no image. */
+.qvb-choice__initials {
+	color: var(--qvb-accent-dark);
+	font-size: 0.95rem;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
 }

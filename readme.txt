@@ -103,6 +103,8 @@ By default nothing except scheduled tasks and caches. If you enable **Delete all
 
 = 1.0.1 =
 * Fixed: every admin screen now renders inside the standard WordPress `.wrap` container, so cards no longer sit flush against (or run past) the right edge of the window on wide screens.
+* Fixed: admin action buttons ("Add booking", "Open calendar", …) now render as buttons instead of bare underlined links, and list-table columns are sized by content instead of evenly split.
+* Fixed: the public booking form keeps service titles and prices on one line and switches to one card per row on narrow screens instead of shrinking two columns.
 * Added: `tests/smoke.php` — a 61-assertion Playground suite covering schema, booking engine, all admin screens, shortcode, manage page, REST and email.
 * Added: `bin/test-playground.sh` runner and the WordPress Playground demo blueprint.
 

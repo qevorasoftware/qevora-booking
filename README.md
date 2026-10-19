@@ -125,7 +125,7 @@ languages/                  qevora-booking.pot
 assets/                     icon and banner artwork
 bin/build.sh                produces both release ZIPs
 bin/test-playground.sh      runs the smoke test inside WordPress Playground
-tests/smoke.php             60-assertion automated suite
+tests/smoke.php             61-assertion automated suite
 docs/TEST-CHECKLIST.md      manual QA matrix + automated suite instructions
 docs/playground/            one-click Playground blueprint and demo seed
 ```
@@ -152,7 +152,7 @@ Two ways to test without installing anything on a server:
 | Route | What it gives you |
 |-------|-------------------|
 | **WordPress Playground demo** | A disposable salon in the browser — 5 services, 3 staff, 4 bookings, admin auto-login. One click, no setup. |
-| **Automated smoke test** | 60 assertions against a real WordPress (PHP 8.3 + SQLite) covering the schema, booking engine, all 20 admin screens, shortcode, manage page, REST API and email pipeline. |
+| **Automated smoke test** | 61 assertions against a real WordPress (PHP 8.3 + SQLite) covering the schema, booking engine, all 20 admin screens (plus the `.wrap` layout contract), shortcode, manage page, REST API and email pipeline. |
 
 ```bash
 # Browser demo (same blueprint as docs/playground/)
@@ -162,7 +162,7 @@ open "https://playground.wordpress.net/?blueprint-url=https://raw.githubusercont
 bash bin/test-playground.sh
 ```
 
-Latest run: **60 passed, 0 failed** on WordPress 7.1.3 / PHP 8.3 / SQLite.
+Latest run: **61 passed, 0 failed** on WordPress 7.1.3 / PHP 8.3 / SQLite.
 
 Earlier development suites (activation, admin renders, REST, uninstall) all passed with zero
 failures and are summarised in [`docs/TEST-CHECKLIST.md`](docs/TEST-CHECKLIST.md), which also

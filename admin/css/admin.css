@@ -253,10 +253,94 @@
 
 .qvb-link-reset:hover { color: var(--qvb-red); }
 
+/* Base button. Every admin action uses this instead of the bare link styles. */
+.qvb-btn {
+	align-items: center;
+	background: var(--qvb-accent);
+	border: 1px solid var(--qvb-accent);
+	border-radius: var(--qvb-radius-sm);
+	box-shadow: 0 1px 2px rgba(17, 24, 39, 0.06);
+	color: #fff;
+	cursor: pointer;
+	display: inline-flex;
+	font-size: 13px;
+	font-weight: 600;
+	gap: 6px;
+	line-height: 1.4;
+	padding: 7px 14px;
+	text-decoration: none;
+	transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+	white-space: nowrap;
+}
+
+.qvb-btn:hover,
+.qvb-btn:focus {
+	background: var(--qvb-accent-dark);
+	border-color: var(--qvb-accent-dark);
+	color: #fff;
+}
+
+.qvb-btn:focus-visible {
+	outline: 2px solid var(--qvb-accent);
+	outline-offset: 2px;
+}
+
 .qvb-btn--ghost {
-	background: transparent;
+	background: #fff;
 	border-color: var(--qvb-line);
-	color: var(--qvb-muted);
+	color: var(--qvb-ink);
+}
+
+.qvb-btn--ghost:hover,
+.qvb-btn--ghost:focus {
+	background: var(--qvb-bg);
+	border-color: var(--qvb-accent);
+	color: var(--qvb-accent-dark);
+}
+
+/* Secondary actions inside the page header follow the same shape as core's
+ * `.page-title-action` but line up with the rest of the buttons. */
+.qvb-admin-header__actions .page-title-action {
+	align-items: center;
+	background: var(--qvb-accent);
+	border: 1px solid var(--qvb-accent);
+	border-radius: var(--qvb-radius-sm);
+	box-shadow: none;
+	color: #fff;
+	display: inline-flex;
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1.4;
+	padding: 7px 14px;
+	text-decoration: none;
+	top: 0;
+}
+
+.qvb-admin-header__actions .page-title-action:hover,
+.qvb-admin-header__actions .page-title-action:focus {
+	background: var(--qvb-accent-dark);
+	border-color: var(--qvb-accent-dark);
+	color: #fff;
+}
+
+/* Keep the "Open booking form →" style links on one line and let long values
+ * shrink instead of spilling out of the stat card. */
+.qvb-stat { min-width: 0; }
+
+.qvb-stat__meta {
+	display: inline-block;
+	max-width: 100%;
+}
+
+.qvb-stat > .qvb-stat__meta:last-child {
+	font-size: 11.5px;
+	white-space: nowrap;
+}
+
+.qvb-stat__value--small {
+	font-size: 15px;
+	line-height: 1.3;
+	overflow-wrap: anywhere;
 }
 
 .qvb-row-actions {
@@ -277,11 +361,25 @@
 	border: 1px solid var(--qvb-line);
 	border-radius: var(--qvb-radius);
 	box-shadow: var(--qvb-shadow);
+	clear: both; /* core floats `ul.subsubsub`, which would otherwise sit under the card */
 	display: flex;
 	flex-wrap: wrap;
 	gap: 10px;
-	margin-bottom: 18px;
+	margin: 0 0 18px;
 	padding: 14px 18px;
+}
+
+/* The status links above the filter card must wrap instead of running past the
+ * screen edge on narrow windows. */
+.wrap.qvb-wrap .subsubsub {
+	box-sizing: border-box;
+	float: none;
+	margin: 0 0 10px;
+	max-width: 100%;
+}
+
+.wrap.qvb-wrap .subsubsub li {
+	white-space: normal;
 }
 
 .qvb-filters__row {
@@ -338,6 +436,14 @@
 .qvb-table-wrap {
 	overflow-x: auto;
 	-webkit-overflow-scrolling: touch;
+}
+
+.qvb-table-wrap > .qvb-table {
+	min-width: 720px;
+}
+
+.qvb-table td.qvb-col-customer {
+	min-width: 190px;
 }
 
 .qvb-clamp {
@@ -1518,12 +1624,71 @@
 	margin: 0 0 16px;
 }
 
-/* Long words in table cells and cards must wrap instead of pushing the layout. */
+/* Long words must wrap instead of pushing the layout, but never mid-word when a
+ * normal break is available. */
 .qvb-wrap .qvb-table td,
 .qvb-wrap .qvb-table th,
-.qvb-wrap .qvb-card,
-.qvb-wrap .qvb-stat {
+.qvb-wrap .wp-list-table td,
+.qvb-wrap .wp-list-table th {
+	overflow-wrap: break-word;
+}
+
+/* Codes and identifiers stay on one line (both our own tables and WP's
+ * `WP_List_Table`, which is what the bookings/customers lists use). */
+.qvb-wrap .qvb-table .row-title,
+.qvb-wrap .wp-list-table .row-title,
+.qvb-wrap .qvb-ref,
+.qvb-wrap .qvb-nowrap {
+	white-space: nowrap;
+}
+
+/*
+ * WordPress list tables use `table-layout: fixed` and split the width evenly
+ * between columns unless each column is sized. That squeezed "Customer" into
+ * 166px and broke emails across two lines. Size the Qevora columns by content
+ * weight instead.
+ */
+.qvb-wrap .wp-list-table .column-cb { width: 2.5%; }
+
+/* Number columns read better right-aligned, like core's own list tables. */
+.qvb-wrap .wp-list-table .column-price,
+.qvb-wrap .wp-list-table .column-total_spent,
+.qvb-wrap .wp-list-table .column-total_bookings,
+.qvb-wrap .wp-list-table th.column-price,
+.qvb-wrap .wp-list-table th.column-total_spent,
+.qvb-wrap .wp-list-table th.column-total_bookings {
+	text-align: right;
+}
+
+.qvb-wrap .wp-list-table td.column-actions,
+.qvb-wrap .wp-list-table th.column-actions {
+	text-align: right;
+}
+
+.qvb-wrap .wp-list-table.bookings .column-reference { width: 15%; }
+.qvb-wrap .wp-list-table.bookings .column-customer { width: 19%; }
+.qvb-wrap .wp-list-table.bookings .column-service { width: 14%; }
+.qvb-wrap .wp-list-table.bookings .column-staff { width: 11%; }
+.qvb-wrap .wp-list-table.bookings .column-when { width: 15%; }
+.qvb-wrap .wp-list-table.bookings .column-status { width: 9%; }
+.qvb-wrap .wp-list-table.bookings .column-price { width: 8%; }
+.qvb-wrap .wp-list-table.bookings .column-actions { width: 7%; }
+
+.qvb-wrap .wp-list-table.customers .column-name { width: 20%; }
+.qvb-wrap .wp-list-table.customers .column-contact { width: 26%; }
+.qvb-wrap .wp-list-table.customers .column-total_bookings { width: 9%; }
+.qvb-wrap .wp-list-table.customers .column-total_spent { width: 10%; }
+.qvb-wrap .wp-list-table.customers .column-last_booking_at { width: 15%; }
+.qvb-wrap .wp-list-table.customers .column-created_at { width: 12%; }
+.qvb-wrap .wp-list-table.customers .column-actions { width: 9%; }
+
+/* Emails and phone numbers stay readable in the customer cell. */
+.qvb-wrap .wp-list-table .column-customer a {
 	overflow-wrap: anywhere;
+}
+
+.qvb-wrap .wp-list-table .column-customer strong {
+	line-height: 1.35;
 }
 
 /* The admin header buttons keep their own line on medium screens instead of

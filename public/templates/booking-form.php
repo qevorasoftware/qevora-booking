@@ -125,9 +125,7 @@ if ( $extra_class ) {
 									<?php if ( $service->image_id ) : ?>
 										<?php echo wp_get_attachment_image( (int) $service->image_id, 'medium_large', false, array( 'loading' => 'lazy', 'alt' => '' ) ); ?>
 									<?php else : ?>
-										<span class="qvb-choice__icon">
-											<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3v18M3 12h18" stroke-linecap="round"/><circle cx="12" cy="12" r="8.5"/></svg>
-										</span>
+										<span class="qvb-choice__initials"><?php echo esc_html( QVB_Utils::initials( $service->name ) ); ?></span>
 									<?php endif; ?>
 								</span>
 								<span class="qvb-choice__body">
@@ -188,7 +186,7 @@ if ( $extra_class ) {
 							<?php if ( $member->image_id ) : ?>
 								<?php echo wp_get_attachment_image( (int) $member->image_id, 'thumbnail', false, array( 'loading' => 'lazy', 'alt' => '' ) ); ?>
 							<?php else : ?>
-								<span class="qvb-choice__initials"><?php echo esc_html( mb_substr( $member->name, 0, 1 ) ); ?></span>
+								<span class="qvb-choice__initials"><?php echo esc_html( QVB_Utils::initials( $member->name ) ); ?></span>
 							<?php endif; ?>
 						</span>
 						<span class="qvb-choice__body">
