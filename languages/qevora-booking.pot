@@ -1,0 +1,3619 @@
+# Copyright (C) 2026 Qevora Software
+# This file is distributed under the MIT license.
+msgid ""
+msgstr ""
+"Project-Id-Version: Qevora Booking 1.0.0\n"
+"Report-Msgid-Bugs-To: https://qevorasoftware.com/support\n"
+"POT-Creation-Date: 2026-10-19T00:00:00+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Qevora build script\n"
+"X-Domain: qevora-booking\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+
+#: admin/class-admin-actions.php:137
+msgid "Service saved."
+msgstr ""
+
+#: admin/class-admin-actions.php:151
+msgid "Service deleted. Historical bookings keep their saved details."
+msgstr ""
+
+#: admin/class-admin-actions.php:153
+msgid "The service could not be deleted."
+msgstr ""
+
+#: admin/class-admin-actions.php:188
+msgid "Category saved."
+msgstr ""
+
+#: admin/class-admin-actions.php:202
+msgid "Category deleted. Its services are now uncategorised."
+msgstr ""
+
+#: admin/class-admin-actions.php:204
+msgid "The category could not be deleted."
+msgstr ""
+
+#: admin/class-admin-actions.php:246
+msgid "Staff member saved."
+msgstr ""
+
+#: admin/class-admin-actions.php:260
+msgid "Staff member deleted. Historical bookings keep their saved details."
+msgstr ""
+
+#: admin/class-admin-actions.php:262
+msgid "The staff member could not be deleted."
+msgstr ""
+
+#: admin/class-admin-actions.php:285
+msgid "Please choose a staff member."
+msgstr ""
+
+#: admin/class-admin-actions.php:290
+msgid "This staff member now follows the business hours."
+msgstr ""
+
+#: admin/class-admin-actions.php:303
+msgid "Custom schedule saved."
+msgstr ""
+
+#: admin/class-admin-actions.php:333
+msgid "Holiday / exception saved."
+msgstr ""
+
+#: admin/class-admin-actions.php:347
+msgid "Exception deleted."
+msgstr ""
+
+#: admin/class-admin-actions.php:349
+msgid "The exception could not be deleted."
+msgstr ""
+
+#: admin/class-admin-actions.php:396
+msgid "Booking created."
+msgstr ""
+
+#: admin/class-admin-actions.php:411
+#: admin/class-admin-actions.php:490
+#: includes/class-bookings.php:243
+#: includes/class-bookings.php:384
+#: includes/class-bookings.php:436
+#: includes/class-bookings.php:614
+#: includes/class-bookings.php:660
+msgid "That booking no longer exists."
+msgstr ""
+
+#: admin/class-admin-actions.php:433
+msgid "Booking status updated."
+msgstr ""
+
+#: admin/class-admin-actions.php:458
+msgid "Booking rescheduled."
+msgstr ""
+
+#: admin/class-admin-actions.php:473
+msgid "Notes saved."
+msgstr ""
+
+#: admin/class-admin-actions.php:505
+msgid "Email sent."
+msgstr ""
+
+#: admin/class-admin-actions.php:507
+msgid "The email could not be sent. Check your mail configuration and the template settings."
+msgstr ""
+
+#: admin/class-admin-actions.php:533
+msgid "Please choose bookings and a bulk action."
+msgstr ""
+
+#: admin/class-admin-actions.php:544
+msgid "Bulk update"
+msgstr ""
+
+#: admin/class-admin-actions.php:558
+msgid "%1$d bookings updated, %2$d skipped."
+msgstr ""
+
+#: admin/class-admin-actions.php:583
+msgid "Settings saved."
+msgstr ""
+
+#: admin/class-admin-actions.php:599
+msgid "Unknown email template."
+msgstr ""
+
+#: admin/class-admin-actions.php:611
+msgid "Email template saved."
+msgstr ""
+
+#: admin/class-admin-actions.php:625
+msgid "Template reset to the default."
+msgstr ""
+
+#: admin/class-admin-actions.php:645
+msgid "Test email sent."
+msgstr ""
+
+#: admin/class-admin-actions.php:647
+msgid "The test email could not be sent. Your host may need a mail plugin or SMTP configuration."
+msgstr ""
+
+#: admin/class-admin-actions.php:682
+msgid "Customer saved."
+msgstr ""
+
+#: admin/class-admin-actions.php:696
+msgid "Customer personal data has been anonymised. Booking statistics are retained."
+msgstr ""
+
+#: admin/class-admin-actions.php:698
+msgid "The customer could not be anonymised."
+msgstr ""
+
+#: admin/class-admin-actions.php:713
+msgid "Database tables checked and repaired."
+msgstr ""
+
+#: admin/class-admin-actions.php:726
+msgid "Maintenance completed. Old records were purged according to your retention setting."
+msgstr ""
+
+#: admin/class-admin.php:42
+#: admin/class-admin.php:43
+#: admin/class-admin.php:327
+#: includes/class-privacy.php:34
+#: includes/class-privacy.php:48
+#: integrations/elementor/class-elementor-widget.php:30
+#: integrations/elementor/class-elementor.php:59
+msgid "Qevora Booking"
+msgstr ""
+
+#: admin/class-admin.php:52
+#: admin/views/dashboard.php:31
+msgid "Dashboard"
+msgstr ""
+
+#: admin/class-admin.php:53
+#: admin/views/calendar.php:95
+#: admin/views/dashboard.php:109
+msgid "Calendar"
+msgstr ""
+
+#: admin/class-admin.php:54
+#: admin/class-customers-table.php:41
+#: admin/class-customers-table.php:85
+#: admin/views/bookings.php:16
+#: admin/views/customer-view.php:71
+msgid "Bookings"
+msgstr ""
+
+#: admin/class-admin.php:55
+#: admin/views/categories.php:40
+#: admin/views/dashboard.php:84
+#: admin/views/help.php:39
+#: admin/views/services.php:30
+#: admin/views/staff.php:90
+msgid "Services"
+msgstr ""
+
+#: admin/class-admin.php:56
+#: admin/views/categories.php:14
+msgid "Categories"
+msgstr ""
+
+#: admin/class-admin.php:57
+#: admin/class-bookings-table.php:50
+#: admin/views/booking-edit.php:70
+#: admin/views/booking-edit.php:117
+#: admin/views/bookings.php:58
+#: admin/views/calendar.php:273
+#: admin/views/customer-view.php:94
+#: admin/views/dashboard.php:89
+#: ...
+msgid "Staff"
+msgstr ""
+
+#: admin/class-admin.php:58
+#: admin/views/availability.php:35
+#: admin/views/staff.php:35
+msgid "Availability"
+msgstr ""
+
+#: admin/class-admin.php:59
+msgid "Holidays / Exceptions"
+msgstr ""
+
+#: admin/class-admin.php:60
+#: admin/views/customers.php:14
+#: admin/views/dashboard.php:94
+msgid "Customers"
+msgstr ""
+
+#: admin/class-admin.php:76
+#: admin/class-admin.php:77
+#: admin/views/emails.php:26
+msgid "Email Notifications"
+msgstr ""
+
+#: admin/class-admin.php:85
+#: admin/class-admin.php:86
+#: admin/views/settings.php:21
+#: includes/class-plugin.php:95
+msgid "Settings"
+msgstr ""
+
+#: admin/class-admin.php:94
+#: admin/class-admin.php:95
+#: admin/views/help.php:82
+msgid "Help / System Status"
+msgstr ""
+
+#: admin/class-admin.php:184
+msgid "Changes saved."
+msgstr ""
+
+#: admin/class-admin.php:238
+msgid "Choose a date to load available times."
+msgstr ""
+
+#: admin/class-admin.php:239
+msgid "Loading…"
+msgstr ""
+
+#: admin/class-admin.php:240
+msgid "No times available on this date."
+msgstr ""
+
+#: admin/class-admin.php:241
+msgid "Could not load availability."
+msgstr ""
+
+#: admin/class-admin.php:242
+msgid "Please select a service first."
+msgstr ""
+
+#: admin/class-admin.php:243
+#: admin/views/availability.php:120
+#: admin/views/availability.php:159
+#: admin/views/category-edit.php:98
+#: admin/views/service-edit.php:146
+#: admin/views/staff-edit.php:131
+msgid "Remove"
+msgstr ""
+
+#: admin/class-admin.php:244
+msgid "Copied."
+msgstr ""
+
+#: admin/class-admin.php:245
+msgid "Delete this item? This cannot be undone."
+msgstr ""
+
+#: admin/class-admin.php:246
+#: admin/class-bookings-table.php:133
+msgid "Cancel this booking?"
+msgstr ""
+
+#: admin/class-admin.php:247
+msgid "Choose an image"
+msgstr ""
+
+#: admin/class-admin.php:248
+msgid "Use this image"
+msgstr ""
+
+#: admin/class-admin.php:249
+msgid "Remove image"
+msgstr ""
+
+#: admin/class-admin.php:271
+#: admin/views/help.php:11
+msgid "You do not have permission to view this page."
+msgstr ""
+
+#: admin/class-admin.php:307
+msgid "This screen could not be found."
+msgstr ""
+
+#: admin/class-admin.php:390
+msgid "Site timezone (%s)"
+msgstr ""
+
+#: admin/class-admin.php:403
+msgid "Auto-detect a page with the booking shortcode"
+msgstr ""
+
+#: admin/class-admin.php:462
+msgid "That booking could not be found."
+msgstr ""
+
+#: admin/class-bookings-table.php:47
+#: admin/views/booking-edit.php:68
+#: admin/views/customer-view.php:91
+#: includes/class-notifications.php:523
+#: includes/class-privacy.php:124
+#: public/templates/booking-form.php:310
+#: public/templates/manage-booking.php:68
+msgid "Reference"
+msgstr ""
+
+#: admin/class-bookings-table.php:48
+#: admin/class-customers-table.php:39
+#: admin/views/booking-edit.php:82
+#: admin/views/booking-new.php:96
+#: admin/views/calendar.php:271
+#: admin/views/emails.php:64
+#: public/templates/manage-booking.php:85
+msgid "Customer"
+msgstr ""
+
+#: admin/class-bookings-table.php:49
+#: admin/views/booking-edit.php:69
+#: admin/views/booking-new.php:41
+#: admin/views/bookings.php:53
+#: admin/views/calendar.php:272
+#: admin/views/customer-view.php:93
+#: admin/views/services.php:84
+#: includes/class-notifications.php:524
+#: ...
+msgid "Service"
+msgstr ""
+
+#: admin/class-bookings-table.php:51
+#: public/templates/booking-form.php:76
+msgid "Date & time"
+msgstr ""
+
+#: admin/class-bookings-table.php:52
+#: admin/views/booking-edit.php:167
+#: admin/views/calendar.php:274
+#: admin/views/categories.php:41
+#: admin/views/category-edit.php:62
+#: admin/views/customer-view.php:95
+#: admin/views/emails.php:55
+#: admin/views/service-edit.php:97
+#: ...
+msgid "Status"
+msgstr ""
+
+#: admin/class-bookings-table.php:53
+#: admin/views/booking-edit.php:73
+#: admin/views/calendar.php:275
+#: admin/views/customer-view.php:96
+#: admin/views/service-edit.php:88
+#: admin/views/services.php:88
+#: includes/class-notifications.php:260
+#: includes/class-notifications.php:529
+#: ...
+msgid "Price"
+msgstr ""
+
+#: admin/class-bookings-table.php:54
+#: admin/class-customers-table.php:45
+#: admin/views/calendar.php:276
+#: admin/views/categories.php:43
+#: admin/views/emails.php:57
+#: admin/views/exceptions.php:85
+#: admin/views/services.php:91
+msgid "Actions"
+msgstr ""
+
+#: admin/class-bookings-table.php:79
+msgid "No bookings match this view."
+msgstr ""
+
+#: admin/class-bookings-table.php:115
+#: admin/class-customers-table.php:84
+#: admin/views/availability.php:61
+msgid "View"
+msgstr ""
+
+#: admin/class-bookings-table.php:134
+#: admin/views/booking-new.php:126
+#: admin/views/category-edit.php:106
+#: admin/views/exception-edit.php:99
+#: admin/views/service-edit.php:179
+#: admin/views/staff-edit.php:205
+msgid "Cancel"
+msgstr ""
+
+#: admin/class-bookings-table.php:159
+msgid "Contact details restricted"
+msgstr ""
+
+#: admin/class-bookings-table.php:184
+msgid "Any"
+msgstr ""
+
+#: admin/class-bookings-table.php:236
+#: admin/views/calendar.php:289
+msgid "Manage"
+msgstr ""
+
+#: admin/class-bookings-table.php:266
+msgid "All"
+msgstr ""
+
+#: admin/class-customers-table.php:40
+msgid "Contact"
+msgstr ""
+
+#: admin/class-customers-table.php:42
+msgid "Value"
+msgstr ""
+
+#: admin/class-customers-table.php:43
+msgid "Last visit"
+msgstr ""
+
+#: admin/class-customers-table.php:44
+#: includes/class-privacy.php:96
+msgid "First seen"
+msgstr ""
+
+#: admin/class-customers-table.php:70
+msgid "No customers yet. Customer records are created automatically with the first booking."
+msgstr ""
+
+#: admin/class-customers-table.php:160
+msgid "Restricted"
+msgstr ""
+
+#: admin/class-customers-table.php:164
+#: admin/views/settings.php:228
+msgid "Open"
+msgstr ""
+
+#: admin/views/availability.php:20
+#: admin/views/staff-edit.php:14
+msgid "That staff member could not be found."
+msgstr ""
+
+#: admin/views/availability.php:36
+msgid "Weekly opening hours, breaks and individual staff schedules."
+msgstr ""
+
+#: admin/views/availability.php:39
+#: admin/views/exceptions.php:26
+msgid "Holidays & exceptions"
+msgstr ""
+
+#: admin/views/availability.php:47
+msgid "Add staff first"
+msgstr ""
+
+#: admin/views/availability.php:47
+msgid "Weekly schedules apply to staff members. Business hours can be edited in Settings."
+msgstr ""
+
+#: admin/views/availability.php:47
+#: admin/views/staff-edit.php:41
+#: admin/views/staff.php:30
+msgid "Add staff member"
+msgstr ""
+
+#: admin/views/availability.php:55
+#: admin/views/booking-new.php:63
+#: admin/views/exceptions.php:41
+#: integrations/elementor/class-elementor-widget.php:97
+msgid "Staff member"
+msgstr ""
+
+#: admin/views/availability.php:68
+msgid "%s’s schedule"
+msgstr ""
+
+#: admin/views/availability.php:70
+#: admin/views/staff.php:95
+msgid "Custom schedule"
+msgstr ""
+
+#: admin/views/availability.php:70
+#: admin/views/availability.php:177
+#: admin/views/settings.php:41
+#: admin/views/settings.php:218
+#: admin/views/staff.php:95
+msgid "Business hours"
+msgstr ""
+
+#: admin/views/availability.php:80
+msgid "How should this person’s hours be calculated?"
+msgstr ""
+
+#: admin/views/availability.php:83
+msgid "Follow business hours"
+msgstr ""
+
+#: admin/views/availability.php:87
+msgid "Use a custom weekly schedule"
+msgstr ""
+
+#: admin/views/availability.php:97
+#: admin/views/availability.php:136
+#: admin/views/calendar.php:120
+#: admin/views/settings.php:227
+msgid "Day"
+msgstr ""
+
+#: admin/views/availability.php:105
+#: admin/views/availability.php:144
+#: admin/views/settings.php:229
+msgid "Start"
+msgstr ""
+
+#: admin/views/availability.php:109
+#: admin/views/availability.php:148
+#: admin/views/settings.php:230
+msgid "End"
+msgstr ""
+
+#: admin/views/availability.php:113
+#: admin/views/availability.php:152
+#: admin/views/settings.php:231
+msgid "Break start"
+msgstr ""
+
+#: admin/views/availability.php:117
+#: admin/views/availability.php:156
+#: admin/views/settings.php:232
+msgid "Break end"
+msgstr ""
+
+#: admin/views/availability.php:127
+msgid "Add shift"
+msgstr ""
+
+#: admin/views/availability.php:128
+msgid "Copy business hours"
+msgstr ""
+
+#: admin/views/availability.php:131
+msgid "Add one row per shift. Breaks are optional and must sit inside the shift. You can add several non-overlapping shifts per day."
+msgstr ""
+
+#: admin/views/availability.php:164
+msgid "Save schedule"
+msgstr ""
+
+#: admin/views/availability.php:170
+msgid "This person currently uses the business hours shown on the right. Switch to a custom schedule above if their hours differ."
+msgstr ""
+
+#: admin/views/availability.php:178
+#: admin/views/categories.php:76
+#: admin/views/categories.php:102
+#: admin/views/emails.php:74
+#: admin/views/exceptions.php:116
+#: admin/views/exceptions.php:142
+#: admin/views/services.php:125
+#: admin/views/services.php:147
+msgid "Edit"
+msgstr ""
+
+#: admin/views/availability.php:192
+msgid "break"
+msgstr ""
+
+#: admin/views/availability.php:196
+#: admin/views/availability.php:221
+#: admin/views/exceptions.php:131
+msgid "Closed"
+msgstr ""
+
+#: admin/views/availability.php:205
+msgid "Upcoming leave"
+msgstr ""
+
+#: admin/views/availability.php:206
+msgid "Add"
+msgstr ""
+
+#: admin/views/availability.php:209
+msgid "No holidays or special hours for this person."
+msgstr ""
+
+#: admin/views/availability.php:230
+msgid "Manage exceptions"
+msgstr ""
+
+#: admin/views/booking-edit.php:24
+msgid "Booking %s"
+msgstr ""
+
+#: admin/views/booking-edit.php:28
+#: admin/views/dashboard.php:143
+msgid "All bookings"
+msgstr ""
+
+#: admin/views/booking-edit.php:44
+msgid "Source: %1$s · Created %2$s"
+msgstr ""
+
+#: admin/views/booking-edit.php:45
+msgid "admin"
+msgstr ""
+
+#: admin/views/booking-edit.php:45
+msgid "website"
+msgstr ""
+
+#: admin/views/booking-edit.php:54
+msgid "Copy customer link"
+msgstr ""
+
+#: admin/views/booking-edit.php:57
+msgid "Resend status email"
+msgstr ""
+
+#: admin/views/booking-edit.php:65
+msgid "Appointment"
+msgstr ""
+
+#: admin/views/booking-edit.php:70
+msgid "Any available"
+msgstr ""
+
+#: admin/views/booking-edit.php:71
+#: admin/views/booking-new.php:75
+#: admin/views/customer-view.php:92
+#: includes/class-notifications.php:526
+#: includes/class-privacy.php:136
+#: public/class-public.php:149
+#: public/templates/booking-form.php:216
+#: public/templates/booking-form.php:273
+msgid "Date"
+msgstr ""
+
+#: admin/views/booking-edit.php:72
+#: admin/views/booking-new.php:80
+#: admin/views/calendar.php:270
+#: includes/class-notifications.php:527
+#: includes/class-privacy.php:140
+#: public/class-public.php:150
+#: public/templates/booking-form.php:274
+msgid "Time"
+msgstr ""
+
+#: admin/views/booking-edit.php:73
+#: includes/class-notifications.php:529
+msgid "pay at salon"
+msgstr ""
+
+#: admin/views/booking-edit.php:75
+#: admin/views/customer-view.php:74
+#: includes/class-utils.php:517
+msgid "Cancelled"
+msgstr ""
+
+#: admin/views/booking-edit.php:86
+#: admin/views/categories.php:38
+#: admin/views/category-edit.php:51
+#: admin/views/customer-view.php:127
+#: includes/class-privacy.php:84
+#: public/templates/booking-form.php:277
+msgid "Name"
+msgstr ""
+
+#: admin/views/booking-edit.php:90
+msgid "View history"
+msgstr ""
+
+#: admin/views/booking-edit.php:94
+#: admin/views/customer-view.php:131
+#: admin/views/emails.php:53
+#: admin/views/staff-edit.php:70
+#: includes/class-privacy.php:88
+#: public/templates/booking-form.php:278
+#: public/templates/manage-booking.php:86
+msgid "Email"
+msgstr ""
+
+#: admin/views/booking-edit.php:95
+#: admin/views/booking-new.php:108
+#: admin/views/customer-view.php:135
+#: admin/views/staff-edit.php:76
+#: includes/class-privacy.php:92
+#: public/templates/booking-form.php:279
+#: public/templates/manage-booking.php:88
+msgid "Phone"
+msgstr ""
+
+#: admin/views/booking-edit.php:97
+#: includes/class-notifications.php:262
+msgid "Customer notes"
+msgstr ""
+
+#: admin/views/booking-edit.php:104
+#: public/templates/manage-booking.php:98
+msgid "Reschedule"
+msgstr ""
+
+#: admin/views/booking-edit.php:113
+#: public/templates/manage-booking.php:133
+msgid "New date"
+msgstr ""
+
+#: admin/views/booking-edit.php:119
+#: admin/views/booking-new.php:65
+#: includes/class-staff.php:352
+#: integrations/elementor/class-elementor-widget.php:89
+#: public/class-public.php:146
+#: public/templates/booking-form.php:168
+msgid "Any available staff"
+msgstr ""
+
+#: admin/views/booking-edit.php:126
+msgid "New time"
+msgstr ""
+
+#: admin/views/booking-edit.php:135
+#: admin/views/booking-new.php:88
+msgid "Available times"
+msgstr ""
+
+#: admin/views/booking-edit.php:138
+msgid "Change the date to load availability."
+msgstr ""
+
+#: admin/views/booking-edit.php:143
+msgid "Reschedule booking"
+msgstr ""
+
+#: admin/views/booking-edit.php:147
+msgid "Only pending or confirmed bookings can be moved."
+msgstr ""
+
+#: admin/views/booking-edit.php:152
+#: admin/views/booking-edit.php:157
+#: admin/views/customer-view.php:139
+msgid "Private notes"
+msgstr ""
+
+#: admin/views/booking-edit.php:159
+msgid "Notes are only visible to the team and are never included in customer emails."
+msgstr ""
+
+#: admin/views/booking-edit.php:160
+msgid "Save notes"
+msgstr ""
+
+#: admin/views/booking-edit.php:175
+msgid "Change to"
+msgstr ""
+
+#: admin/views/booking-edit.php:184
+#: public/class-public.php:140
+#: public/templates/manage-booking.php:120
+msgid "Reason (optional)"
+msgstr ""
+
+#: admin/views/booking-edit.php:186
+msgid "Included in the customer email for cancellations."
+msgstr ""
+
+#: admin/views/booking-edit.php:189
+msgid "Update status"
+msgstr ""
+
+#: admin/views/booking-edit.php:192
+msgid "This booking is in a final state."
+msgstr ""
+
+#: admin/views/booking-edit.php:197
+msgid "Cancel this booking? The slot will be released."
+msgstr ""
+
+#: admin/views/booking-edit.php:199
+#: public/templates/manage-booking.php:101
+msgid "Cancel booking"
+msgstr ""
+
+#: admin/views/booking-edit.php:205
+msgid "At a glance"
+msgstr ""
+
+#: admin/views/booking-edit.php:207
+#: admin/views/services.php:86
+#: includes/class-notifications.php:259
+#: includes/class-notifications.php:528
+#: public/class-public.php:154
+#: public/templates/booking-form.php:275
+msgid "Duration"
+msgstr ""
+
+#: admin/views/booking-edit.php:208
+#: admin/views/services.php:87
+msgid "Buffer"
+msgstr ""
+
+#: admin/views/booking-edit.php:209
+msgid "Reschedules"
+msgstr ""
+
+#: admin/views/booking-edit.php:210
+msgid "Last updated"
+msgstr ""
+
+#: admin/views/booking-edit.php:213
+msgid "The customer IP address is stored only as a salted hash for abuse protection."
+msgstr ""
+
+#: admin/views/booking-new.php:19
+#: admin/views/bookings.php:20
+#: admin/views/calendar.php:232
+#: admin/views/customer-view.php:62
+#: admin/views/dashboard.php:40
+msgid "Add booking"
+msgstr ""
+
+#: admin/views/booking-new.php:20
+msgid "Create an appointment for a walk-in or phone customer."
+msgstr ""
+
+#: admin/views/booking-new.php:23
+msgid "Back to bookings"
+msgstr ""
+
+#: admin/views/booking-new.php:31
+msgid "Create an active service before adding bookings."
+msgstr ""
+
+#: admin/views/booking-new.php:43
+#: public/templates/booking-form.php:101
+msgid "Choose a service"
+msgstr ""
+
+#: admin/views/booking-new.php:50
+msgid "%1$s — %2$s — %3$s"
+msgstr ""
+
+#: admin/views/booking-new.php:82
+msgid "Pick an available slot below, or type a time that matches the schedule."
+msgstr ""
+
+#: admin/views/booking-new.php:89
+msgid "Times update when the service, staff member or date changes."
+msgstr ""
+
+#: admin/views/booking-new.php:92
+msgid "Choose a service and date to load availability."
+msgstr ""
+
+#: admin/views/booking-new.php:100
+#: admin/views/staff-edit.php:60
+#: public/templates/booking-form.php:236
+msgid "Full name"
+msgstr ""
+
+#: admin/views/booking-new.php:104
+#: public/templates/booking-form.php:240
+msgid "Email address"
+msgstr ""
+
+#: admin/views/booking-new.php:112
+msgid "Initial status"
+msgstr ""
+
+#: admin/views/booking-new.php:114
+#: includes/class-utils.php:515
+msgid "Confirmed"
+msgstr ""
+
+#: admin/views/booking-new.php:115
+msgid "Pending approval"
+msgstr ""
+
+#: admin/views/booking-new.php:119
+msgid "Notes for the team"
+msgstr ""
+
+#: admin/views/booking-new.php:125
+msgid "Create booking"
+msgstr ""
+
+#: admin/views/bookings.php:17
+msgid "Search, filter and manage every appointment."
+msgstr ""
+
+#: admin/views/bookings.php:25
+#: admin/views/calendar.php:115
+msgid "Calendar view"
+msgstr ""
+
+#: admin/views/bookings.php:43
+msgid "Search bookings"
+msgstr ""
+
+#: admin/views/bookings.php:44
+msgid "Reference, name, email or phone"
+msgstr ""
+
+#: admin/views/bookings.php:60
+#: admin/views/calendar.php:144
+#: admin/views/exceptions.php:124
+#: admin/views/staff-edit.php:45
+msgid "All staff"
+msgstr ""
+
+#: admin/views/bookings.php:63
+#: admin/views/exception-edit.php:70
+msgid "From date"
+msgstr ""
+
+#: admin/views/bookings.php:66
+#: admin/views/exception-edit.php:75
+msgid "To date"
+msgstr ""
+
+#: admin/views/bookings.php:69
+#: admin/views/exceptions.php:64
+#: admin/views/services.php:67
+msgid "Filter"
+msgstr ""
+
+#: admin/views/bookings.php:70
+#: admin/views/customers.php:31
+#: admin/views/exceptions.php:65
+#: admin/views/services.php:68
+msgid "Reset"
+msgstr ""
+
+#: admin/views/bookings.php:79
+msgid "Bulk action"
+msgstr ""
+
+#: admin/views/bookings.php:81
+msgid "Bulk actions"
+msgstr ""
+
+#: admin/views/bookings.php:82
+msgid "Change status to confirmed"
+msgstr ""
+
+#: admin/views/bookings.php:83
+msgid "Change status to completed"
+msgstr ""
+
+#: admin/views/bookings.php:84
+msgid "Cancel bookings"
+msgstr ""
+
+#: admin/views/bookings.php:85
+msgid "Reject requests"
+msgstr ""
+
+#: admin/views/bookings.php:86
+msgid "Mark as no-show"
+msgstr ""
+
+#: admin/views/bookings.php:88
+#: admin/views/calendar.php:147
+msgid "Apply"
+msgstr ""
+
+#: admin/views/bookings.php:89
+msgid "Status changes email the customer when notifications are enabled."
+msgstr ""
+
+#: admin/views/calendar.php:11
+msgid "You do not have permission to view the calendar."
+msgstr ""
+
+#: admin/views/calendar.php:96
+msgid "See every appointment by month, week or day. Click a booking to manage it."
+msgstr ""
+
+#: admin/views/calendar.php:99
+msgid "New booking"
+msgstr ""
+
+#: admin/views/calendar.php:109
+msgid "Previous period"
+msgstr ""
+
+#: admin/views/calendar.php:110
+#: admin/views/dashboard.php:64
+msgid "Today"
+msgstr ""
+
+#: admin/views/calendar.php:111
+msgid "Next period"
+msgstr ""
+
+#: admin/views/calendar.php:118
+msgid "Month"
+msgstr ""
+
+#: admin/views/calendar.php:119
+msgid "Week"
+msgstr ""
+
+#: admin/views/calendar.php:134
+msgid "Filter by status"
+msgstr ""
+
+#: admin/views/calendar.php:136
+msgid "All active statuses"
+msgstr ""
+
+#: admin/views/calendar.php:142
+msgid "Filter by staff"
+msgstr ""
+
+#: admin/views/calendar.php:150
+msgid "Clear filters"
+msgstr ""
+
+#: admin/views/calendar.php:209
+msgid "+%d more"
+msgstr ""
+
+#: admin/views/calendar.php:237
+msgid "No appointments"
+msgstr ""
+
+#: admin/views/calendar.php:263
+msgid "No appointments on this day."
+msgstr ""
+
+#: admin/views/calendar.php:264
+msgid "Add a booking"
+msgstr ""
+
+#: admin/views/calendar.php:300
+msgid "Legend"
+msgstr ""
+
+#: admin/views/calendar.php:305
+msgid "Showing one staff member."
+msgstr ""
+
+#: admin/views/calendar.php:307
+msgid "Event colour shows the assigned staff member."
+msgstr ""
+
+#: admin/views/categories.php:15
+msgid "Group services so customers can browse faster."
+msgstr ""
+
+#: admin/views/categories.php:18
+#: admin/views/category-edit.php:32
+msgid "Add category"
+msgstr ""
+
+#: admin/views/categories.php:28
+msgid "No categories yet"
+msgstr ""
+
+#: admin/views/categories.php:29
+msgid "Categories are optional, but they make longer service lists easier to browse. For example: Massages, Facials, Hair."
+msgstr ""
+
+#: admin/views/categories.php:30
+msgid "Add a category"
+msgstr ""
+
+#: admin/views/categories.php:37
+#: admin/views/services.php:83
+msgid "Image"
+msgstr ""
+
+#: admin/views/categories.php:39
+msgid "Slug"
+msgstr ""
+
+#: admin/views/categories.php:42
+msgid "Sort"
+msgstr ""
+
+#: admin/views/categories.php:77
+#: admin/views/category-edit.php:109
+msgid "Delete this category? Services in it will become uncategorised."
+msgstr ""
+
+#: admin/views/categories.php:77
+#: admin/views/exceptions.php:117
+#: admin/views/services.php:126
+#: admin/views/staff.php:110
+msgid "Delete"
+msgstr ""
+
+#: admin/views/categories.php:87
+msgid "%d service"
+msgstr ""
+
+#: admin/views/categories.php:93
+msgid "None"
+msgstr ""
+
+#: admin/views/categories.php:98
+#: admin/views/category-edit.php:67
+#: admin/views/services.php:59
+#: admin/views/services.php:144
+#: admin/views/staff.php:83
+msgid "Active"
+msgstr ""
+
+#: admin/views/categories.php:98
+#: admin/views/category-edit.php:68
+#: admin/views/services.php:60
+#: admin/views/services.php:144
+#: admin/views/staff.php:83
+msgid "Inactive"
+msgstr ""
+
+#: admin/views/category-edit.php:14
+msgid "That category could not be found."
+msgstr ""
+
+#: admin/views/category-edit.php:32
+msgid "Edit category"
+msgstr ""
+
+#: admin/views/category-edit.php:33
+msgid "Create a group for related services."
+msgstr ""
+
+#: admin/views/category-edit.php:36
+msgid "All categories"
+msgstr ""
+
+#: admin/views/category-edit.php:56
+#: admin/views/service-edit.php:63
+msgid "URL slug"
+msgstr ""
+
+#: admin/views/category-edit.php:58
+#: admin/views/service-edit.php:65
+msgid "Leave blank to generate one from the name."
+msgstr ""
+
+#: admin/views/category-edit.php:77
+#: admin/views/service-edit.php:112
+#: admin/views/staff-edit.php:102
+msgid "Sort order"
+msgstr ""
+
+#: admin/views/category-edit.php:82
+#: admin/views/service-edit.php:118
+msgid "Description"
+msgstr ""
+
+#: admin/views/category-edit.php:84
+msgid "Optional. Displayed above the category in the booking form."
+msgstr ""
+
+#: admin/views/category-edit.php:88
+msgid "Category image"
+msgstr ""
+
+#: admin/views/category-edit.php:97
+#: admin/views/service-edit.php:145
+msgid "Choose image"
+msgstr ""
+
+#: admin/views/category-edit.php:105
+msgid "Save category"
+msgstr ""
+
+#: admin/views/category-edit.php:105
+msgid "Create category"
+msgstr ""
+
+#: admin/views/category-edit.php:111
+msgid "Delete category"
+msgstr ""
+
+#: admin/views/customer-view.php:14
+msgid "That customer could not be found."
+msgstr ""
+
+#: admin/views/customer-view.php:19
+msgid "You do not have permission to view customer contact details."
+msgstr ""
+
+#: admin/views/customer-view.php:52
+msgid "Customer since %s"
+msgstr ""
+
+#: admin/views/customer-view.php:57
+msgid "All customers"
+msgstr ""
+
+#: admin/views/customer-view.php:72
+#: includes/class-utils.php:516
+msgid "Completed"
+msgstr ""
+
+#: admin/views/customer-view.php:73
+#: admin/views/exceptions.php:55
+msgid "Upcoming"
+msgstr ""
+
+#: admin/views/customer-view.php:75
+msgid "Completed value"
+msgstr ""
+
+#: admin/views/customer-view.php:81
+msgid "Booking history"
+msgstr ""
+
+#: admin/views/customer-view.php:82
+msgid "Open in bookings"
+msgstr ""
+
+#: admin/views/customer-view.php:86
+msgid "No bookings yet."
+msgstr ""
+
+#: admin/views/customer-view.php:120
+msgid "Contact details"
+msgstr ""
+
+#: admin/views/customer-view.php:142
+msgid "Save customer"
+msgstr ""
+
+#: admin/views/customer-view.php:147
+msgid "Privacy"
+msgstr ""
+
+#: admin/views/customer-view.php:148
+msgid "Anonymising removes the name, email, phone, notes and IP hashes from this customer and their bookings. Booking dates, services and amounts remain for reporting. This cannot be undone."
+msgstr ""
+
+#: admin/views/customer-view.php:149
+msgid "Anonymise this customer? This cannot be undone."
+msgstr ""
+
+#: admin/views/customer-view.php:151
+msgid "Anonymise customer"
+msgstr ""
+
+#: admin/views/customer-view.php:156
+msgid "Record"
+msgstr ""
+
+#: admin/views/customer-view.php:158
+msgid "Created"
+msgstr ""
+
+#: admin/views/customer-view.php:159
+msgid "Updated"
+msgstr ""
+
+#: admin/views/customer-view.php:160
+msgid "WordPress user"
+msgstr ""
+
+#: admin/views/customer-view.php:162
+msgid "Email used for lookups: %s"
+msgstr ""
+
+#: admin/views/customers.php:15
+msgid "Booking history and contact records. Access is limited by capability."
+msgstr ""
+
+#: admin/views/customers.php:21
+msgid "Your account cannot view customer contact details. You can still see booking volumes and anonymised contact information."
+msgstr ""
+
+#: admin/views/customers.php:28
+msgid "Search customers"
+msgstr ""
+
+#: admin/views/customers.php:29
+msgid "Name, email or phone"
+msgstr ""
+
+#: admin/views/customers.php:30
+msgid "Search"
+msgstr ""
+
+#: admin/views/customers.php:38
+msgid "Privacy and data"
+msgstr ""
+
+#: admin/views/customers.php:39
+msgid "Customer records are created automatically when someone books. Contact information is only visible to roles with the “View customer data” capability. You can anonymise a customer from their detail screen; their booking history is retained without personal contact details."
+msgstr ""
+
+#: admin/views/customers.php:40
+msgid "Review data retention settings"
+msgstr ""
+
+#: admin/views/dashboard.php:34
+msgid "Today at %s — %s"
+msgstr ""
+
+#: admin/views/dashboard.php:45
+msgid "Open calendar"
+msgstr ""
+
+#: admin/views/dashboard.php:56
+msgid "One or more database tables are missing. Bookings will not work until they are repaired."
+msgstr ""
+
+#: admin/views/dashboard.php:57
+msgid "Open system status"
+msgstr ""
+
+#: admin/views/dashboard.php:66
+msgid "%1$d confirmed · %2$d pending"
+msgstr ""
+
+#: admin/views/dashboard.php:69
+msgid "This week"
+msgstr ""
+
+#: admin/views/dashboard.php:71
+#: admin/views/dashboard.php:76
+msgid "expected"
+msgstr ""
+
+#: admin/views/dashboard.php:74
+msgid "This month"
+msgstr ""
+
+#: admin/views/dashboard.php:79
+msgid "Awaiting approval"
+msgstr ""
+
+#: admin/views/dashboard.php:81
+msgid "Review requests"
+msgstr ""
+
+#: admin/views/dashboard.php:86
+msgid "Manage services"
+msgstr ""
+
+#: admin/views/dashboard.php:91
+msgid "Manage team"
+msgstr ""
+
+#: admin/views/dashboard.php:96
+msgid "View records"
+msgstr ""
+
+#: admin/views/dashboard.php:99
+#: admin/views/help.php:34
+#: admin/views/settings.php:128
+msgid "Booking page"
+msgstr ""
+
+#: admin/views/dashboard.php:100
+msgid "Connected"
+msgstr ""
+
+#: admin/views/dashboard.php:100
+msgid "Not set"
+msgstr ""
+
+#: admin/views/dashboard.php:101
+msgid "Open booking form"
+msgstr ""
+
+#: admin/views/dashboard.php:108
+msgid "Today’s schedule"
+msgstr ""
+
+#: admin/views/dashboard.php:113
+msgid "Nothing booked for today."
+msgstr ""
+
+#: admin/views/dashboard.php:142
+msgid "Upcoming appointments"
+msgstr ""
+
+#: admin/views/dashboard.php:147
+msgid "No upcoming bookings yet."
+msgstr ""
+
+#: admin/views/dashboard.php:168
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: admin/views/dashboard.php:187
+msgid "Quick actions"
+msgstr ""
+
+#: admin/views/dashboard.php:190
+#: admin/views/services.php:76
+#: admin/views/staff-edit.php:142
+msgid "Add a service"
+msgstr ""
+
+#: admin/views/dashboard.php:191
+#: admin/views/staff.php:47
+msgid "Add a staff member"
+msgstr ""
+
+#: admin/views/dashboard.php:192
+msgid "Set working hours"
+msgstr ""
+
+#: admin/views/dashboard.php:193
+msgid "Add a holiday"
+msgstr ""
+
+#: admin/views/dashboard.php:194
+msgid "Edit email templates"
+msgstr ""
+
+#: admin/views/dashboard.php:195
+#: admin/views/settings.php:39
+#: admin/views/settings.php:138
+msgid "Booking rules"
+msgstr ""
+
+#: admin/views/dashboard.php:201
+msgid "Setup checklist"
+msgstr ""
+
+#: admin/views/dashboard.php:204
+msgid "Create at least one service"
+msgstr ""
+
+#: admin/views/dashboard.php:205
+msgid "Add your team members"
+msgstr ""
+
+#: admin/views/dashboard.php:206
+msgid "Publish the booking page with [qevora_booking]"
+msgstr ""
+
+#: admin/views/dashboard.php:207
+msgid "Turn on booking emails"
+msgstr ""
+
+#: admin/views/dashboard.php:208
+msgid "Add business contact details"
+msgstr ""
+
+#: admin/views/dashboard.php:214
+msgid "Shortcode: %s"
+msgstr ""
+
+#: admin/views/emails.php:11
+msgid "You do not have permission to manage email templates."
+msgstr ""
+
+#: admin/views/emails.php:27
+msgid "Control the emails sent to customers and your team. Templates use placeholders that are replaced when a booking event happens."
+msgstr ""
+
+#: admin/views/emails.php:30
+msgid "Notification settings"
+msgstr ""
+
+#: admin/views/emails.php:41
+msgid "Email notifications are currently switched off. Booking emails will not be sent until you enable them in Settings → Notifications."
+msgstr ""
+
+#: admin/views/emails.php:42
+msgid "Enable emails"
+msgstr ""
+
+#: admin/views/emails.php:54
+msgid "Sent to"
+msgstr ""
+
+#: admin/views/emails.php:56
+#: admin/views/emails.php:141
+msgid "Subject"
+msgstr ""
+
+#: admin/views/emails.php:64
+msgid "Business / staff"
+msgstr ""
+
+#: admin/views/emails.php:67
+#: admin/views/emails.php:136
+msgid "Enabled"
+msgstr ""
+
+#: admin/views/emails.php:69
+msgid "Disabled"
+msgstr ""
+
+#: admin/views/emails.php:84
+msgid "Send a test email"
+msgstr ""
+
+#: admin/views/emails.php:85
+msgid "The test uses the “Booking confirmed” template with sample data. If it does not arrive, configure SMTP or a mail plugin on your site."
+msgstr ""
+
+#: admin/views/emails.php:90
+msgid "Send to"
+msgstr ""
+
+#: admin/views/emails.php:94
+msgid "Send test email"
+msgstr ""
+
+#: admin/views/emails.php:100
+msgid "Email delivery checklist"
+msgstr ""
+
+#: admin/views/emails.php:102
+msgid "WordPress uses wp_mail(); most hosts require an SMTP plugin for reliable delivery."
+msgstr ""
+
+#: admin/views/emails.php:103
+msgid "Set a From address on your own domain to improve deliverability."
+msgstr ""
+
+#: admin/views/emails.php:104
+msgid "Customer emails depend on a valid address being supplied at booking."
+msgstr ""
+
+#: admin/views/emails.php:105
+msgid "Use the Filters API (qvb_email_headers) if you need custom Reply-To behaviour."
+msgstr ""
+
+#: admin/views/emails.php:113
+msgid "All email templates"
+msgstr ""
+
+#: admin/views/emails.php:128
+msgid "This email goes to the business / staff address in Settings."
+msgstr ""
+
+#: admin/views/emails.php:129
+msgid "This email goes to the customer’s address stored with the booking."
+msgstr ""
+
+#: admin/views/emails.php:146
+msgid "Body (HTML allowed)"
+msgstr ""
+
+#: admin/views/emails.php:148
+msgid "Placeholders are replaced with booking data. Inline styles are recommended for email clients."
+msgstr ""
+
+#: admin/views/emails.php:152
+msgid "Save template"
+msgstr ""
+
+#: admin/views/emails.php:153
+msgid "Reset this template to the default copy?"
+msgstr ""
+
+#: admin/views/emails.php:155
+msgid "Reset to default"
+msgstr ""
+
+#: admin/views/emails.php:157
+msgid "Saved templates override the plugin defaults."
+msgstr ""
+
+#: admin/views/emails.php:161
+msgid "Preview with sample data"
+msgstr ""
+
+#: admin/views/emails.php:162
+msgid "Email preview"
+msgstr ""
+
+#: admin/views/emails.php:167
+msgid "Available placeholders"
+msgstr ""
+
+#: admin/views/emails.php:168
+msgid "Click a placeholder to copy it, then paste it into the subject or body."
+msgstr ""
+
+#: admin/views/exception-edit.php:14
+msgid "That exception could not be found."
+msgstr ""
+
+#: admin/views/exception-edit.php:32
+msgid "Edit exception"
+msgstr ""
+
+#: admin/views/exception-edit.php:32
+#: admin/views/exception-edit.php:98
+#: admin/views/exceptions.php:30
+msgid "Add exception"
+msgstr ""
+
+#: admin/views/exception-edit.php:33
+msgid "Block a date range or open special hours."
+msgstr ""
+
+#: admin/views/exception-edit.php:36
+msgid "All exceptions"
+msgstr ""
+
+#: admin/views/exception-edit.php:51
+#: admin/views/exceptions.php:81
+msgid "Applies to"
+msgstr ""
+
+#: admin/views/exception-edit.php:53
+msgid "All staff / business-wide"
+msgstr ""
+
+#: admin/views/exception-edit.php:58
+msgid "Business-wide closures apply to everyone. Staff exceptions override business-wide special hours for that person."
+msgstr ""
+
+#: admin/views/exception-edit.php:62
+#: admin/views/exceptions.php:82
+msgid "Type"
+msgstr ""
+
+#: admin/views/exception-edit.php:64
+msgid "Closed (holiday or leave)"
+msgstr ""
+
+#: admin/views/exception-edit.php:65
+msgid "Special opening hours"
+msgstr ""
+
+#: admin/views/exception-edit.php:77
+msgid "Leave the same as the start date for a single day."
+msgstr ""
+
+#: admin/views/exception-edit.php:81
+msgid "Opens at"
+msgstr ""
+
+#: admin/views/exception-edit.php:86
+msgid "Closes at"
+msgstr ""
+
+#: admin/views/exception-edit.php:91
+msgid "Internal note"
+msgstr ""
+
+#: admin/views/exception-edit.php:92
+msgid "Public holiday, training day, annual leave…"
+msgstr ""
+
+#: admin/views/exception-edit.php:93
+msgid "Only visible to the team. Existing bookings are not cancelled automatically — review the calendar for affected appointments."
+msgstr ""
+
+#: admin/views/exception-edit.php:98
+msgid "Save exception"
+msgstr ""
+
+#: admin/views/exception-edit.php:102
+#: admin/views/exceptions.php:117
+msgid "Delete this exception?"
+msgstr ""
+
+#: admin/views/exception-edit.php:104
+msgid "Delete exception"
+msgstr ""
+
+#: admin/views/exceptions.php:27
+msgid "Close the salon, block leave or open special hours for a date range."
+msgstr ""
+
+#: admin/views/exceptions.php:43
+msgid "All staff and business"
+msgstr ""
+
+#: admin/views/exceptions.php:44
+msgid "Business-wide only"
+msgstr ""
+
+#: admin/views/exceptions.php:50
+msgid "Time range"
+msgstr ""
+
+#: admin/views/exceptions.php:56
+msgid "Past"
+msgstr ""
+
+#: admin/views/exceptions.php:57
+msgid "All dates"
+msgstr ""
+
+#: admin/views/exceptions.php:71
+msgid "No exceptions found"
+msgstr ""
+
+#: admin/views/exceptions.php:72
+msgid "Use exceptions for public holidays, staff leave and one-off special opening hours. Weekly schedules are managed on the Availability screen."
+msgstr ""
+
+#: admin/views/exceptions.php:73
+msgid "Add an exception"
+msgstr ""
+
+#: admin/views/exceptions.php:80
+msgid "Dates"
+msgstr ""
+
+#: admin/views/exceptions.php:83
+#: admin/views/staff.php:94
+#: admin/views/staff.php:109
+msgid "Hours"
+msgstr ""
+
+#: admin/views/exceptions.php:84
+msgid "Note"
+msgstr ""
+
+#: admin/views/exceptions.php:113
+msgid "(past)"
+msgstr ""
+
+#: admin/views/exceptions.php:122
+msgid "Deleted staff member"
+msgstr ""
+
+#: admin/views/exceptions.php:129
+msgid "Special hours"
+msgstr ""
+
+#: admin/views/exceptions.php:138
+msgid "All day"
+msgstr ""
+
+#: admin/views/help.php:29
+msgid "Database tables"
+msgstr ""
+
+#: admin/views/help.php:31
+msgid "All 8 tables exist."
+msgstr ""
+
+#: admin/views/help.php:31
+msgid "One or more tables are missing. Use “Repair tables” below."
+msgstr ""
+
+#: admin/views/help.php:36
+msgid "Add the [qevora_booking] shortcode to a published page."
+msgstr ""
+
+#: admin/views/help.php:42
+msgid "%d active or inactive services."
+msgstr ""
+
+#: admin/views/help.php:48
+msgid "%d staff profiles."
+msgstr ""
+
+#: admin/views/help.php:51
+msgid "Email notifications"
+msgstr ""
+
+#: admin/views/help.php:53
+msgid "Enabled. Send a test from Email Notifications."
+msgstr ""
+
+#: admin/views/help.php:53
+msgid "Disabled — no booking emails will be sent."
+msgstr ""
+
+#: admin/views/help.php:56
+msgid "WP-Cron"
+msgstr ""
+
+#: admin/views/help.php:58
+msgid "Next maintenance: %s"
+msgstr ""
+
+#: admin/views/help.php:58
+msgid "Not scheduled. Deactivate and reactivate the plugin."
+msgstr ""
+
+#: admin/views/help.php:61
+msgid "HTTPS"
+msgstr ""
+
+#: admin/views/help.php:63
+msgid "Secure connection detected."
+msgstr ""
+
+#: admin/views/help.php:63
+msgid "Public booking forms should be served over HTTPS."
+msgstr ""
+
+#: admin/views/help.php:83
+msgid "Quick-start guidance, integration snippets and a health check for this installation."
+msgstr ""
+
+#: admin/views/help.php:88
+msgid "System status"
+msgstr ""
+
+#: admin/views/help.php:96
+msgid "OK"
+msgstr ""
+
+#: admin/views/help.php:96
+msgid "Needs attention"
+msgstr ""
+
+#: admin/views/help.php:110
+msgid "Repair tables"
+msgstr ""
+
+#: admin/views/help.php:115
+msgid "Run maintenance now"
+msgstr ""
+
+#: admin/views/help.php:123
+msgid "Quick start"
+msgstr ""
+
+#: admin/views/help.php:125
+msgid "Set your business name, timezone, currency and business hours."
+msgstr ""
+
+#: admin/views/help.php:126
+msgid "Create service categories (optional, but great for grouping)."
+msgstr ""
+
+#: admin/views/help.php:127
+msgid "Add services with duration, price and optional buffer."
+msgstr ""
+
+#: admin/views/help.php:128
+msgid "Add staff, assign services and set working hours."
+msgstr ""
+
+#: admin/views/help.php:129
+msgid "Fine-tune availability per staff member if needed."
+msgstr ""
+
+#: admin/views/help.php:130
+msgid "Add holidays or special opening hours."
+msgstr ""
+
+#: admin/views/help.php:131
+msgid "Review email templates and send a test email."
+msgstr ""
+
+#: admin/views/help.php:132
+msgid "Publish the shortcode on a page and test a real booking."
+msgstr ""
+
+#: admin/views/help.php:137
+msgid "Add the booking form"
+msgstr ""
+
+#: admin/views/help.php:138
+msgid "Shortcode:"
+msgstr ""
+
+#: admin/views/help.php:140
+msgid "Limit to a service, staff member or category:"
+msgstr ""
+
+#: admin/views/help.php:146
+msgid "The same shortcode works with the Gutenberg block “Qevora Booking” and the Elementor widget of the same name."
+msgstr ""
+
+#: admin/views/help.php:149
+msgid "Edit booking page"
+msgstr ""
+
+#: admin/views/help.php:150
+msgid "View booking page"
+msgstr ""
+
+#: admin/views/help.php:152
+msgid "Create a booking page"
+msgstr ""
+
+#: admin/views/help.php:159
+msgid "How bookings flow"
+msgstr ""
+
+#: admin/views/help.php:161
+msgid "Customer picks a service, staff (or “any available”), date and time."
+msgstr ""
+
+#: admin/views/help.php:162
+msgid "Availability is re-checked on submit with a database lock, so double bookings are rejected."
+msgstr ""
+
+#: admin/views/help.php:163
+msgid "A pending or confirmed booking is created with snapshotted service and price data."
+msgstr ""
+
+#: admin/views/help.php:164
+msgid "Customer and staff receive emails with a secure manage link."
+msgstr ""
+
+#: admin/views/help.php:165
+msgid "Staff confirm, complete, cancel or reschedule from Bookings or the Calendar."
+msgstr ""
+
+#: admin/views/help.php:166
+msgid "Payment is collected at the salon — no gateway is involved."
+msgstr ""
+
+#: admin/views/help.php:172
+msgid "Data stored"
+msgstr ""
+
+#: admin/views/help.php:178
+msgid "Missing"
+msgstr ""
+
+#: admin/views/help.php:186
+msgid "Debug information"
+msgstr ""
+
+#: admin/views/help.php:187
+msgid "Copy this into a support request. It contains no customer data."
+msgstr ""
+
+#: admin/views/help.php:189
+msgid "Copy debug info"
+msgstr ""
+
+#: admin/views/help.php:194
+msgid "How do I…?"
+msgstr ""
+
+#: admin/views/help.php:197
+msgid "Make my salon require approval for every booking"
+msgstr ""
+
+#: admin/views/help.php:198
+msgid "Settings → Booking rules → Approval mode: “Hold as pending until approved”. You will get a staff email for each request; confirm it from Bookings."
+msgstr ""
+
+#: admin/views/help.php:201
+msgid "Take a day off without deleting bookings"
+msgstr ""
+
+#: admin/views/help.php:202
+msgid "Holidays / Exceptions → Add exception → Closed, then choose the date and scope. Existing bookings are not deleted; cancel them from Bookings if needed."
+msgstr ""
+
+#: admin/views/help.php:205
+msgid "Give one staff member different hours"
+msgstr ""
+
+#: admin/views/help.php:206
+msgid "Staff → Edit → set “Use business hours” to No, then fill in the weekly schedule. Breaks are optional."
+msgstr ""
+
+#: admin/views/help.php:209
+msgid "Change how much a past booking cost"
+msgstr ""
+
+#: admin/views/help.php:210
+msgid "Booking prices are snapshotted. Editing a service later never changes historical bookings; adjust the booking itself if you need to correct a price."
+msgstr ""
+
+#: admin/views/help.php:213
+msgid "Stop emails from being sent"
+msgstr ""
+
+#: admin/views/help.php:214
+msgid "Settings → Notifications → disable “Send booking emails”. Individual templates can be disabled too."
+msgstr ""
+
+#: admin/views/help.php:217
+msgid "Remove a customer’s personal data"
+msgstr ""
+
+#: admin/views/help.php:218
+msgid "Customers → open the customer → “Anonymise customer”. Contact details are replaced and booking history is kept for reporting. The WordPress privacy tools also expose an eraser for this plugin."
+msgstr ""
+
+#: admin/views/help.php:228
+msgid "Qevora Booking %1$s · tested on WordPress %2$s · no online payments, ever."
+msgstr ""
+
+#: admin/views/service-edit.php:14
+msgid "That service could not be found."
+msgstr ""
+
+#: admin/views/service-edit.php:38
+msgid "Edit service"
+msgstr ""
+
+#: admin/views/service-edit.php:38
+#: admin/views/services.php:34
+msgid "Add service"
+msgstr ""
+
+#: admin/views/service-edit.php:39
+msgid "Create a new bookable treatment or appointment."
+msgstr ""
+
+#: admin/views/service-edit.php:42
+#: includes/class-services.php:312
+#: integrations/elementor/class-elementor-widget.php:74
+msgid "All services"
+msgstr ""
+
+#: admin/views/service-edit.php:57
+#: includes/class-notifications.php:255
+msgid "Service name"
+msgstr ""
+
+#: admin/views/service-edit.php:59
+msgid "For example: Signature massage, Gel manicure, Bridal makeup."
+msgstr ""
+
+#: admin/views/service-edit.php:69
+#: admin/views/services.php:48
+#: admin/views/services.php:85
+msgid "Category"
+msgstr ""
+
+#: admin/views/service-edit.php:76
+msgid "Duration (minutes)"
+msgstr ""
+
+#: admin/views/service-edit.php:78
+msgid "How long the appointment takes with the customer."
+msgstr ""
+
+#: admin/views/service-edit.php:82
+msgid "Buffer after appointment (minutes)"
+msgstr ""
+
+#: admin/views/service-edit.php:84
+msgid "Cleanup or reset time. The staff member is blocked for this long after the appointment."
+msgstr ""
+
+#: admin/views/service-edit.php:93
+msgid "Customers pay at the salon. No online payment is taken."
+msgstr ""
+
+#: admin/views/service-edit.php:102
+msgid "Active — visible in the booking form"
+msgstr ""
+
+#: admin/views/service-edit.php:103
+#: admin/views/staff-edit.php:93
+msgid "Inactive — hidden from customers"
+msgstr ""
+
+#: admin/views/service-edit.php:114
+msgid "Lower numbers appear first."
+msgstr ""
+
+#: admin/views/service-edit.php:132
+msgid "Shown on the service card. Keep it short and helpful."
+msgstr ""
+
+#: admin/views/service-edit.php:136
+msgid "Service image"
+msgstr ""
+
+#: admin/views/service-edit.php:148
+msgid "Optional. A square or landscape image works best."
+msgstr ""
+
+#: admin/views/service-edit.php:156
+msgid "Staff who provide this service"
+msgstr ""
+
+#: admin/views/service-edit.php:171
+msgid "No staff assigned yet. Customers cannot book this service until at least one active staff member is assigned."
+msgstr ""
+
+#: admin/views/service-edit.php:173
+msgid "Manage staff assignments"
+msgstr ""
+
+#: admin/views/service-edit.php:178
+msgid "Save service"
+msgstr ""
+
+#: admin/views/service-edit.php:178
+msgid "Create service"
+msgstr ""
+
+#: admin/views/service-edit.php:182
+#: admin/views/services.php:126
+msgid "Delete this service? Historical bookings will keep their saved details."
+msgstr ""
+
+#: admin/views/service-edit.php:184
+msgid "Delete service"
+msgstr ""
+
+#: admin/views/services.php:31
+msgid "What customers can book, how long it takes and what it costs."
+msgstr ""
+
+#: admin/views/services.php:45
+#: admin/views/services.php:46
+msgid "Search services"
+msgstr ""
+
+#: admin/views/services.php:58
+msgid "All statuses"
+msgstr ""
+
+#: admin/views/services.php:74
+msgid "No services yet"
+msgstr ""
+
+#: admin/views/services.php:75
+msgid "Add your first treatment or appointment type. You can group services into categories and assign them to staff members."
+msgstr ""
+
+#: admin/views/services.php:109
+#: admin/views/staff-edit.php:172
+#: includes/class-categories.php:246
+msgid "Uncategorised"
+msgstr ""
+
+#: admin/views/services.php:137
+msgid "%d member"
+msgstr ""
+
+#: admin/views/services.php:158
+msgid "Categories: %s"
+msgstr ""
+
+#: admin/views/services.php:162
+msgid "Manage categories"
+msgstr ""
+
+#: admin/views/settings.php:11
+msgid "You do not have permission to manage settings."
+msgstr ""
+
+#: admin/views/settings.php:22
+msgid "Business hours, booking rules, currency and privacy. All times use the timezone selected below."
+msgstr ""
+
+#: admin/views/settings.php:25
+msgid "Email templates"
+msgstr ""
+
+#: admin/views/settings.php:37
+msgid "Settings sections"
+msgstr ""
+
+#: admin/views/settings.php:38
+#: admin/views/settings.php:48
+msgid "General"
+msgstr ""
+
+#: admin/views/settings.php:40
+#: admin/views/settings.php:177
+msgid "Cancellation &amp; rescheduling"
+msgstr ""
+
+#: admin/views/settings.php:42
+#: admin/views/settings.php:256
+msgid "Notifications"
+msgstr ""
+
+#: admin/views/settings.php:43
+#: admin/views/settings.php:284
+msgid "Customer form"
+msgstr ""
+
+#: admin/views/settings.php:44
+#: admin/views/settings.php:332
+msgid "Privacy &amp; data"
+msgstr ""
+
+#: admin/views/settings.php:49
+msgid "Shown on emails, the booking page and customer-facing messages."
+msgstr ""
+
+#: admin/views/settings.php:53
+#: includes/class-notifications.php:266
+msgid "Business name"
+msgstr ""
+
+#: admin/views/settings.php:57
+msgid "Public business email"
+msgstr ""
+
+#: admin/views/settings.php:61
+#: includes/class-notifications.php:268
+msgid "Business phone"
+msgstr ""
+
+#: admin/views/settings.php:65
+#: includes/class-notifications.php:267
+msgid "Business address"
+msgstr ""
+
+#: admin/views/settings.php:72
+msgid "Timezone"
+msgstr ""
+
+#: admin/views/settings.php:76
+msgid "Current business time: %s"
+msgstr ""
+
+#: admin/views/settings.php:79
+msgid "Date format"
+msgstr ""
+
+#: admin/views/settings.php:81
+#: admin/views/settings.php:86
+msgid "Preview: %s"
+msgstr ""
+
+#: admin/views/settings.php:84
+msgid "Time format"
+msgstr ""
+
+#: admin/views/settings.php:89
+msgid "Week starts on"
+msgstr ""
+
+#: admin/views/settings.php:91
+msgid "Sunday"
+msgstr ""
+
+#: admin/views/settings.php:92
+msgid "Monday"
+msgstr ""
+
+#: admin/views/settings.php:93
+msgid "Saturday"
+msgstr ""
+
+#: admin/views/settings.php:97
+msgid "Currency"
+msgstr ""
+
+#: admin/views/settings.php:104
+msgid "Prices display like %s"
+msgstr ""
+
+#: admin/views/settings.php:107
+msgid "Currency symbol override"
+msgstr ""
+
+#: admin/views/settings.php:109
+msgid "Leave empty to use the currency code’s default symbol."
+msgstr ""
+
+#: admin/views/settings.php:112
+msgid "Symbol position"
+msgstr ""
+
+#: admin/views/settings.php:114
+msgid "Before amount (₹1,500)"
+msgstr ""
+
+#: admin/views/settings.php:115
+msgid "After amount (1,500 ₹)"
+msgstr ""
+
+#: admin/views/settings.php:119
+msgid "Decimal places"
+msgstr ""
+
+#: admin/views/settings.php:123
+#: includes/class-notifications.php:276
+msgid "Accent colour"
+msgstr ""
+
+#: admin/views/settings.php:125
+msgid "Used by the booking form and email buttons."
+msgstr ""
+
+#: admin/views/settings.php:132
+msgid "Used for “Book again” links in emails."
+msgstr ""
+
+#: admin/views/settings.php:142
+msgid "Slot interval (minutes)"
+msgstr ""
+
+#: admin/views/settings.php:148
+msgid "How often start times are offered."
+msgstr ""
+
+#: admin/views/settings.php:151
+msgid "Default buffer (minutes)"
+msgstr ""
+
+#: admin/views/settings.php:153
+msgid "Cleanup time after an appointment when a service has no buffer of its own."
+msgstr ""
+
+#: admin/views/settings.php:156
+msgid "Minimum notice (minutes)"
+msgstr ""
+
+#: admin/views/settings.php:158
+msgid "How far ahead of now the earliest slot can start."
+msgstr ""
+
+#: admin/views/settings.php:161
+msgid "Maximum advance (days)"
+msgstr ""
+
+#: admin/views/settings.php:163
+msgid "How many days into the future customers may book."
+msgstr ""
+
+#: admin/views/settings.php:166
+msgid "Approval mode"
+msgstr ""
+
+#: admin/views/settings.php:168
+msgid "Confirm instantly"
+msgstr ""
+
+#: admin/views/settings.php:169
+msgid "Hold as pending until approved"
+msgstr ""
+
+#: admin/views/settings.php:171
+msgid "Manual approval works well for high-demand staff or salons that screen requests."
+msgstr ""
+
+#: admin/views/settings.php:178
+msgid "Customers manage bookings from the secure link in their email. Staff can always override these rules in wp-admin."
+msgstr ""
+
+#: admin/views/settings.php:185
+msgid "Allow customers to cancel"
+msgstr ""
+
+#: admin/views/settings.php:189
+msgid "Cancellation cut-off (hours before)"
+msgstr ""
+
+#: admin/views/settings.php:196
+msgid "Allow customers to reschedule"
+msgstr ""
+
+#: admin/views/settings.php:200
+msgid "Reschedule cut-off (hours before)"
+msgstr ""
+
+#: admin/views/settings.php:204
+msgid "Maximum reschedules per booking"
+msgstr ""
+
+#: admin/views/settings.php:208
+#: includes/class-notifications.php:265
+msgid "Cancellation policy text"
+msgstr ""
+
+#: admin/views/settings.php:210
+msgid "Included in customer emails via the {cancellation_policy} placeholder."
+msgstr ""
+
+#: admin/views/settings.php:219
+msgid "These hours apply to staff who use the business schedule. Staff can override them on their profile."
+msgstr ""
+
+#: admin/views/settings.php:221
+msgid "Copy first day to all"
+msgstr ""
+
+#: admin/views/settings.php:242
+msgid "Open on %s"
+msgstr ""
+
+#: admin/views/settings.php:252
+msgid "Leave break fields empty for no break. Holidays and special hours belong under Holidays / Exceptions."
+msgstr ""
+
+#: admin/views/settings.php:263
+msgid "Send booking emails"
+msgstr ""
+
+#: admin/views/settings.php:265
+msgid "Master switch. Individual templates can also be disabled."
+msgstr ""
+
+#: admin/views/settings.php:268
+msgid "Staff notification email"
+msgstr ""
+
+#: admin/views/settings.php:272
+msgid "From name"
+msgstr ""
+
+#: admin/views/settings.php:276
+msgid "From email"
+msgstr ""
+
+#: admin/views/settings.php:278
+msgid "Use an address on your own domain. Many hosts require SMTP for delivery."
+msgstr ""
+
+#: admin/views/settings.php:291
+msgid "Require a phone number"
+msgstr ""
+
+#: admin/views/settings.php:298
+msgid "Require policy consent"
+msgstr ""
+
+#: admin/views/settings.php:302
+msgid "Consent label"
+msgstr ""
+
+#: admin/views/settings.php:307
+msgid "Spam &amp; abuse protection"
+msgstr ""
+
+#: admin/views/settings.php:313
+msgid "Enable honeypot and time trap"
+msgstr ""
+
+#: admin/views/settings.php:317
+msgid "Minimum form fill time (seconds)"
+msgstr ""
+
+#: admin/views/settings.php:321
+msgid "Bookings per IP per hour"
+msgstr ""
+
+#: admin/views/settings.php:325
+msgid "Booking lookups per IP per hour"
+msgstr ""
+
+#: admin/views/settings.php:336
+msgid "Retention for cancelled/old bookings (days)"
+msgstr ""
+
+#: admin/views/settings.php:338
+msgid "0 keeps records indefinitely. When set, completed and cancelled bookings older than this are deleted by the daily maintenance task."
+msgstr ""
+
+#: admin/views/settings.php:344
+msgid "Delete all plugin data when the plugin is deleted"
+msgstr ""
+
+#: admin/views/settings.php:346
+msgid "Off by default. Turning this on permanently removes services, staff, bookings and customers when the plugin is uninstalled."
+msgstr ""
+
+#: admin/views/settings.php:352
+msgid "Save settings"
+msgstr ""
+
+#: admin/views/staff-edit.php:41
+msgid "Edit staff member"
+msgstr ""
+
+#: admin/views/staff-edit.php:42
+msgid "Create a profile and assign the services this person performs."
+msgstr ""
+
+#: admin/views/staff-edit.php:65
+msgid "Job title"
+msgstr ""
+
+#: admin/views/staff-edit.php:66
+msgid "Senior therapist"
+msgstr ""
+
+#: admin/views/staff-edit.php:72
+msgid "Optional. Used for internal reference only."
+msgstr ""
+
+#: admin/views/staff-edit.php:81
+msgid "Calendar colour"
+msgstr ""
+
+#: admin/views/staff-edit.php:83
+msgid "Used to identify this person on the calendar."
+msgstr ""
+
+#: admin/views/staff-edit.php:92
+msgid "Active — can be booked"
+msgstr ""
+
+#: admin/views/staff-edit.php:109
+msgid "Follow the business hours set in Settings"
+msgstr ""
+
+#: admin/views/staff-edit.php:111
+msgid "Uncheck to give this person a custom weekly schedule. You can edit shifts on the Availability screen."
+msgstr ""
+
+#: admin/views/staff-edit.php:115
+msgid "Short bio"
+msgstr ""
+
+#: admin/views/staff-edit.php:117
+msgid "Optional. Shown on the staff selection step."
+msgstr ""
+
+#: admin/views/staff-edit.php:121
+msgid "Profile photo"
+msgstr ""
+
+#: admin/views/staff-edit.php:130
+msgid "Choose photo"
+msgstr ""
+
+#: admin/views/staff-edit.php:138
+msgid "Services performed"
+msgstr ""
+
+#: admin/views/staff-edit.php:139
+msgid "Customers only see this person for services selected here. To offer \"any available staff\", leave at least one qualified person assigned to each service."
+msgstr ""
+
+#: admin/views/staff-edit.php:142
+msgid "No services exist yet."
+msgstr ""
+
+#: admin/views/staff-edit.php:186
+msgid "Working hours"
+msgstr ""
+
+#: admin/views/staff-edit.php:191
+msgid "This person currently follows the business hours."
+msgstr ""
+
+#: admin/views/staff-edit.php:192
+msgid "This person has a custom weekly schedule."
+msgstr ""
+
+#: admin/views/staff-edit.php:197
+msgid "Edit weekly schedule"
+msgstr ""
+
+#: admin/views/staff-edit.php:198
+msgid "Add leave or holiday"
+msgstr ""
+
+#: admin/views/staff-edit.php:204
+msgid "Save staff member"
+msgstr ""
+
+#: admin/views/staff-edit.php:204
+msgid "Create staff member"
+msgstr ""
+
+#: admin/views/staff-edit.php:208
+#: admin/views/staff.php:110
+msgid "Delete this staff member? Historical bookings keep their saved details."
+msgstr ""
+
+#: admin/views/staff-edit.php:210
+msgid "Delete staff member"
+msgstr ""
+
+#: admin/views/staff.php:27
+msgid "Team profiles, services and working hours."
+msgstr ""
+
+#: admin/views/staff.php:45
+msgid "Add your team"
+msgstr ""
+
+#: admin/views/staff.php:46
+msgid "Create a profile for each person who takes appointments, then assign the services they perform."
+msgstr ""
+
+#: admin/views/staff.php:108
+msgid "Edit profile"
+msgstr ""
+
+#: includes/class-availability.php:684
+#: includes/class-availability.php:752
+#: includes/class-bookings.php:44
+#: includes/class-bookings.php:440
+#: includes/class-rest-api.php:575
+msgid "Please choose a valid date and time."
+msgstr ""
+
+#: includes/class-availability.php:700
+#: includes/class-availability.php:723
+#: includes/class-bookings.php:109
+#: includes/class-bookings.php:484
+#: includes/class-bookings.php:541
+msgid "That time is no longer available. Please choose another slot."
+msgstr ""
+
+#: includes/class-availability.php:711
+msgid "That staff member is not available at this time. Please choose another slot."
+msgstr ""
+
+#: includes/class-availability.php:760
+msgid "That date and time has already passed. Please choose a future appointment."
+msgstr ""
+
+#: includes/class-availability.php:774
+msgid "Bookings can be made at most %d days in advance."
+msgstr ""
+
+#: includes/class-availability.php:786
+msgid "This time is too soon. Please choose a slot at least %s from now."
+msgstr ""
+
+#: includes/class-availability.php:854
+#: includes/class-availability.php:1097
+#: includes/class-staff.php:160
+msgid "That staff member no longer exists."
+msgstr ""
+
+#: includes/class-availability.php:873
+msgid "Each shift needs a start time before its end time."
+msgstr ""
+
+#: includes/class-availability.php:880
+msgid "A break needs both a start and end time."
+msgstr ""
+
+#: includes/class-availability.php:884
+msgid "Breaks must start and end inside the shift."
+msgstr ""
+
+#: includes/class-availability.php:914
+msgid "Shifts on the same day cannot overlap."
+msgstr ""
+
+#: includes/class-availability.php:933
+msgid "The schedule could not be saved. Please try again."
+msgstr ""
+
+#: includes/class-availability.php:1085
+msgid "Please choose a start date."
+msgstr ""
+
+#: includes/class-availability.php:1093
+msgid "The end date cannot be before the start date."
+msgstr ""
+
+#: includes/class-availability.php:1108
+msgid "Special hours need a start time before the end time."
+msgstr ""
+
+#: includes/class-availability.php:1129
+msgid "That exception no longer exists."
+msgstr ""
+
+#: includes/class-availability.php:1136
+#: includes/class-availability.php:1146
+msgid "The exception could not be saved. Please try again."
+msgstr ""
+
+#: includes/class-bookings.php:40
+msgid "That service is not available for booking."
+msgstr ""
+
+#: includes/class-bookings.php:48
+#: public/class-public.php:116
+msgid "Please enter your name."
+msgstr ""
+
+#: includes/class-bookings.php:56
+#: includes/class-customers.php:64
+#: includes/class-customers.php:152
+#: public/class-public.php:117
+msgid "Please enter a valid email address."
+msgstr ""
+
+#: includes/class-bookings.php:60
+#: public/class-public.php:118
+msgid "Please enter your phone number."
+msgstr ""
+
+#: includes/class-bookings.php:67
+msgid "Please enter a valid phone number."
+msgstr ""
+
+#: includes/class-bookings.php:78
+msgid "Please accept the cancellation policy to continue."
+msgstr ""
+
+#: includes/class-bookings.php:130
+msgid "You already have an appointment that overlaps this time."
+msgstr ""
+
+#: includes/class-bookings.php:171
+msgid "The booking could not be saved. Please try again."
+msgstr ""
+
+#: includes/class-bookings.php:247
+msgid "That booking status is not valid."
+msgstr ""
+
+#: includes/class-bookings.php:261
+msgid "A %1$s booking cannot be changed to %2$s."
+msgstr ""
+
+#: includes/class-bookings.php:272
+msgid "This appointment time has already passed. Mark it completed or no-show instead."
+msgstr ""
+
+#: includes/class-bookings.php:325
+msgid "The status could not be updated. Please try again."
+msgstr ""
+
+#: includes/class-bookings.php:394
+msgid "Only pending or confirmed bookings can be cancelled."
+msgstr ""
+
+#: includes/class-bookings.php:444
+msgid "Only pending or confirmed bookings can be rescheduled."
+msgstr ""
+
+#: includes/class-bookings.php:456
+msgid "Please choose a different date or time."
+msgstr ""
+
+#: includes/class-bookings.php:515
+msgid "The booking could not be rescheduled. Please try again."
+msgstr ""
+
+#: includes/class-bookings.php:618
+msgid "This booking can no longer be cancelled."
+msgstr ""
+
+#: includes/class-bookings.php:626
+msgid "Online cancellation is not available. Please contact the salon directly."
+msgstr ""
+
+#: includes/class-bookings.php:632
+msgid "This appointment has already started and can no longer be cancelled online."
+msgstr ""
+
+#: includes/class-bookings.php:642
+msgid "Online cancellation closes %s before the appointment. Please contact the salon directly."
+msgstr ""
+
+#: includes/class-bookings.php:664
+msgid "This booking can no longer be rescheduled."
+msgstr ""
+
+#: includes/class-bookings.php:672
+msgid "Online rescheduling is not available. Please contact the salon directly."
+msgstr ""
+
+#: includes/class-bookings.php:679
+msgid "This appointment has already started and can no longer be rescheduled online."
+msgstr ""
+
+#: includes/class-bookings.php:687
+msgid "Online rescheduling closes %s before the appointment. Please contact the salon directly."
+msgstr ""
+
+#: includes/class-bookings.php:698
+msgid "This booking has reached its reschedule limit. Please contact the salon directly."
+msgstr ""
+
+#: includes/class-bookings.php:777
+msgid "This booking link is invalid or has expired. Please contact the salon."
+msgstr ""
+
+#: includes/class-bookings.php:1250
+msgid "That time was just booked by someone else. Please choose another slot."
+msgstr ""
+
+#: includes/class-categories.php:93
+msgid "Please enter a category name."
+msgstr ""
+
+#: includes/class-categories.php:115
+msgid "That category no longer exists."
+msgstr ""
+
+#: includes/class-categories.php:122
+#: includes/class-categories.php:132
+msgid "The category could not be saved. Please try again."
+msgstr ""
+
+#: includes/class-customers.php:68
+msgid "Please enter a name."
+msgstr ""
+
+#: includes/class-customers.php:122
+msgid "The customer record could not be saved."
+msgstr ""
+
+#: includes/class-customers.php:139
+msgid "That customer no longer exists."
+msgstr ""
+
+#: includes/class-customers.php:148
+msgid "Please enter a customer name."
+msgstr ""
+
+#: includes/class-customers.php:164
+msgid "Another customer already uses that email address."
+msgstr ""
+
+#: includes/class-customers.php:183
+msgid "The customer could not be saved. Please try again."
+msgstr ""
+
+#: includes/class-customers.php:370
+#: includes/class-customers.php:386
+msgid "Removed customer"
+msgstr ""
+
+#: includes/class-notifications.php:55
+msgid "Manage your booking"
+msgstr ""
+
+#: includes/class-notifications.php:58
+msgid "Customer: booking request received"
+msgstr ""
+
+#: includes/class-notifications.php:61
+msgid "We received your booking request ({reference})"
+msgstr ""
+
+#: includes/class-notifications.php:62
+#: includes/class-notifications.php:75
+#: includes/class-notifications.php:88
+#: includes/class-notifications.php:102
+#: includes/class-notifications.php:115
+msgid "Hi {customer_name},"
+msgstr ""
+
+#: includes/class-notifications.php:63
+msgid "Thank you for booking with <strong>{business_name}</strong>. Your request has been received and is currently <strong>pending confirmation</strong>."
+msgstr ""
+
+#: includes/class-notifications.php:65
+msgid "We will email you as soon as your appointment is confirmed. No payment is needed online — you can pay at the salon after your appointment."
+msgstr ""
+
+#: includes/class-notifications.php:71
+msgid "Customer: booking confirmed"
+msgstr ""
+
+#: includes/class-notifications.php:74
+msgid "Your booking is confirmed ({reference})"
+msgstr ""
+
+#: includes/class-notifications.php:76
+msgid "Good news — your appointment at <strong>{business_name}</strong> is confirmed. We look forward to seeing you!"
+msgstr ""
+
+#: includes/class-notifications.php:78
+msgid "Please arrive a few minutes before your appointment. Payment is made at the salon."
+msgstr ""
+
+#: includes/class-notifications.php:84
+msgid "Customer: booking cancelled"
+msgstr ""
+
+#: includes/class-notifications.php:87
+msgid "Your booking has been cancelled ({reference})"
+msgstr ""
+
+#: includes/class-notifications.php:89
+msgid "Your booking at <strong>{business_name}</strong> has been cancelled."
+msgstr ""
+
+#: includes/class-notifications.php:91
+#: includes/class-notifications.php:143
+msgid "Reason:"
+msgstr ""
+
+#: includes/class-notifications.php:92
+msgid "If you would like to book again, simply choose a new time on our website."
+msgstr ""
+
+#: includes/class-notifications.php:93
+msgid "Book a new appointment"
+msgstr ""
+
+#: includes/class-notifications.php:98
+msgid "Customer: booking rescheduled"
+msgstr ""
+
+#: includes/class-notifications.php:101
+msgid "Your booking has been rescheduled ({reference})"
+msgstr ""
+
+#: includes/class-notifications.php:103
+msgid "Your appointment at <strong>{business_name}</strong> has been moved to a new time."
+msgstr ""
+
+#: includes/class-notifications.php:104
+msgid "Previous appointment:"
+msgstr ""
+
+#: includes/class-notifications.php:106
+msgid "No payment is needed online — please pay at the salon."
+msgstr ""
+
+#: includes/class-notifications.php:111
+msgid "Customer: booking status updated"
+msgstr ""
+
+#: includes/class-notifications.php:114
+msgid "Update on your booking ({reference})"
+msgstr ""
+
+#: includes/class-notifications.php:116
+msgid "There is an update on your booking at <strong>{business_name}</strong>. The new status is <strong>{status}</strong>."
+msgstr ""
+
+#: includes/class-notifications.php:118
+msgid "If you have any questions, please contact us."
+msgstr ""
+
+#: includes/class-notifications.php:123
+msgid "Staff: new booking"
+msgstr ""
+
+#: includes/class-notifications.php:126
+msgid "New booking: {customer_name} — {date} at {time}"
+msgstr ""
+
+#: includes/class-notifications.php:127
+msgid "A new booking has been created."
+msgstr ""
+
+#: includes/class-notifications.php:129
+msgid "Customer:"
+msgstr ""
+
+#: includes/class-notifications.php:130
+msgid "Email:"
+msgstr ""
+
+#: includes/class-notifications.php:131
+msgid "Phone:"
+msgstr ""
+
+#: includes/class-notifications.php:132
+msgid "Customer notes:"
+msgstr ""
+
+#: includes/class-notifications.php:133
+#: includes/class-notifications.php:144
+msgid "Open booking in WordPress"
+msgstr ""
+
+#: includes/class-notifications.php:137
+msgid "Staff: booking cancelled by customer"
+msgstr ""
+
+#: includes/class-notifications.php:140
+msgid "Booking cancelled: {customer_name} — {date} at {time}"
+msgstr ""
+
+#: includes/class-notifications.php:141
+msgid "A customer has cancelled their booking."
+msgstr ""
+
+#: includes/class-notifications.php:251
+msgid "Customer name"
+msgstr ""
+
+#: includes/class-notifications.php:252
+msgid "Customer email"
+msgstr ""
+
+#: includes/class-notifications.php:253
+msgid "Customer phone"
+msgstr ""
+
+#: includes/class-notifications.php:254
+msgid "Booking reference"
+msgstr ""
+
+#: includes/class-notifications.php:256
+msgid "Staff name"
+msgstr ""
+
+#: includes/class-notifications.php:257
+msgid "Appointment date"
+msgstr ""
+
+#: includes/class-notifications.php:258
+msgid "Appointment time range"
+msgstr ""
+
+#: includes/class-notifications.php:261
+msgid "Status label"
+msgstr ""
+
+#: includes/class-notifications.php:263
+msgid "Booking details table"
+msgstr ""
+
+#: includes/class-notifications.php:264
+msgid "Manage/cancel link"
+msgstr ""
+
+#: includes/class-notifications.php:269
+msgid "Business email"
+msgstr ""
+
+#: includes/class-notifications.php:270
+msgid "Site name"
+msgstr ""
+
+#: includes/class-notifications.php:271
+msgid "Site URL"
+msgstr ""
+
+#: includes/class-notifications.php:272
+msgid "Cancellation reason"
+msgstr ""
+
+#: includes/class-notifications.php:273
+msgid "Previous date (reschedule)"
+msgstr ""
+
+#: includes/class-notifications.php:274
+msgid "Previous time (reschedule)"
+msgstr ""
+
+#: includes/class-notifications.php:275
+msgid "Admin booking URL"
+msgstr ""
+
+#: includes/class-notifications.php:579
+msgid "You are receiving this email because a booking was made with us. No online payment is collected."
+msgstr ""
+
+#: includes/class-notifications.php:681
+msgid "Signature massage"
+msgstr ""
+
+#: includes/class-notifications.php:682
+msgid "Aisha"
+msgstr ""
+
+#: includes/class-notifications.php:683
+msgid "Priya Sharma"
+msgstr ""
+
+#: includes/class-notifications.php:686
+msgid "Please use unscented oil."
+msgstr ""
+
+#: includes/class-plugin.php:100
+msgid "Help"
+msgstr ""
+
+#: includes/class-privacy.php:79
+msgid "Qevora Booking – customer profile"
+msgstr ""
+
+#: includes/class-privacy.php:80
+msgid "Your contact details held for appointment booking."
+msgstr ""
+
+#: includes/class-privacy.php:119
+msgid "Qevora Booking – appointments"
+msgstr ""
+
+#: includes/class-privacy.php:120
+msgid "Appointments you have booked."
+msgstr ""
+
+#: includes/class-privacy.php:152
+msgid "Notes you provided"
+msgstr ""
+
+#: includes/class-privacy.php:201
+msgid "Deleted customer"
+msgstr ""
+
+#: includes/class-privacy.php:213
+msgid "Customer contact details and appointment notes were anonymised."
+msgstr ""
+
+#: includes/class-privacy.php:228
+msgid "When you book an appointment through this site we collect your name, email address, phone number and any notes you add to the booking. We also record the service, staff member, date and time you selected."
+msgstr ""
+
+#: includes/class-privacy.php:229
+msgid "This information is used only to manage your appointment, send booking confirmations and updates, and keep a record of your visit. It is not used for unrelated marketing."
+msgstr ""
+
+#: includes/class-privacy.php:230
+msgid "Appointment history is retained according to the salon’s data retention setting. You can ask the salon to access or erase your data at any time."
+msgstr ""
+
+#: includes/class-privacy.php:231
+msgid "Booking requests are rate-limited and protected with a signed form token. A salted, non-reversible hash of your IP address may be stored for abuse prevention."
+msgstr ""
+
+#: includes/class-rest-api.php:344
+#: includes/class-rest-api.php:412
+msgid "That service is not available."
+msgstr ""
+
+#: includes/class-rest-api.php:348
+msgid "Please choose a valid date."
+msgstr ""
+
+#: includes/class-rest-api.php:352
+msgid "That staff member does not offer this service."
+msgstr ""
+
+#: includes/class-rest-api.php:363
+msgid "This booking link is not valid."
+msgstr ""
+
+#: includes/class-rest-api.php:464
+msgid "Your booking request has been received. We will confirm it by email shortly."
+msgstr ""
+
+#: includes/class-rest-api.php:465
+msgid "Your appointment is confirmed. A confirmation email is on its way."
+msgstr ""
+
+#: includes/class-rest-api.php:543
+#: public/class-public.php:138
+msgid "Your booking has been cancelled."
+msgstr ""
+
+#: includes/class-rest-api.php:593
+#: public/class-public.php:139
+msgid "Your booking has been rescheduled."
+msgstr ""
+
+#: includes/class-rest-api.php:688
+msgid "We could not find that booking. Please check the link in your confirmation email."
+msgstr ""
+
+#: includes/class-security.php:30
+msgid "You do not have permission to perform this action."
+msgstr ""
+
+#: includes/class-security.php:31
+msgid "Permission denied"
+msgstr ""
+
+#: includes/class-security.php:55
+msgid "Your session has expired. Please reload the page and try again."
+msgstr ""
+
+#: includes/class-security.php:88
+#: includes/class-security.php:98
+#: includes/class-security.php:108
+#: includes/class-security.php:118
+msgid "This form has expired. Please reload the page and try again."
+msgstr ""
+
+#: includes/class-security.php:126
+msgid "Please wait a moment before submitting the form."
+msgstr ""
+
+#: includes/class-security.php:153
+msgid "Too many requests. Please wait a little and try again, or contact the salon directly."
+msgstr ""
+
+#: includes/class-security.php:189
+msgid "Your booking could not be submitted. Please try again."
+msgstr ""
+
+#: includes/class-services.php:138
+msgid "Please enter a service name."
+msgstr ""
+
+#: includes/class-services.php:142
+msgid "Duration must be between 5 and 1440 minutes."
+msgstr ""
+
+#: includes/class-services.php:184
+msgid "That service no longer exists."
+msgstr ""
+
+#: includes/class-services.php:191
+#: includes/class-services.php:201
+msgid "The service could not be saved. Please try again."
+msgstr ""
+
+#: includes/class-settings.php:52
+msgid "My Salon"
+msgstr ""
+
+#: includes/class-settings.php:80
+msgid "I agree to the cancellation and rescheduling policy."
+msgstr ""
+
+#: includes/class-settings.php:81
+msgid "Appointments may be cancelled or rescheduled up to 24 hours in advance. Please contact us as early as possible if your plans change."
+msgstr ""
+
+#: includes/class-shortcodes.php:74
+msgid "No services are available to book right now. Please check back soon."
+msgstr ""
+
+#: includes/class-shortcodes.php:80
+msgid "Online booking is temporarily unavailable. Please call or email us to arrange an appointment."
+msgstr ""
+
+#: includes/class-shortcodes.php:153
+msgid "Treatments"
+msgstr ""
+
+#: includes/class-staff.php:128
+msgid "Please enter a staff name."
+msgstr ""
+
+#: includes/class-staff.php:132
+msgid "Please enter a valid staff email address."
+msgstr ""
+
+#: includes/class-staff.php:167
+#: includes/class-staff.php:177
+msgid "The staff member could not be saved. Please try again."
+msgstr ""
+
+#: includes/class-utils.php:514
+msgid "Pending"
+msgstr ""
+
+#: includes/class-utils.php:518
+msgid "Rejected"
+msgstr ""
+
+#: includes/class-utils.php:519
+msgid "No-show"
+msgstr ""
+
+#: includes/class-utils.php:546
+msgid "%d min"
+msgstr ""
+
+#: includes/class-utils.php:554
+msgid "%d hour"
+msgstr ""
+
+#: includes/class-utils.php:559
+msgid "%1$d hr %2$d min"
+msgstr ""
+
+#: integrations/elementor/class-elementor-widget.php:69
+msgid "Booking form"
+msgstr ""
+
+#: integrations/elementor/class-elementor-widget.php:107
+msgid "Heading"
+msgstr ""
+
+#: integrations/elementor/class-elementor-widget.php:110
+msgid "Book your appointment"
+msgstr ""
+
+#: integrations/elementor/class-elementor-widget.php:117
+msgid "Show heading"
+msgstr ""
+
+#: integrations/elementor/class-elementor-widget.php:119
+msgid "Show"
+msgstr ""
+
+#: integrations/elementor/class-elementor-widget.php:120
+msgid "Hide"
+msgstr ""
+
+#: public/class-public.php:113
+msgid "Please select a service to continue."
+msgstr ""
+
+#: public/class-public.php:114
+msgid "Please choose a date."
+msgstr ""
+
+#: public/class-public.php:115
+msgid "Please choose a time slot."
+msgstr ""
+
+#: public/class-public.php:119
+msgid "Please accept the cancellation policy."
+msgstr ""
+
+#: public/class-public.php:120
+msgid "Checking availability…"
+msgstr ""
+
+#: public/class-public.php:121
+msgid "Loading time slots…"
+msgstr ""
+
+#: public/class-public.php:122
+msgid "No times are available on this date. Please try another day."
+msgstr ""
+
+#: public/class-public.php:123
+msgid "No availability in the next two weeks. Please contact us directly."
+msgstr ""
+
+#: public/class-public.php:124
+msgid "We could not load availability. Please check your connection and try again."
+msgstr ""
+
+#: public/class-public.php:125
+msgid "We could not complete your booking. Please try again."
+msgstr ""
+
+#: public/class-public.php:126
+msgid "Booking…"
+msgstr ""
+
+#: public/class-public.php:127
+#: public/templates/booking-form.php:223
+#: public/templates/manage-booking.php:139
+msgid "Choose a date to see available times."
+msgstr ""
+
+#: public/class-public.php:128
+msgid "Choose a service and date to see available times."
+msgstr ""
+
+#: public/class-public.php:129
+msgid "Morning"
+msgstr ""
+
+#: public/class-public.php:130
+msgid "Afternoon"
+msgstr ""
+
+#: public/class-public.php:131
+msgid "Evening"
+msgstr ""
+
+#: public/class-public.php:132
+msgid "Next available dates"
+msgstr ""
+
+#: public/class-public.php:133
+msgid "times available"
+msgstr ""
+
+#: public/class-public.php:134
+msgid "available"
+msgstr ""
+
+#: public/class-public.php:135
+msgid "That slot was just taken. Please choose another time."
+msgstr ""
+
+#: public/class-public.php:136
+msgid "Cancel this booking? This cannot be undone."
+msgstr ""
+
+#: public/class-public.php:137
+msgid "Move your appointment to this time?"
+msgstr ""
+
+#: public/class-public.php:141
+msgid "Something went wrong. Please try again."
+msgstr ""
+
+#: public/class-public.php:142
+#: public/templates/booking-form.php:295
+msgid "Back"
+msgstr ""
+
+#: public/class-public.php:143
+#: public/templates/booking-form.php:296
+msgid "Continue"
+msgstr ""
+
+#: public/class-public.php:144
+msgid "Step"
+msgstr ""
+
+#: public/class-public.php:145
+msgid "of"
+msgstr ""
+
+#: public/class-public.php:147
+msgid "Selected"
+msgstr ""
+
+#: public/class-public.php:148
+msgid "Booking summary"
+msgstr ""
+
+#: public/class-public.php:155
+#: public/templates/booking-form.php:308
+msgid "Booking received"
+msgstr ""
+
+#: public/class-public.php:156
+msgid "Booking confirmed"
+msgstr ""
+
+#: public/class-public.php:157
+msgid "Your session expired. Please reload the page."
+msgstr ""
+
+#: public/templates/booking-form.php:48
+msgid "The online booking form needs JavaScript. Please enable it, or contact us to book."
+msgstr ""
+
+#: public/templates/booking-form.php:65
+msgid "Booking progress"
+msgstr ""
+
+#: public/templates/booking-form.php:80
+#: public/templates/booking-form.php:230
+msgid "Your details"
+msgstr ""
+
+#: public/templates/booking-form.php:84
+msgid "Review"
+msgstr ""
+
+#: public/templates/booking-form.php:94
+msgid "Website"
+msgstr ""
+
+#: public/templates/booking-form.php:102
+msgid "Pick the treatment you would like to book."
+msgstr ""
+
+#: public/templates/booking-form.php:155
+msgid "Choose your therapist"
+msgstr ""
+
+#: public/templates/booking-form.php:156
+msgid "Select a specific team member, or let us assign the first available person."
+msgstr ""
+
+#: public/templates/booking-form.php:169
+msgid "We will assign the best available team member."
+msgstr ""
+
+#: public/templates/booking-form.php:210
+msgid "Pick a date and time"
+msgstr ""
+
+#: public/templates/booking-form.php:211
+msgid "Available times update in real time."
+msgstr ""
+
+#: public/templates/booking-form.php:211
+msgid "Times are in %s."
+msgstr ""
+
+#: public/templates/booking-form.php:231
+msgid "We use these details only to manage this appointment."
+msgstr ""
+
+#: public/templates/booking-form.php:244
+msgid "Phone number"
+msgstr ""
+
+#: public/templates/booking-form.php:248
+msgid "Notes for the salon"
+msgstr ""
+
+#: public/templates/booking-form.php:248
+msgid "(optional)"
+msgstr ""
+
+#: public/templates/booking-form.php:249
+msgid "Allergies, preferences, or anything else we should know."
+msgstr ""
+
+#: public/templates/booking-form.php:265
+msgid "Review your booking"
+msgstr ""
+
+#: public/templates/booking-form.php:266
+msgid "Check the details below, then confirm."
+msgstr ""
+
+#: public/templates/booking-form.php:285
+msgid "No online payment. Pay at the salon after your appointment."
+msgstr ""
+
+#: public/templates/booking-form.php:289
+msgid "By confirming, you agree to this booking and the cancellation policy above."
+msgstr ""
+
+#: public/templates/booking-form.php:298
+msgid "Request booking"
+msgstr ""
+
+#: public/templates/booking-form.php:298
+msgid "Confirm booking"
+msgstr ""
+
+#: public/templates/booking-form.php:313
+msgid "When"
+msgstr ""
+
+#: public/templates/booking-form.php:315
+msgid "Manage this booking"
+msgstr ""
+
+#: public/templates/booking-form.php:316
+msgid "A confirmation email is on its way. No payment is needed online."
+msgstr ""
+
+#: public/templates/manage-booking.php:44
+msgid "Your appointment"
+msgstr ""
+
+#: public/templates/manage-booking.php:61
+msgid "with %s"
+msgstr ""
+
+#: public/templates/manage-booking.php:73
+msgid "This appointment is waiting for the salon to confirm it. We will email you as soon as it is confirmed."
+msgstr ""
+
+#: public/templates/manage-booking.php:75
+msgid "Your appointment is confirmed. We look forward to seeing you."
+msgstr ""
+
+#: public/templates/manage-booking.php:77
+msgid "This appointment has been cancelled."
+msgstr ""
+
+#: public/templates/manage-booking.php:79
+msgid "This booking request was not accepted. Please contact us if you would like to arrange another time."
+msgstr ""
+
+#: public/templates/manage-booking.php:81
+msgid "This appointment is complete. Thank you for visiting."
+msgstr ""
+
+#: public/templates/manage-booking.php:91
+msgid "Your notes"
+msgstr ""
+
+#: public/templates/manage-booking.php:103
+#: public/templates/manage-booking.php:106
+msgid "Book another appointment"
+msgstr ""
+
+#: public/templates/manage-booking.php:117
+msgid "Cancel this appointment?"
+msgstr ""
+
+#: public/templates/manage-booking.php:118
+msgid "This frees the slot for other customers and cannot be undone."
+msgstr ""
+
+#: public/templates/manage-booking.php:124
+msgid "Yes, cancel booking"
+msgstr ""
+
+#: public/templates/manage-booking.php:125
+msgid "Keep booking"
+msgstr ""
+
+#: public/templates/manage-booking.php:130
+msgid "Choose a new time"
+msgstr ""
+
+#: public/templates/manage-booking.php:143
+msgid "Move appointment"
+msgstr ""
+
+#: public/templates/manage-booking.php:144
+msgid "Keep current time"
+msgstr ""
+
+#: public/templates/manage-booking.php:154
+msgid "Need help?"
+msgstr ""
+
+#: public/templates/manage-invalid.php:16
+msgid "This booking link is not valid"
+msgstr ""
+
+#: public/templates/manage-invalid.php:17
+msgid "The link may have expired, or the booking details may have changed. Please use the latest link in your confirmation email, or contact us and we will help."
+msgstr ""
+
+#: public/templates/manage-invalid.php:27
+msgid "Make a new booking"
+msgstr ""

@@ -1,0 +1,18 @@
+# Build artefacts (recreate with bin/build.sh)
+.build-stage/
+.build-stage-dev/
+
+# Dependencies / tooling, if someone runs npm or composer here
+node_modules/
+vendor/
+composer.lock
+
+# Editor and OS noise
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Runtime logs
+*.log
