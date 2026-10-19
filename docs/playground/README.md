@@ -21,6 +21,29 @@ The blueprint pulls the production ZIP from the `v1.0.0` tag, so the demo always
 released build. Everything runs in the browser — the WordPress database is temporary and vanishes
 when the tab is closed.
 
+## Run it locally (same engine, no browser upload)
+
+Playground also ships a Node CLI. With a local WordPress checkout and the plugin mounted as a
+normal plugin directory:
+
+```bash
+npm install @wp-playground/cli@3.1.59
+
+node node_modules/@wp-playground/cli/cli.js run-blueprint \
+  --blueprint=docs/playground/blueprint.json \
+  --auto-mount=/path/to/wordpress --verbosity=normal
+
+node node_modules/@wp-playground/cli/cli.js server \
+  --port=8899 --login \
+  --site-url=https://<port>-<sandbox>.e2b.app \
+  --mount-before-install=/path/to/wordpress:/wordpress \
+  --wordpress-install-mode=install-from-existing-files
+```
+
+The first command installs the demo content (it is idempotent); the second serves the same site
+over HTTP with admin auto-login. This is how the automated smoke test in
+[`tests/smoke.php`](../../tests/smoke.php) is run — see `bin/test-playground.sh`.
+
 ## What to try
 
 1. Book an appointment on the landing page (no payment step).

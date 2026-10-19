@@ -124,7 +124,10 @@ integrations/elementor/     optional widget
 languages/                  qevora-booking.pot
 assets/                     icon and banner artwork
 bin/build.sh                produces both release ZIPs
+bin/test-playground.sh      runs the smoke test inside WordPress Playground
+tests/smoke.php             60-assertion automated suite
 docs/TEST-CHECKLIST.md      manual QA matrix + automated suite instructions
+docs/playground/            one-click Playground blueprint and demo seed
 ```
 
 ### Filters
@@ -144,19 +147,26 @@ docs/TEST-CHECKLIST.md      manual QA matrix + automated suite instructions
 
 ## Testing
 
-The developer package ships the Playground suites used during development:
+Two ways to test without installing anything on a server:
 
-| Suite | Coverage |
-|-------|----------|
-| `smoke1.php` | Activation, 8 tables, capabilities, cron, settings |
-| `smoke2.php` | Slots, buffers, breaks, conflicts, cancel, reschedule, 10 emails |
-| `smoke3.php` | 27 admin renders, assets, shortcode, menus, settings round-trip |
-| `smoke4.php` | Public + admin REST routes, nonce and capability enforcement |
-| `smoke5.php` | Uninstall semantics (preserve by default, purge on opt-in) |
+| Route | What it gives you |
+|-------|-------------------|
+| **WordPress Playground demo** | A disposable salon in the browser — 5 services, 3 staff, 4 bookings, admin auto-login. One click, no setup. |
+| **Automated smoke test** | 60 assertions against a real WordPress (PHP 8.3 + SQLite) covering the schema, booking engine, all 20 admin screens, shortcode, manage page, REST API and email pipeline. |
 
-Latest run against the packaged ZIP: **smoke1 all green · smoke2 0 failures · smoke3 56 passes · smoke4 24 passes · smoke5 15 passes**.
+```bash
+# Browser demo (same blueprint as docs/playground/)
+open "https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/qevorasoftware/qevora-booking/v1.0.0/docs/playground/blueprint.json"
 
-See [`docs/TEST-CHECKLIST.md`](docs/TEST-CHECKLIST.md) for the full manual matrix.
+# Automated suite
+bash bin/test-playground.sh
+```
+
+Latest run: **60 passed, 0 failed** on WordPress 7.1.3 / PHP 8.3 / SQLite.
+
+Earlier development suites (activation, admin renders, REST, uninstall) all passed with zero
+failures and are summarised in [`docs/TEST-CHECKLIST.md`](docs/TEST-CHECKLIST.md), which also
+contains the full manual QA matrix.
 
 ## Build
 

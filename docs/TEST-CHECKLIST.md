@@ -275,23 +275,36 @@ Legend: `[ ]` not run · `[x]` passed · `[!]` failed (open an issue with the re
 
 ---
 
-## Automated suites shipped with the developer package
+## Automated smoke test
 
-These run inside WordPress Playground (PHP 8.x + SQLite) and cover the engine, admin screens and REST endpoints:
+`tests/smoke.php` runs against a real WordPress (PHP 8.x + SQLite) inside WordPress Playground.
+One command, 60 assertions, exit code 0 only when everything passes:
 
 ```bash
-# 1. Activate + schema + cron + settings
-node node_modules/@wp-playground/cli/cli.js php \
-  --auto-mount=/path/to/wordpress \
-  --mount=/path/to/tools:/tools \
-  --mount=/path/to/qevora-booking:/wordpress/wp-content/plugins/qevora-booking \
-  --wordpress-install-mode=install-from-existing-files \
-  -- /tools/smoke1.php
-
-# 2. Booking engine (availability, buffers, breaks, conflicts, cancel, reschedule, emails)
-# 3. Admin screens (27 renders) + assets + shortcode + menu
-# 4. REST API (public + admin routes, nonce/capability checks)
-# 5. PHP syntax check for every file
+bash bin/test-playground.sh
 ```
 
-Expected: **0 failures** in all suites; `smoke2` creates 4 bookings and captures 10 emails; `smoke3` renders 27 screens.
+The script mounts the repository as `qevora-booking` and needs a WordPress directory to boot
+(`WP_PATH`, default `/home/user/wp/wordpress`) plus `@wp-playground/cli`
+(`PLAYGROUND_CLI`, or a local `node_modules` copy).
+
+Coverage:
+
+| Group | Assertions | What is checked |
+|-------|-----------|-----------------|
+| Bootstrap | 3 | classes load, admin capability exists, all 8 tables created |
+| Services / staff / availability | 6 | CRUD, service assignment, 30-minute grid, break exclusion, duration + buffer at the end of day |
+| Booking engine | 18 | create, auto-approval, customer + admin emails, manage URL, slot consumed, any-available routing, same-time and overlapping conflicts rejected, past dates rejected, cancel releases the slot, rebook after cancel, reschedule, reschedule counter, confirmed → completed, illegal transition rejected |
+| Admin screens | 20 | dashboard, 3 calendar views, bookings list/new/edit, services list/edit, categories, staff list/edit, availability, exceptions, customers list/detail, emails list/edit, settings, help |
+| Public output | 3 | shortcode wizard for guests, manage page with a valid token, invalid token reveals nothing |
+| REST API | 7 | block registered, GET services, GET availability, POST bookings without a nonce → 403, POST with a nonce → 201, GET booking with the signed token, admin routes require a capability |
+| Emails | 3 | 7 templates, placeholder preview, `wp_mail()` dispatch |
+
+Latest run: **2026-10-19 — 60 passed, 0 failed** (WordPress 7.1.3, PHP 8.3, SQLite).
+
+## Manual browser test on WordPress Playground
+
+`docs/playground/blueprint.json` builds a disposable demo salon in the browser. Open the one-click
+link in [`docs/playground/README.md`](playground/README.md), then walk the checklist sections above
+in a real browser — no hosting required. Playground cannot send email and loses all data when the
+tab closes, so treat it as a functional/UI pass and use staging for SMTP and MySQL checks.
