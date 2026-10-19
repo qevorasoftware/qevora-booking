@@ -32,9 +32,11 @@ QVB_Admin::page_header(
 	</div>
 </form>
 
-<?php $table->display(); ?>
+<div class="qvb-table-wrap qvb-table-wrap--list">
+	<?php $table->display(); ?>
+</div>
 
-<div class="qvb-card qvb-note">
+<div class="qvb-card">
 	<h2><?php esc_html_e( 'Privacy and data', 'qevora-booking' ); ?></h2>
 	<p><?php esc_html_e( 'Customer records are created automatically when someone books. Contact information is only visible to roles with the “View customer data” capability. You can anonymise a customer from their detail screen; their booking history is retained without personal contact details.', 'qevora-booking' ); ?></p>
 	<p><a href="<?php echo esc_url( QVB_Admin::url( 'settings' ) . '#data' ); ?>"><?php esc_html_e( 'Review data retention settings', 'qevora-booking' ); ?></a></p>

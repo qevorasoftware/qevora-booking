@@ -45,6 +45,13 @@ final class QVB_Public {
 			QVB_VERSION
 		);
 
+		wp_register_style(
+			'qvb-public-glass',
+			QVB_URL . 'public/css/glass.css',
+			array( 'qvb-public' ),
+			QVB_VERSION
+		);
+
 		wp_register_script(
 			'qvb-public',
 			QVB_URL . 'public/js/public.js',
@@ -67,6 +74,7 @@ final class QVB_Public {
 	public static function enqueue() {
 		self::register_assets();
 		wp_enqueue_style( 'qvb-public' );
+		wp_enqueue_style( 'qvb-public-glass' );
 		wp_enqueue_script( 'qvb-public' );
 	}
 

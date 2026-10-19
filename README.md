@@ -3,7 +3,7 @@
 All-in-one appointment booking for spas, salons, beauty parlours and massage centres.
 **Free online booking — customers pay at the salon.** No Stripe, no PayPal, no Razorpay, no subscriptions.
 
-[![Version](https://img.shields.io/badge/version-1.0.2-7c3aed)](#)
+[![Version](https://img.shields.io/badge/version-1.0.3-7c3aed)](#)
 [![WordPress](https://img.shields.io/badge/WordPress-6.2%20–%207.1-21759b)](#)
 [![PHP](https://img.shields.io/badge/PHP-7.4%20–%208.3-777bb4)](#)
 [![License](https://img.shields.io/badge/license-MIT-green)](#)
@@ -124,17 +124,36 @@ includes/                   domain layer (database, utils, settings, security, c
                             categories, services, staff, availability, customers, bookings,
                             notifications, cron, privacy, REST, shortcodes, activator)
 admin/                      menus, router, actions, list tables, views, CSS/JS
+                            css/admin.css = layout, css/glass.css = visual skin
 public/                     front-end assets, templates and form helpers
+                            css/public.css = layout, css/glass.css = visual skin
 integrations/gutenberg/     server-registered block
 integrations/elementor/     optional widget
 languages/                  qevora-booking.pot
 assets/                     icon and banner artwork
 bin/build.sh                produces both release ZIPs
 bin/test-playground.sh      runs the smoke test inside WordPress Playground
-tests/smoke.php             61-assertion automated suite
+tests/smoke.php             64-assertion automated suite
 docs/TEST-CHECKLIST.md      manual QA matrix + automated suite instructions
 docs/playground/            one-click Playground blueprint and demo seed
 ```
+
+### Styling
+
+The interface uses a two-file styling contract so appearance can be changed
+without touching layout or behaviour:
+
+| File | Responsibility |
+|------|----------------|
+| `admin/css/admin.css`, `public/css/public.css` | Structure, grid, spacing, responsive rules |
+| `admin/css/glass.css`, `public/css/glass.css` | Colour, glass surfaces, blur, shadows, motion |
+
+`glass.css` loads after the base sheet and only decorates surfaces. It keys on
+`body.qvb-screen` (added by `QVB_Admin::body_class()`), so nothing leaks into
+other WordPress admin screens. Translucency is always paired with a fallback:
+`@supports not (backdrop-filter: …)` and `prefers-contrast: more` switch to
+opaque surfaces, and `prefers-reduced-motion: reduce` drops the aurora animation
+and the spring transitions.
 
 ### Filters
 
@@ -162,7 +181,7 @@ Two ways to test without installing anything on a server:
 
 ```bash
 # Browser demo (same blueprint as docs/playground/)
-open "https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/qevorasoftware/qevora-booking/v1.0.2/docs/playground/blueprint.json"
+open "https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/qevorasoftware/qevora-booking/v1.0.3/docs/playground/blueprint.json"
 
 # Automated suite
 bash bin/test-playground.sh

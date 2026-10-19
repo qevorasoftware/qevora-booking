@@ -332,6 +332,32 @@ qvb_assert(
 	wp_json_encode( $qvb_admin_deps )
 );
 
+// The glass skin is a second stylesheet layered on top of admin.css. Both must
+// be queued, and the body class that scopes the skin must be added on plugin
+// screens only.
+$qvb_glass_queued = in_array( 'qvb-admin-glass', (array) wp_styles()->queue, true );
+$qvb_glass_file   = file_exists( QVB_DIR . 'admin/css/glass.css' ) && file_exists( QVB_DIR . 'public/css/glass.css' );
+
+qvb_assert(
+	$qvb_glass_queued && $qvb_glass_file,
+	'glass stylesheet builds on admin.css and ships on both sides',
+	wp_json_encode( array( $qvb_glass_queued, $qvb_glass_file ) )
+);
+
+$_GET['page'] = 'qevora-booking-settings';
+$qvb_body_plugin = QVB_Admin::body_class( 'wp-admin' );
+
+$_GET['page'] = 'edit';
+$qvb_body_other = QVB_Admin::body_class( 'wp-admin' );
+
+unset( $_GET['page'] );
+
+qvb_assert(
+	'wp-admin qvb-screen' === $qvb_body_plugin && 'wp-admin' === $qvb_body_other,
+	'glass body class only applies to plugin screens',
+	$qvb_body_plugin . ' | ' . $qvb_body_other
+);
+
 $booking_id  = (int) $rebook['id'];
 $customer_id = (int) $rebook['booking']->customer_id;
 

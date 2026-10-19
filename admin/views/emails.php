@@ -69,7 +69,7 @@ if ( ! $emails_enabled ) :
 								<span class="qvb-badge qvb-badge--cancelled"><?php esc_html_e( 'Disabled', 'qevora-booking' ); ?></span>
 							<?php endif; ?>
 						</td>
-						<td class="qvb-clamp"><?php echo esc_html( $template['subject'] ); ?></td>
+						<td><div class="qvb-clamp"><?php echo esc_html( $template['subject'] ); ?></div></td>
 						<td class="qvb-row-actions">
 							<a class="button button-small" href="<?php echo esc_url( QVB_Admin::url( 'emails', array( 'template' => $key ) ) ); ?>"><?php esc_html_e( 'Edit', 'qevora-booking' ); ?></a>
 						</td>

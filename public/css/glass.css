@@ -1,0 +1,600 @@
+/**
+ * Qevora Booking — Apple "liquid glass" front-end skin.
+ *
+ * Layers translucent surfaces, specular edges and spring motion on top of
+ * public.css. Geometry and flow stay in public.css so the multi-step form keeps
+ * its responsive behaviour (including the @container rules).
+ */
+
+.qvb-app {
+	--qvb-accent: #6d5efc;
+	--qvb-accent-dark: #5546e0;
+	--qvb-accent-soft: rgba(109, 94, 252, 0.1);
+	--qvb-ink: #0b1020;
+	--qvb-body: #3b4354;
+	--qvb-muted: #5f6879;
+	--qvb-line: rgba(15, 23, 42, 0.1);
+	--qvb-soft: rgba(255, 255, 255, 0.5);
+	--qvb-radius: 26px;
+	--qvb-radius-sm: 16px;
+	--qvb-shadow:
+		0 1px 1px rgba(15, 23, 42, 0.04),
+		0 12px 28px -14px rgba(15, 23, 42, 0.24),
+		0 40px 70px -40px rgba(15, 23, 42, 0.34);
+
+	--qvb-glass-blur: 28px;
+	--qvb-glass-top: rgba(255, 255, 255, 0.7);
+	--qvb-glass-bottom: rgba(255, 255, 255, 0.44);
+	--qvb-glass-edge: rgba(255, 255, 255, 0.9);
+	--qvb-glass-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 52%);
+	--qvb-glass-inner: inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -1px 0 rgba(255, 255, 255, 0.35);
+	--qvb-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+
+	isolation: isolate;
+	position: relative;
+}
+
+/* Aurora wash behind the widget, tinted by the theme's accent. */
+.qvb-app::before {
+	background:
+		radial-gradient(46% 42% at 8% 2%, rgba(109, 94, 252, 0.24), transparent 66%),
+		radial-gradient(38% 40% at 96% 8%, rgba(56, 189, 248, 0.2), transparent 64%),
+		radial-gradient(50% 44% at 76% 100%, rgba(244, 114, 182, 0.16), transparent 68%),
+		radial-gradient(36% 36% at 0% 88%, rgba(45, 212, 191, 0.16), transparent 66%);
+	border-radius: 46px;
+	content: "";
+	filter: blur(34px);
+	inset: -34px -26px;
+	opacity: 0.9;
+	pointer-events: none;
+	position: absolute;
+	z-index: -1;
+}
+
+/* Surfaces ---------------------------------------------------------------- */
+
+.qvb-app .qvb-form,
+.qvb-app .qvb-confirmation,
+.qvb-app .qvb-manage__summary,
+.qvb-app .qvb-notice,
+.qvb-app .qvb-summary {
+	-webkit-backdrop-filter: blur(var(--qvb-glass-blur)) saturate(180%);
+	backdrop-filter: blur(var(--qvb-glass-blur)) saturate(180%);
+	background: linear-gradient(160deg, var(--qvb-glass-top), var(--qvb-glass-bottom));
+	border: 1px solid var(--qvb-glass-edge);
+	box-shadow: var(--qvb-glass-inner), var(--qvb-shadow);
+	overflow: hidden;
+	position: relative;
+}
+
+.qvb-app .qvb-form::after,
+.qvb-app .qvb-confirmation::after,
+.qvb-app .qvb-manage__summary::after {
+	background: var(--qvb-glass-sheen);
+	content: "";
+	height: 60%;
+	inset: 0 0 auto 0;
+	opacity: 0.55;
+	pointer-events: none;
+	position: absolute;
+}
+
+.qvb-app .qvb-form > *,
+.qvb-app .qvb-confirmation > *,
+.qvb-app .qvb-manage__summary > * {
+	position: relative;
+	z-index: 1;
+}
+
+.qvb-app .qvb-title {
+	font-size: clamp(1.5rem, 2.6vw, 2rem);
+	font-weight: 700;
+	letter-spacing: -0.028em;
+}
+
+/* Focus -------------------------------------------------------------------
+ * Step panels and the slot region receive programmatic focus when the wizard
+ * advances. They are not interactive, so a full outline around the whole pane
+ * reads as a rendering glitch; interactive controls keep their ring.
+ */
+
+.qvb-app :focus-visible {
+	outline: 3px solid rgba(109, 94, 252, 0.55);
+	outline-offset: 2px;
+}
+
+.qvb-app .qvb-step:focus,
+.qvb-app .qvb-step:focus-visible,
+.qvb-app .qvb-slots:focus,
+.qvb-app .qvb-slots:focus-visible,
+.qvb-app .qvb-confirmation:focus,
+.qvb-app .qvb-confirmation:focus-visible {
+	outline: 0;
+}
+
+/* Progress ---------------------------------------------------------------- */
+
+.qvb-app .qvb-steps {
+	-webkit-backdrop-filter: blur(18px) saturate(170%);
+	backdrop-filter: blur(18px) saturate(170%);
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0.42));
+	border: 1px solid var(--qvb-glass-edge);
+	border-radius: 20px;
+	box-shadow: var(--qvb-glass-inner), 0 10px 24px -20px rgba(15, 23, 42, 0.6);
+	padding: 12px 14px;
+}
+
+.qvb-app .qvb-step-indicator__number {
+	border: 1.5px solid rgba(255, 255, 255, 0.9);
+	background: rgba(255, 255, 255, 0.8);
+	box-shadow: inset 0 1px 0 #fff, 0 2px 6px -4px rgba(15, 23, 42, 0.45);
+	color: var(--qvb-muted);
+	font-size: 0.78rem;
+	transition: transform 0.28s var(--qvb-spring), background 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+}
+
+.qvb-app .qvb-step-indicator.is-current .qvb-step-indicator__number {
+	background:
+		linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0)),
+		linear-gradient(135deg, #7c6bff, #5546e0);
+	border-color: rgba(255, 255, 255, 0.5);
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.5),
+		0 0 0 4px rgba(109, 94, 252, 0.14),
+		0 10px 20px -12px rgba(109, 94, 252, 0.9);
+	color: #fff;
+	transform: scale(1.04);
+}
+
+.qvb-app .qvb-step-indicator.is-complete .qvb-step-indicator__number {
+	background: rgba(109, 94, 252, 0.14);
+	border-color: rgba(255, 255, 255, 0.9);
+	color: var(--qvb-accent-dark);
+}
+
+.qvb-app .qvb-step-indicator::before {
+	background: linear-gradient(90deg, rgba(109, 94, 252, 0.45), rgba(109, 94, 252, 0.14));
+	border-radius: 999px;
+	height: 3px;
+}
+
+/* Choice cards ------------------------------------------------------------ */
+
+.qvb-app .qvb-choice {
+	-webkit-backdrop-filter: blur(16px) saturate(170%);
+	backdrop-filter: blur(16px) saturate(170%);
+	background: rgba(255, 255, 255, 0.58);
+	border: 1px solid rgba(255, 255, 255, 0.9);
+	border-radius: 18px;
+	box-shadow: inset 0 1px 0 #fff, 0 2px 6px -5px rgba(15, 23, 42, 0.5);
+	overflow: hidden;
+	transition: transform 0.26s var(--qvb-spring), box-shadow 0.26s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.qvb-app .qvb-choice::after {
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0) 46%);
+	border-radius: inherit;
+	content: "";
+	inset: 0 0 auto 0;
+	height: 48%;
+	opacity: 0.6;
+	pointer-events: none;
+	position: absolute;
+}
+
+.qvb-app .qvb-choice > * {
+	position: relative;
+	z-index: 1;
+}
+
+.qvb-app .qvb-choice:hover {
+	background: rgba(255, 255, 255, 0.78);
+	border-color: rgba(255, 255, 255, 0.95);
+	box-shadow: inset 0 1px 0 #fff, 0 16px 30px -20px rgba(15, 23, 42, 0.6);
+	transform: translateY(-2px);
+}
+
+.qvb-app .qvb-choice:focus-within {
+	border-color: rgba(109, 94, 252, 0.75);
+	box-shadow: 0 0 0 3.5px rgba(109, 94, 252, 0.18), inset 0 1px 0 #fff;
+}
+
+.qvb-app .qvb-choice:has(.qvb-choice__input:checked) {
+	background:
+		linear-gradient(180deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.12)),
+		linear-gradient(150deg, rgba(109, 94, 252, 0.22), rgba(109, 94, 252, 0.08));
+	border-color: rgba(109, 94, 252, 0.65);
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.8),
+		0 0 0 1px rgba(109, 94, 252, 0.2),
+		0 18px 34px -22px rgba(109, 94, 252, 0.9);
+}
+
+.qvb-app .qvb-choice__media {
+	border-radius: 14px;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 6px 14px -10px rgba(15, 23, 42, 0.5);
+}
+
+.qvb-app .qvb-choice__media--round {
+	border-radius: 50%;
+}
+
+.qvb-app .qvb-choice__initials {
+	background: linear-gradient(150deg, rgba(109, 94, 252, 0.22), rgba(56, 189, 248, 0.18));
+	border: 1px solid rgba(255, 255, 255, 0.75);
+	box-shadow: inset 0 1px 0 #fff;
+	color: var(--qvb-accent-dark);
+}
+
+.qvb-app .qvb-choice__check {
+	background: rgba(255, 255, 255, 0.85);
+	border: 1px solid rgba(255, 255, 255, 0.95);
+	box-shadow: inset 0 1px 0 #fff;
+	color: var(--qvb-accent-dark);
+	transition: transform 0.28s var(--qvb-spring), background 0.2s ease, color 0.2s ease;
+}
+
+.qvb-app .qvb-choice:has(.qvb-choice__input:checked) .qvb-choice__check {
+	background: linear-gradient(180deg, #7c6bff, #5546e0);
+	border-color: rgba(255, 255, 255, 0.4);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 6px 14px -8px rgba(109, 94, 252, 0.9);
+	color: #fff;
+	transform: scale(1.06);
+}
+
+/* Fields ------------------------------------------------------------------ */
+
+.qvb-app .qvb-field input,
+.qvb-app .qvb-field select,
+.qvb-app .qvb-field textarea,
+.qvb-app input[type="text"],
+.qvb-app input[type="email"],
+.qvb-app input[type="tel"],
+.qvb-app input[type="date"],
+.qvb-app input[type="time"],
+.qvb-app select,
+.qvb-app textarea {
+	-webkit-backdrop-filter: blur(12px) saturate(160%);
+	backdrop-filter: blur(12px) saturate(160%);
+	background: rgba(255, 255, 255, 0.7);
+	border: 1px solid rgba(15, 23, 42, 0.12);
+	border-radius: 13px;
+	box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+	color: var(--qvb-ink);
+	font-size: 1rem;
+	transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.qvb-app .qvb-field input:hover,
+.qvb-app .qvb-field select:hover,
+.qvb-app .qvb-field textarea:hover {
+	background: rgba(255, 255, 255, 0.84);
+	border-color: rgba(109, 94, 252, 0.35);
+}
+
+.qvb-app .qvb-field input:focus,
+.qvb-app .qvb-field select:focus,
+.qvb-app .qvb-field textarea:focus {
+	background: #fff;
+	border-color: var(--qvb-accent);
+	box-shadow: 0 0 0 3.5px rgba(109, 94, 252, 0.18), inset 0 1px 2px rgba(15, 23, 42, 0.04);
+	outline: 0;
+}
+
+.qvb-app .qvb-field label {
+	color: var(--qvb-ink);
+	font-size: 0.86rem;
+	font-weight: 600;
+	letter-spacing: 0.005em;
+}
+
+/* Day chips + slots ------------------------------------------------------- */
+
+.qvb-app .qvb-day-chip {
+	-webkit-backdrop-filter: blur(14px) saturate(170%);
+	backdrop-filter: blur(14px) saturate(170%);
+	background: rgba(255, 255, 255, 0.62);
+	border: 1px solid rgba(255, 255, 255, 0.9);
+	border-radius: 16px;
+	box-shadow: inset 0 1px 0 #fff, 0 2px 8px -6px rgba(15, 23, 42, 0.5);
+	gap: 3px;
+	justify-content: center;
+	line-height: 1.35;
+	min-height: 58px;
+	padding: 9px 13px;
+	transition: transform 0.24s var(--qvb-spring), box-shadow 0.24s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.qvb-app .qvb-day-chip small {
+	line-height: 1.4;
+}
+
+.qvb-app .qvb-day-chip.is-selected small {
+	color: rgba(255, 255, 255, 0.86);
+}
+
+.qvb-app .qvb-day-chip:hover:not(:disabled) {
+	background: rgba(255, 255, 255, 0.85);
+	box-shadow: inset 0 1px 0 #fff, 0 12px 24px -18px rgba(15, 23, 42, 0.7);
+	transform: translateY(-2px);
+}
+
+.qvb-app .qvb-day-chip.is-selected {
+	background:
+		linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0)),
+		linear-gradient(135deg, #7c6bff, #5546e0);
+	border-color: rgba(255, 255, 255, 0.45);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 14px 28px -16px rgba(109, 94, 252, 0.95);
+	color: #fff;
+}
+
+.qvb-app .qvb-slot {
+	-webkit-backdrop-filter: blur(12px) saturate(170%);
+	backdrop-filter: blur(12px) saturate(170%);
+	background: rgba(255, 255, 255, 0.66);
+	border: 1px solid rgba(255, 255, 255, 0.9);
+	border-radius: 13px;
+	box-shadow: inset 0 1px 0 #fff, 0 2px 8px -6px rgba(15, 23, 42, 0.5);
+	transition: transform 0.22s var(--qvb-spring), box-shadow 0.22s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.qvb-app .qvb-slot:hover:not(:disabled) {
+	background: rgba(255, 255, 255, 0.92);
+	box-shadow: inset 0 1px 0 #fff, 0 12px 22px -16px rgba(15, 23, 42, 0.75);
+	transform: translateY(-2px);
+}
+
+.qvb-app .qvb-slot.is-selected {
+	background:
+		linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0)),
+		linear-gradient(135deg, #7c6bff, #5546e0);
+	border-color: rgba(255, 255, 255, 0.45);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 12px 24px -14px rgba(109, 94, 252, 0.95);
+	color: #fff;
+}
+
+/* Slot grid: fixed, even columns regardless of the label widths. */
+.qvb-app .qvb-slot-grid {
+	gap: 9px;
+	grid-template-columns: repeat(auto-fill, minmax(102px, 1fr));
+}
+
+.qvb-app .qvb-slot {
+	justify-self: stretch;
+	min-height: 44px;
+	padding: 10px 10px;
+	width: 100%;
+}
+
+.qvb-app .qvb-slot-group h4 {
+	color: var(--qvb-muted);
+	font-size: 0.68rem;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+}
+
+/* Summary + policy -------------------------------------------------------- */
+
+.qvb-app .qvb-summary {
+	background: rgba(255, 255, 255, 0.5);
+	border: 1px solid rgba(255, 255, 255, 0.85);
+	border-radius: 20px;
+	box-shadow: inset 0 1px 0 #fff, 0 10px 26px -22px rgba(15, 23, 42, 0.6);
+}
+
+.qvb-app .qvb-summary__row + .qvb-summary__row {
+	border-top: 1px solid rgba(15, 23, 42, 0.07);
+}
+
+.qvb-app .qvb-policy {
+	background: rgba(255, 255, 255, 0.38);
+	border: 1px solid rgba(255, 255, 255, 0.8);
+	border-radius: 14px;
+}
+
+/* Buttons ---------------------------------------------------------------- */
+
+.qvb-app .qvb-btn {
+	-webkit-backdrop-filter: blur(18px) saturate(180%);
+	backdrop-filter: blur(18px) saturate(180%);
+	border-radius: 999px;
+	font-size: 0.94rem;
+	font-weight: 650;
+	letter-spacing: -0.005em;
+	min-height: 46px;
+	transition: transform 0.24s var(--qvb-spring), box-shadow 0.24s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.qvb-app .qvb-btn--primary {
+	background:
+		linear-gradient(180deg, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0) 52%),
+		linear-gradient(135deg, #7c6bff 0%, #6d5efc 48%, #5546e0 100%);
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.55),
+		0 2px 4px rgba(64, 48, 180, 0.2),
+		0 16px 30px -16px rgba(109, 94, 252, 0.95);
+	color: #fff;
+}
+
+.qvb-app .qvb-btn--primary:hover:not(:disabled) {
+	background:
+		linear-gradient(180deg, rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0) 52%),
+		linear-gradient(135deg, #8a79ff 0%, #7967ff 48%, #5f4ee8 100%);
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.6),
+		0 3px 6px rgba(64, 48, 180, 0.22),
+		0 22px 38px -18px rgba(109, 94, 252, 1);
+	transform: translateY(-1.5px);
+}
+
+.qvb-app .qvb-btn--ghost {
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5));
+	border: 1px solid rgba(255, 255, 255, 0.9);
+	box-shadow: inset 0 1px 0 #fff, 0 8px 18px -16px rgba(15, 23, 42, 0.7);
+	color: var(--qvb-ink);
+}
+
+.qvb-app .qvb-btn--ghost:hover:not(:disabled) {
+	background: rgba(255, 255, 255, 0.95);
+	color: var(--qvb-accent-dark);
+	transform: translateY(-1.5px);
+}
+
+.qvb-app .qvb-btn:active:not(:disabled) {
+	transform: translateY(0) scale(0.985);
+}
+
+.qvb-app .qvb-btn:disabled {
+	opacity: 0.55;
+	transform: none;
+}
+
+.qvb-app .qvb-btn--danger {
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 52%),
+		linear-gradient(135deg, #ef5b6b, #c92a3c);
+	border: 1px solid rgba(255, 255, 255, 0.35);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 14px 26px -16px rgba(201, 42, 60, 0.95);
+	color: #fff;
+}
+
+/* Notices ---------------------------------------------------------------- */
+
+.qvb-app .qvb-notice {
+	background: rgba(255, 255, 255, 0.62);
+	border-radius: 18px;
+}
+
+.qvb-app .qvb-notice--warning {
+	background: rgba(255, 247, 226, 0.68);
+	border-color: rgba(245, 158, 11, 0.32);
+}
+
+.qvb-app .qvb-notice--info {
+	background: rgba(238, 245, 255, 0.68);
+	border-color: rgba(59, 130, 246, 0.3);
+}
+
+.qvb-app .qvb-notice--success {
+	background: rgba(236, 253, 245, 0.7);
+	border-color: rgba(16, 185, 129, 0.32);
+}
+
+.qvb-app .qvb-form-error {
+	background: rgba(254, 242, 242, 0.72);
+	border: 1px solid rgba(239, 68, 68, 0.28);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.qvb-app .qvb-form-success {
+	background: rgba(236, 253, 245, 0.72);
+	border: 1px solid rgba(16, 185, 129, 0.28);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Confirmation + manage --------------------------------------------------- */
+
+.qvb-app .qvb-confirmation__icon {
+	background:
+		linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)),
+		linear-gradient(150deg, rgba(16, 185, 129, 0.28), rgba(16, 185, 129, 0.12));
+	border: 1px solid rgba(255, 255, 255, 0.85);
+	box-shadow: inset 0 1px 0 #fff, 0 12px 24px -16px rgba(4, 120, 87, 0.8);
+}
+
+.qvb-app .qvb-confirmation__ref {
+	background: rgba(255, 255, 255, 0.7);
+	border: 1px solid rgba(255, 255, 255, 0.9);
+	box-shadow: inset 0 1px 0 #fff, 0 6px 14px -12px rgba(15, 23, 42, 0.6);
+	font-weight: 650;
+}
+
+.qvb-app .qvb-manage__date {
+	background:
+		linear-gradient(180deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0)),
+		linear-gradient(150deg, rgba(109, 94, 252, 0.24), rgba(56, 189, 248, 0.16));
+	border: 1px solid rgba(255, 255, 255, 0.8);
+	box-shadow: inset 0 1px 0 #fff, 0 10px 22px -16px rgba(109, 94, 252, 0.9);
+	color: var(--qvb-accent-dark);
+}
+
+.qvb-app .qvb-status {
+	border: 1px solid rgba(255, 255, 255, 0.85);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+	font-weight: 700;
+}
+
+.qvb-app .qvb-status--pending {
+	background: rgba(245, 158, 11, 0.18);
+	color: #8a5300;
+}
+
+.qvb-app .qvb-status--confirmed {
+	background: rgba(16, 185, 129, 0.18);
+	color: #05604a;
+}
+
+.qvb-app .qvb-status--completed {
+	background: rgba(59, 130, 246, 0.18);
+	color: #1d4ed8;
+}
+
+.qvb-app .qvb-status--cancelled,
+.qvb-app .qvb-status--rejected {
+	background: rgba(239, 68, 68, 0.16);
+	color: #a51c1c;
+}
+
+.qvb-app .qvb-status--no_show {
+	background: rgba(100, 116, 139, 0.16);
+	color: #455063;
+}
+
+/* Motion preferences ----------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+	.qvb-app::before {
+		animation: none;
+	}
+
+	.qvb-app .qvb-choice,
+	.qvb-app .qvb-btn,
+	.qvb-app .qvb-slot,
+	.qvb-app .qvb-day-chip,
+	.qvb-app .qvb-step-indicator__number {
+		transition: none;
+	}
+
+	.qvb-app .qvb-choice:hover,
+	.qvb-app .qvb-btn:hover,
+	.qvb-app .qvb-slot:hover,
+	.qvb-app .qvb-day-chip:hover {
+		transform: none;
+	}
+}
+
+@supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+	.qvb-app {
+		--qvb-glass-top: #fff;
+		--qvb-glass-bottom: #fff;
+	}
+
+	.qvb-app .qvb-choice,
+	.qvb-app .qvb-day-chip,
+	.qvb-app .qvb-slot,
+	.qvb-app .qvb-summary {
+		background: #fff;
+	}
+}
+
+@media (prefers-contrast: more) {
+	.qvb-app {
+		--qvb-glass-top: #fff;
+		--qvb-glass-bottom: #fff;
+		--qvb-line: rgba(15, 23, 42, 0.3);
+	}
+
+	.qvb-app::before {
+		display: none;
+	}
+}

@@ -26,6 +26,7 @@ final class QVB_Admin {
 
 		add_action( 'admin_menu', array( __CLASS__, 'menu' ) );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue' ) );
+		add_filter( 'admin_body_class', array( __CLASS__, 'body_class' ) );
 		add_action( 'admin_init', array( __CLASS__, 'activation_redirect' ) );
 		add_action( 'admin_notices', array( __CLASS__, 'notices' ) );
 	}
@@ -213,6 +214,26 @@ final class QVB_Admin {
 	}
 
 	/**
+	 * Adds a body class on plugin screens.
+	 *
+	 * The glass skin needs to paint the page canvas and the sidebar, which sit
+	 * outside `.qvb-wrap`. A stable body class is cheaper and better supported
+	 * than `:has()`, so every skin rule keys off `body.qvb-screen`.
+	 *
+	 * @param string $classes Space separated list of body classes.
+	 * @return string
+	 */
+	public static function body_class( $classes ) {
+		$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+
+		if ( 0 === strpos( $page, 'qevora-booking' ) ) {
+			$classes .= ' qvb-screen';
+		}
+
+		return $classes;
+	}
+
+	/**
 	 * Enqueues admin assets on plugin screens.
 	 *
 	 * @param string $hook Current admin page hook.
@@ -224,6 +245,9 @@ final class QVB_Admin {
 		}
 
 		wp_enqueue_style( 'qvb-admin', QVB_URL . 'admin/css/admin.css', array(), QVB_VERSION );
+
+		// Glass skin: layered on top of admin.css so it only decorates surfaces.
+		wp_enqueue_style( 'qvb-admin-glass', QVB_URL . 'admin/css/glass.css', array( 'qvb-admin' ), QVB_VERSION );
 
 		// Load the media library first and declare it as a dependency: the staff,
 		// service and category screens use `wp.media()` for image picking, and
@@ -318,6 +342,11 @@ final class QVB_Admin {
 
 		$current_page = $page;
 		wp_enqueue_style( 'qvb-admin' );
+
+		if ( ! wp_style_is( 'qvb-admin-glass', 'registered' ) ) {
+			wp_register_style( 'qvb-admin-glass', QVB_URL . 'admin/css/glass.css', array( 'qvb-admin' ), QVB_VERSION );
+		}
+		wp_enqueue_style( 'qvb-admin-glass' );
 
 		/*
 		 * Every screen is rendered inside WordPress' standard `.wrap` container.

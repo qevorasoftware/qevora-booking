@@ -4,7 +4,7 @@ Tags: appointment booking, salon booking, spa booking, massage booking, staff sc
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -101,6 +101,16 @@ By default nothing except scheduled tasks and caches. If you enable **Delete all
 
 == Changelog ==
 
+= 1.0.3 =
+* Added: Liquid Glass design layer for every admin screen and the public booking form — translucent surfaces with backdrop blur, specular edge highlights, soft layered shadows, a slow aurora backdrop and spring-eased hover/press motion.
+* Added: `admin/css/glass.css` and `public/css/glass.css`, loaded after the base stylesheets so layout, selectors and behaviour stay untouched. Both degrade to opaque surfaces when `backdrop-filter` is unsupported, when the visitor asks for reduced motion, or when `prefers-contrast: more` is set.
+* Added: settings section navigation now highlights the section you are reading while you scroll.
+* Improved: booking, customer, service, category and exception tables, calendar cells/events, staff cards, stat cards, quick actions, setup checklist, settings chrome and code samples all share the same glass language.
+* Improved: the public wizard now shows a uniform slot grid, keeps day chips on a consistent height, and no longer draws a focus ring around the whole step panel after pressing Continue.
+* Fixed: email template subjects were clipped by a table-cell `-webkit-box` clamp; the clamp now applies to an inner block.
+* Fixed: the customer privacy card inherited italic “note” typography.
+* Tests: smoke suite extended to 64 assertions (glass stylesheet enqueue and the `qvb-screen` body class).
+
 = 1.0.2 =
 * Fixed: “Choose photo” (and the service/category image pickers) did nothing because the admin script could be printed before WordPress’ media library. `admin.js` now depends on `media-editor` and resolves `wp.media` at click time.
 * Fixed: switching a staff member to a custom schedule with no rows left them silently unbookable; the schedule is now pre-filled from the business hours.
@@ -126,6 +136,9 @@ By default nothing except scheduled tasks and caches. If you enable **Delete all
 * Uninstall respects an explicit opt-in before deleting data.
 
 == Upgrade Notice ==
+
+= 1.0.3 =
+New Apple-inspired glass interface across the admin screens and the booking form.
 
 = 1.0.2 =
 Fixes the image picker buttons in the staff, service and category forms.

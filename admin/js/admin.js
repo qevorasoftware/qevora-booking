@@ -589,4 +589,50 @@
 		exceptionType.addEventListener('change', syncException);
 		syncException();
 	}
+
+	/* ------------------------------------------------------------------ */
+	/* Settings section navigation                                         */
+	/* ------------------------------------------------------------------ */
+
+	var settingsNav = document.querySelector('.qvb-settings-nav');
+
+	if (settingsNav && 'IntersectionObserver' in window) {
+		var navLinks = Array.prototype.slice.call(settingsNav.querySelectorAll('a[href^="#"]'));
+		var sections = navLinks
+			.map(function (link) {
+				return document.getElementById(link.getAttribute('href').slice(1));
+			})
+			.filter(Boolean);
+
+		function setActive(id) {
+			navLinks.forEach(function (link) {
+				link.classList.toggle('is-active', link.getAttribute('href') === '#' + id);
+			});
+		}
+
+		if (sections.length) {
+			setActive(sections[0].id);
+
+			var spy = new IntersectionObserver(
+				function (entries) {
+					var visible = entries
+						.filter(function (entry) {
+							return entry.isIntersecting;
+						})
+						.sort(function (a, b) {
+							return a.boundingClientRect.top - b.boundingClientRect.top;
+						});
+
+					if (visible.length) {
+						setActive(visible[0].target.id);
+					}
+				},
+				{ rootMargin: '-96px 0px -55% 0px', threshold: 0 }
+			);
+
+			sections.forEach(function (section) {
+				spy.observe(section);
+			});
+		}
+	}
 }());

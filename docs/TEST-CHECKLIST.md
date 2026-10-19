@@ -1,6 +1,6 @@
 # Qevora Booking — Release Test Checklist
 
-Version: **1.0.2**
+Version: **1.0.3**
 Target: WordPress **6.2 – 7.1**, PHP **7.4 – 8.3**, MySQL 5.7+/MariaDB 10.3+, SQLite via the WordPress SQLite integration.
 
 Legend: `[ ]` not run · `[x]` passed · `[!]` failed (open an issue with the reference number).
@@ -262,6 +262,23 @@ Legend: `[ ]` not run · `[x]` passed · `[!]` failed (open an issue with the re
 
 ---
 
+## 14b. Glass interface
+
+| # | Test | Expected result |
+|---|------|-----------------|
+| 14b.1 | Every admin screen (Dashboard → Help) | Panes are translucent over the aurora canvas; no card touches or crosses the right edge |
+| 14b.2 | Other plugins' admin screens | Unchanged — the skin is scoped to `body.qvb-screen` |
+| 14b.3 | Booking form, steps 1 → 5 | Glass cards, step pills, day chips, slots, summary and buttons all styled; no whole-panel focus ring after Continue |
+| 14b.4 | Booking form at 375 px / 480 px / 782 px | One card per row, slot grid stays even, nothing scrolls sideways |
+| 14b.5 | Safari / Firefox / Chrome | Blur, saturation and specular edges render; hover lift is smooth |
+| 14b.6 | Browser without `backdrop-filter` | Surfaces fall back to opaque white, all text remains readable |
+| 14b.7 | OS “Reduce motion” | Aurora stops, no spring transitions, no layout shift |
+| 14b.8 | OS “Increase contrast” | Opaque surfaces, stronger hairlines, aurora hidden |
+| 14b.9 | Keyboard only | Visible focus ring on every control; tab order unchanged |
+| 14b.10 | Settings screen scrolling | Section pill highlights the section in view |
+
+---
+
 ## 15. Release packaging
 
 | # | Test | Expected result |
@@ -271,14 +288,14 @@ Legend: `[ ]` not run · `[x]` passed · `[!]` failed (open an issue with the re
 | 15.3 | Developer ZIP contents | Includes `bin/`, `docs/`, test checklist and source files |
 | 15.4 | Install the production ZIP into a clean WordPress | Activates, all screens render, one booking completes |
 | 15.5 | ZIP size | Under 5 MB |
-| 15.6 | Version headers | `1.0.2` in the plugin header, `QVB_VERSION` and `readme.txt` |
+| 15.6 | Version headers | `1.0.3` in the plugin header, `QVB_VERSION` and `readme.txt` |
 
 ---
 
 ## Automated smoke test
 
 `tests/smoke.php` runs against a real WordPress (PHP 8.x + SQLite) inside WordPress Playground.
-One command, 61 assertions, exit code 0 only when everything passes:
+One command, 64 assertions, exit code 0 only when everything passes:
 
 ```bash
 bash bin/test-playground.sh

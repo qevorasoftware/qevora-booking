@@ -89,5 +89,7 @@ QVB_Admin::page_header(
 		<span class="qvb-muted"><?php esc_html_e( 'Status changes email the customer when notifications are enabled.', 'qevora-booking' ); ?></span>
 	</div>
 
-	<?php $table->display(); ?>
+	<div class="qvb-table-wrap qvb-table-wrap--list">
+		<?php $table->display(); ?>
+	</div>
 </form>

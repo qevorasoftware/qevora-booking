@@ -1,0 +1,1504 @@
+/**
+ * Qevora Booking — Apple "liquid glass" admin skin.
+ *
+ * Loaded after admin.css so it only layers surfaces, depth and motion on top of
+ * the existing layout. Nothing here changes positioning, so the screens keep
+ * their WordPress layout and the right-hand gutter.
+ *
+ * Design notes
+ * ------------
+ * 1. A soft aurora canvas lives behind the content.
+ * 2. Every surface is a translucent pane: blur + saturation boost, a hairline
+ *    highlight on the top edge and a wide, low-opacity drop shadow.
+ * 3. Interactive elements react to the pointer with a small spring lift.
+ * 4. `@supports not (backdrop-filter)` and `prefers-contrast: more` fall back to
+ *    opaque surfaces so nothing depends on a compositing feature to be legible.
+ */
+
+/* ------------------------------------------------------------------------- */
+/* Tokens                                                                     */
+/* ------------------------------------------------------------------------- */
+
+body.qvb-screen {
+	--qvb-accent: #6d5efc;
+	--qvb-accent-dark: #5546e0;
+	--qvb-accent-soft: rgba(109, 94, 252, 0.1);
+	--qvb-ink: #0b1020;
+	--qvb-muted: #5b6478;
+	--qvb-line: rgba(15, 23, 42, 0.09);
+
+	--qvb-glass-blur: 26px;
+	--qvb-glass-sat: 180%;
+	--qvb-glass-top: rgba(255, 255, 255, 0.8);
+	--qvb-glass-bottom: rgba(255, 255, 255, 0.5);
+	--qvb-glass-edge: rgba(255, 255, 255, 0.9);
+	--qvb-glass-hairline: rgba(15, 23, 42, 0.07);
+	--qvb-glass-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0) 55%);
+	--qvb-glass-shadow:
+		0 1px 1px rgba(15, 23, 42, 0.05),
+		0 12px 26px -14px rgba(23, 32, 63, 0.26),
+		0 38px 66px -36px rgba(23, 32, 63, 0.38);
+	--qvb-glass-inner:
+		inset 0 1px 0 rgba(255, 255, 255, 0.95),
+		inset 0 -1px 0 rgba(255, 255, 255, 0.4);
+	--qvb-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+	--qvb-radius: 22px;
+	--qvb-radius-sm: 14px;
+}
+
+/* ------------------------------------------------------------------------- */
+/* Aurora canvas                                                              */
+/* ------------------------------------------------------------------------- */
+
+body.qvb-screen #wpwrap {
+	background:
+		radial-gradient(120% 80% at 100% 0%, rgba(199, 210, 254, 0.55), transparent 60%),
+		radial-gradient(100% 70% at 0% 100%, rgba(204, 251, 241, 0.5), transparent 62%),
+		linear-gradient(180deg, #eef0fa 0%, #e7ebf7 45%, #f1eaf9 100%) fixed;
+}
+
+body.qvb-screen #wpcontent {
+	background: transparent;
+}
+
+body.qvb-screen #wpfooter {
+	color: #7b8394;
+}
+
+body.qvb-screen #wpbody-content {
+	isolation: isolate;
+	overflow-x: clip;
+	position: relative;
+}
+
+body.qvb-screen #wpbody-content::before {
+	animation: qvb-aurora 38s ease-in-out infinite alternate;
+	background:
+		radial-gradient(40% 54% at 16% 2%, rgba(109, 94, 252, 0.5), transparent 64%),
+		radial-gradient(36% 50% at 88% 0%, rgba(56, 189, 248, 0.4), transparent 62%),
+		radial-gradient(44% 56% at 72% 90%, rgba(244, 114, 182, 0.32), transparent 66%),
+		radial-gradient(32% 42% at 0% 88%, rgba(45, 212, 191, 0.28), transparent 66%);
+	content: "";
+	filter: blur(56px);
+	height: 900px;
+	inset: -200px 0 auto 0;
+	opacity: 1;
+	pointer-events: none;
+	position: absolute;
+	z-index: -1;
+}
+
+@keyframes qvb-aurora {
+	0% {
+		transform: translate3d(0, 0, 0) scale(1);
+	}
+	50% {
+		transform: translate3d(2%, 3%, 0) scale(1.06);
+	}
+	100% {
+		transform: translate3d(-2%, 1%, 0) scale(1.02);
+	}
+}
+
+.wrap.qvb-wrap {
+	position: relative;
+}
+
+/* ------------------------------------------------------------------------- */
+/* Shared glass primitives                                                    */
+/* ------------------------------------------------------------------------- */
+
+.wrap.qvb-wrap .qvb-admin-header,
+.wrap.qvb-wrap .qvb-card,
+.wrap.qvb-wrap .qvb-panel,
+.wrap.qvb-wrap .qvb-form-card,
+.wrap.qvb-wrap .qvb-filters,
+.wrap.qvb-wrap .qvb-glass-panel,
+.wrap.qvb-wrap .qvb-calendar-toolbar,
+.wrap.qvb-wrap .qvb-stat,
+.wrap.qvb-wrap .qvb-staff-card,
+.wrap.qvb-wrap .qvb-template-editor,
+.wrap.qvb-wrap .qvb-media,
+.wrap.qvb-wrap .qvb-checkbox-group,
+.wrap.qvb-wrap .qvb-slot-panel {
+	-webkit-backdrop-filter: blur(var(--qvb-glass-blur)) saturate(var(--qvb-glass-sat));
+	backdrop-filter: blur(var(--qvb-glass-blur)) saturate(var(--qvb-glass-sat));
+	background: linear-gradient(160deg, var(--qvb-glass-top), var(--qvb-glass-bottom));
+	border: 1px solid var(--qvb-glass-edge);
+	box-shadow: var(--qvb-glass-inner), var(--qvb-glass-shadow);
+	position: relative;
+}
+
+/* Hairline under the top edge — the little bright rim iOS puts on glass. */
+.wrap.qvb-wrap .qvb-card::after,
+.wrap.qvb-wrap .qvb-panel::after,
+.wrap.qvb-wrap .qvb-form-card::after,
+.wrap.qvb-wrap .qvb-glass-panel::after,
+.wrap.qvb-wrap .qvb-stat::after,
+.wrap.qvb-wrap .qvb-staff-card::after {
+	background: var(--qvb-glass-sheen);
+	border-radius: inherit;
+	content: "";
+	height: 55%;
+	inset: 0 0 auto 0;
+	opacity: 0.7;
+	pointer-events: none;
+	position: absolute;
+}
+
+.wrap.qvb-wrap .qvb-card > *,
+.wrap.qvb-wrap .qvb-panel > *,
+.wrap.qvb-wrap .qvb-form-card > *,
+.wrap.qvb-wrap .qvb-stat > *,
+.wrap.qvb-wrap .qvb-staff-card > * {
+	position: relative;
+	z-index: 1;
+}
+
+/* ------------------------------------------------------------------------- */
+/* Header                                                                     */
+/* ------------------------------------------------------------------------- */
+
+body.qvb-screen .wrap.qvb-wrap .qvb-admin-header {
+	background:
+		linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.6));
+	border-radius: 26px;
+	margin: 10px 0 22px;
+	padding: 22px 26px 24px;
+}
+
+.wrap.qvb-wrap .qvb-admin-header h1 {
+	font-size: 30px;
+	font-weight: 700;
+	letter-spacing: -0.025em;
+}
+
+.wrap.qvb-wrap .qvb-admin-eyebrow {
+	color: var(--qvb-accent);
+	letter-spacing: 0.16em;
+}
+
+.wrap.qvb-wrap .qvb-admin-subtitle {
+	font-size: 13.5px;
+}
+
+/* ------------------------------------------------------------------------- */
+/* Cards                                                                      */
+/* ------------------------------------------------------------------------- */
+
+.wrap.qvb-wrap .qvb-card {
+	border-radius: 24px;
+	padding: 24px 26px;
+}
+
+.wrap.qvb-wrap .qvb-card > h2,
+.wrap.qvb-wrap .qvb-card > h3 {
+	font-size: 17.5px;
+	font-weight: 700;
+	letter-spacing: -0.012em;
+}
+
+.wrap.qvb-wrap .qvb-card__head h2,
+.wrap.qvb-wrap .qvb-section-head h2 {
+	font-size: 17.5px;
+}
+
+/* ------------------------------------------------------------------------- */
+/* Buttons                                                                    */
+/* ------------------------------------------------------------------------- */
+
+.wrap.qvb-wrap .qvb-btn,
+.wrap.qvb-wrap .button,
+.wrap.qvb-wrap .button-primary,
+.wrap.qvb-wrap button.button,
+.wrap.qvb-wrap input[type="submit"].button,
+.wrap.qvb-wrap .page-title-action {
+	-webkit-backdrop-filter: blur(18px) saturate(170%);
+	backdrop-filter: blur(18px) saturate(170%);
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.66));
+	border: 1px solid rgba(255, 255, 255, 0.9);
+	border-radius: 999px;
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.95),
+		0 1px 2px rgba(15, 23, 42, 0.06),
+		0 8px 18px -12px rgba(15, 23, 42, 0.35);
+	color: var(--qvb-ink);
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1.5;
+	min-height: 34px;
+	padding: 5px 16px;
+	text-shadow: none;
+	transition: transform 0.22s var(--qvb-spring), box-shadow 0.22s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.wrap.qvb-wrap .qvb-btn:hover,
+.wrap.qvb-wrap .button:hover,
+.wrap.qvb-wrap .button-primary:hover {
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.8));
+	border-color: rgba(109, 94, 252, 0.45);
+	color: var(--qvb-accent-dark);
+	transform: translateY(-1px);
+}
+
+.wrap.qvb-wrap .qvb-btn:active,
+.wrap.qvb-wrap .button:active,
+.wrap.qvb-wrap .button-primary:active {
+	transform: translateY(0) scale(0.985);
+}
+
+.wrap.qvb-wrap .qvb-btn:focus-visible,
+.wrap.qvb-wrap .button:focus-visible,
+.wrap.qvb-wrap .button-primary:focus-visible {
+	border-color: var(--qvb-accent);
+	box-shadow: 0 0 0 3px rgba(109, 94, 252, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+	outline: 0;
+}
+
+/* Filled / primary actions get the tinted glass treatment. */
+.wrap.qvb-wrap .qvb-btn:not(.qvb-btn--ghost),
+.wrap.qvb-wrap .button-primary,
+.wrap.qvb-wrap .page-title-action {
+	background:
+		linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 48%),
+		linear-gradient(135deg, #7c6bff 0%, #6d5efc 45%, #5546e0 100%);
+	border-color: rgba(255, 255, 255, 0.35);
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.55),
+		0 1px 2px rgba(64, 48, 180, 0.2),
+		0 12px 24px -12px rgba(109, 94, 252, 0.75);
+	color: #fff;
+}
+
+.wrap.qvb-wrap .qvb-btn:not(.qvb-btn--ghost):hover,
+.wrap.qvb-wrap .button-primary:hover,
+.wrap.qvb-wrap .page-title-action:hover {
+	background:
+		linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0) 48%),
+		linear-gradient(135deg, #8a79ff 0%, #7967ff 45%, #5f4ee8 100%);
+	border-color: rgba(255, 255, 255, 0.5);
+	color: #fff;
+}
+
+.wrap.qvb-wrap .qvb-btn--ghost {
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.45));
+	color: var(--qvb-ink);
+}
+
+.wrap.qvb-wrap .qvb-btn--ghost:hover {
+	color: var(--qvb-accent-dark);
+}
+
+.wrap.qvb-wrap .qvb-btn-icon {
+	min-width: 34px;
+	padding: 5px 12px;
+}
+
+.wrap.qvb-wrap .button.button-small {
+	border-radius: 999px;
+	font-size: 12px;
+	min-height: 28px;
+	padding: 2px 12px;
+}
+
+.wrap.qvb-wrap .button-link {
+	color: var(--qvb-accent-dark);
+	text-decoration: none;
+}
+
+.wrap.qvb-wrap .button-link:hover {
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.wrap.qvb-wrap .button-link-delete {
+	color: var(--qvb-red);
+}
+
+/* ------------------------------------------------------------------------- */
+/* Inputs                                                                     */
+/* ------------------------------------------------------------------------- */
+
+.wrap.qvb-wrap input[type="text"],
+.wrap.qvb-wrap input[type="search"],
+.wrap.qvb-wrap input[type="email"],
+.wrap.qvb-wrap input[type="tel"],
+.wrap.qvb-wrap input[type="url"],
+.wrap.qvb-wrap input[type="number"],
+.wrap.qvb-wrap input[type="password"],
+.wrap.qvb-wrap input[type="date"],
+.wrap.qvb-wrap input[type="time"],
+.wrap.qvb-wrap input[type="datetime-local"],
+.wrap.qvb-wrap select,
+.wrap.qvb-wrap textarea {
+	-webkit-backdrop-filter: blur(14px) saturate(160%);
+	backdrop-filter: blur(14px) saturate(160%);
+	background: rgba(255, 255, 255, 0.72);
+	border: 1px solid rgba(15, 23, 42, 0.12);
+	border-radius: 13px;
+	box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+	color: var(--qvb-ink);
+	font-size: 13.5px;
+	line-height: 1.5;
+	min-height: 38px;
+	padding: 7px 12px;
+	transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.wrap.qvb-wrap input[type="text"]:hover,
+.wrap.qvb-wrap input[type="search"]:hover,
+.wrap.qvb-wrap input[type="email"]:hover,
+.wrap.qvb-wrap input[type="tel"]:hover,
+.wrap.qvb-wrap input[type="url"]:hover,
+.wrap.qvb-wrap input[type="number"]:hover,
+.wrap.qvb-wrap input[type="date"]:hover,
+.wrap.qvb-wrap input[type="time"]:hover,
+.wrap.qvb-wrap select:hover,
+.wrap.qvb-wrap textarea:hover {
+	background: rgba(255, 255, 255, 0.85);
+	border-color: rgba(109, 94, 252, 0.35);
+}
+
+.wrap.qvb-wrap input[type="text"]:focus,
+.wrap.qvb-wrap input[type="search"]:focus,
+.wrap.qvb-wrap input[type="email"]:focus,
+.wrap.qvb-wrap input[type="tel"]:focus,
+.wrap.qvb-wrap input[type="url"]:focus,
+.wrap.qvb-wrap input[type="number"]:focus,
+.wrap.qvb-wrap input[type="password"]:focus,
+.wrap.qvb-wrap input[type="date"]:focus,
+.wrap.qvb-wrap input[type="time"]:focus,
+.wrap.qvb-wrap input[type="datetime-local"]:focus,
+.wrap.qvb-wrap select:focus,
+.wrap.qvb-wrap textarea:focus {
+	background: #fff;
+	border-color: var(--qvb-accent);
+	box-shadow: 0 0 0 3.5px rgba(109, 94, 252, 0.18), inset 0 1px 2px rgba(15, 23, 42, 0.04);
+	outline: 0;
+}
+
+.wrap.qvb-wrap select {
+	background-image:
+		linear-gradient(45deg, transparent 50%, #5b6478 50%),
+		linear-gradient(135deg, #5b6478 50%, transparent 50%);
+	background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%;
+	background-repeat: no-repeat;
+	background-size: 5px 5px, 5px 5px;
+	padding-right: 34px;
+}
+
+.wrap.qvb-wrap input[type="checkbox"],
+.wrap.qvb-wrap input[type="radio"] {
+	background: rgba(255, 255, 255, 0.9);
+	border: 1px solid rgba(15, 23, 42, 0.25);
+	box-shadow: inset 0 1px 1px rgba(15, 23, 42, 0.06);
+}
+
+.wrap.qvb-wrap input[type="checkbox"]:checked,
+.wrap.qvb-wrap input[type="radio"]:checked {
+	background: var(--qvb-accent);
+	border-color: var(--qvb-accent);
+}
+
+.wrap.qvb-wrap input[type="checkbox"]:checked::before {
+	color: #fff;
+}
+
+.wrap.qvb-wrap .qvb-input-prefix > span {
+	background: rgba(255, 255, 255, 0.5);
+	border-color: rgba(15, 23, 42, 0.12);
+	border-radius: 13px 0 0 13px;
+}
+
+.wrap.qvb-wrap .qvb-input-prefix input {
+	border-radius: 0 13px 13px 0 !important;
+}
+
+.wrap.qvb-wrap .qvb-media {
+	background: rgba(255, 255, 255, 0.4);
+	border: 1px dashed rgba(109, 94, 252, 0.35);
+	border-radius: 18px;
+}
+
+.wrap.qvb-wrap .qvb-media__preview {
+	background: rgba(255, 255, 255, 0.8);
+	border-color: rgba(255, 255, 255, 0.9);
+	border-radius: 16px;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 6px 14px -10px rgba(15, 23, 42, 0.4);
+}
+
+.wrap.qvb-wrap .qvb-checkbox-group {
+	background: rgba(255, 255, 255, 0.45);
+	border-radius: 16px;
+}
+
+/* iOS-style switch. */
+.wrap.qvb-wrap .qvb-switch input[type="checkbox"] {
+	background: rgba(120, 130, 150, 0.32);
+	box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.18);
+}
+
+.wrap.qvb-wrap .qvb-switch input[type="checkbox"]::after {
+	box-shadow: 0 2px 5px rgba(15, 23, 42, 0.25);
+	transition: transform 0.26s var(--qvb-spring);
+}
+
+.wrap.qvb-wrap .qvb-switch input[type="checkbox"]:checked {
+	background: linear-gradient(180deg, #7c6bff, #5f4ee8);
+}
+
+/* ------------------------------------------------------------------------- */
+/* Stats                                                                      */
+/* ------------------------------------------------------------------------- */
+
+.wrap.qvb-wrap .qvb-stat-grid {
+	gap: 16px;
+}
+
+.wrap.qvb-wrap .qvb-stat {
+	border-radius: 20px;
+	overflow: hidden;
+	padding: 16px 18px;
+	transition: transform 0.28s var(--qvb-spring), box-shadow 0.28s ease;
+}
+
+.wrap.qvb-wrap .qvb-stat:hover {
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.95),
+		0 2px 4px rgba(15, 23, 42, 0.05),
+		0 20px 40px -22px rgba(15, 23, 42, 0.4);
+	transform: translateY(-2px);
+}
+
+.wrap.qvb-wrap .qvb-stat__label {
+	color: #6b7385;
+	font-size: 10.5px;
+	letter-spacing: 0.1em;
+}
+
+.wrap.qvb-wrap .qvb-stat__value {
+	font-size: 30px;
+	font-weight: 700;
+	letter-spacing: -0.03em;
+	line-height: 1.15;
+}
+
+.wrap.qvb-wrap .qvb-stat__value--small {
+	font-size: 17px;
+	letter-spacing: -0.01em;
+	line-height: 1.35;
+}
+
+.wrap.qvb-wrap .qvb-stat--accent {
+	background:
+		linear-gradient(160deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.35)),
+		linear-gradient(150deg, rgba(109, 94, 252, 0.22), rgba(56, 189, 248, 0.16));
+	border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* ------------------------------------------------------------------------- */
+/* Filters + toolbars                                                         */
+/* ------------------------------------------------------------------------- */
+
+.wrap.qvb-wrap .qvb-filters {
+	border-radius: 20px;
+	padding: 14px 16px;
+}
+
+.wrap.qvb-wrap .qvb-calendar-toolbar {
+	border-radius: 20px;
+	margin-bottom: 16px;
+	padding: 12px 16px;
+}
+
+.wrap.qvb-wrap .qvb-view-tab {
+	-webkit-backdrop-filter: blur(12px);
+	backdrop-filter: blur(12px);
+	background: rgba(255, 255, 255, 0.55);
+	border: 1px solid rgba(255, 255, 255, 0.85);
+	border-radius: 999px;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+	color: var(--qvb-muted);
+	transition: transform 0.2s var(--qvb-spring), background 0.2s ease, color 0.2s ease;
+}
+
+.wrap.qvb-wrap .qvb-view-tab:hover {
+	color: var(--qvb-accent-dark);
+	transform: translateY(-1px);
+}
+
+.wrap.qvb-wrap .qvb-view-tab.is-active {
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0)),
+		linear-gradient(135deg, #7c6bff, #5f4ee8);
+	border-color: rgba(255, 255, 255, 0.4);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 8px 18px -10px rgba(109, 94, 252, 0.8);
+	color: #fff;
+}
+
+/* ------------------------------------------------------------------------- */
+/* Tables                                                                     */
+/* ------------------------------------------------------------------------- */
+
+.wrap.qvb-wrap .qvb-glass-panel {
+	border-radius: 22px;
+	margin-bottom: 20px;
+	overflow: hidden;
+	padding: 14px 16px 6px;
+}
+
+.wrap.qvb-wrap .qvb-glass-panel .wp-list-table,
+.wrap.qvb-wrap .qvb-glass-panel .qvb-table {
+	background: transparent;
+	border: 0;
+	box-shadow: none;
+}
+
+.wrap.qvb-wrap .qvb-table {
+	border-radius: 0;
+}
+
+.wrap.qvb-wrap .qvb-table thead th,
+.wrap.qvb-wrap .qvb-glass-panel .wp-list-table thead th {
+	background: rgba(255, 255, 255, 0.55);
+	border-bottom: 1px solid var(--qvb-glass-hairline);
+	color: #6b7385;
+	font-size: 10.5px;
+	letter-spacing: 0.09em;
+}
+
+.wrap.qvb-wrap .qvb-table thead th:first-child,
+.wrap.qvb-wrap .qvb-glass-panel .wp-list-table thead th:first-child {
+	border-radius: 12px 0 0 12px;
+}
+
+.wrap.qvb-wrap .qvb-table thead th:last-child,
+.wrap.qvb-wrap .qvb-glass-panel .wp-list-table thead th:last-child {
+	border-radius: 0 12px 12px 0;
+}
+
+.wrap.qvb-wrap .qvb-table tbody td,
+.wrap.qvb-wrap .qvb-glass-panel .wp-list-table tbody td,
+.wrap.qvb-wrap .qvb-glass-panel .wp-list-table tbody th {
+	border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+	font-size: 13px;
+	padding-bottom: 13px;
+	padding-top: 13px;
+}
+
+.wrap.qvb-wrap .qvb-table tbody tr:last-child td,
+.wrap.qvb-wrap .qvb-glass-panel .wp-list-table tbody tr:last-child td {
+	border-bottom: 0;
+}
+
+.wrap.qvb-wrap .qvb-table tbody tr:hover td,
+.wrap.qvb-wrap .qvb-glass-panel .wp-list-table tbody tr:hover td {
+	background: rgba(255, 255, 255, 0.5);
+}
+
+.wrap.qvb-wrap .qvb-glass-panel .wp-list-table tbody tr:nth-child(odd) {
+	background: transparent;
+}
+
+.wrap.qvb-wrap .qvb-table-wrap {
+	-webkit-backdrop-filter: blur(26px) saturate(180%);
+	backdrop-filter: blur(26px) saturate(180%);
+	background: linear-gradient(160deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.46));
+	border: 1px solid var(--qvb-glass-edge);
+	border-radius: 22px;
+	box-shadow: var(--qvb-glass-inner), var(--qvb-glass-shadow);
+	margin-bottom: 18px;
+	overflow: hidden;
+	padding: 8px 10px 2px;
+}
+
+.wrap.qvb-wrap .qvb-table-wrap > .qvb-table {
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+	padding: 0;
+}
+
+.wrap.qvb-wrap .qvb-table-wrap .wp-list-table.striped > tbody > tr:nth-child(odd) {
+	background: rgba(255, 255, 255, 0.26);
+}
+
+.wrap.qvb-wrap .qvb-table-wrap .wp-list-table tbody tr:hover {
+	background: rgba(255, 255, 255, 0.5);
+}
+
+.wrap.qvb-wrap .qvb-table-wrap .wp-list-table tfoot th,
+.wrap.qvb-wrap .qvb-table-wrap .wp-list-table tfoot td {
+	background: rgba(255, 255, 255, 0.35);
+	border-top: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.wrap.qvb-wrap .qvb-table tbody td,
+.wrap.qvb-wrap .qvb-table tbody th,
+.wrap.qvb-wrap .qvb-table-wrap .wp-list-table tbody td,
+.wrap.qvb-wrap .qvb-table-wrap .wp-list-table tbody th {
+	vertical-align: middle;
+}
+
+.wrap.qvb-wrap .qvb-table-wrap .tablenav {
+	padding: 0 6px;
+}
+
+.wrap.qvb-wrap .tablenav {
+	height: auto;
+	margin: 6px 0 10px;
+}
+
+.wrap.qvb-wrap .tablenav .displaying-num {
+	color: var(--qvb-muted);
+	font-size: 12px;
+}
+
+.wrap.qvb-wrap .qvb-bulk select,
+.wrap.qvb-wrap .tablenav select {
+	min-height: 32px;
+}
+
+/* ------------------------------------------------------------------------- */
+/* Badges + pills                                                             */
+/* ------------------------------------------------------------------------- */
+
+.wrap.qvb-wrap .qvb-badge {
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.6);
+	border-radius: 999px;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+	font-size: 11px;
+	letter-spacing: 0.01em;
+	padding: 6px 11px;
+}
+
+.wrap.qvb-wrap .qvb-badge--pending {
+	background: rgba(245, 158, 11, 0.16);
+	color: #8a5300;
+}
+
+.wrap.qvb-wrap .qvb-badge--confirmed {
+	background: rgba(16, 185, 129, 0.16);
+	color: #05604a;
+}
+
+.wrap.qvb-wrap .qvb-badge--completed {
+	background: rgba(59, 130, 246, 0.16);
+	color: #1d4ed8;
+}
+
+.wrap.qvb-wrap .qvb-badge--cancelled,
+.wrap.qvb-wrap .qvb-badge--rejected {
+	background: rgba(239, 68, 68, 0.14);
+	color: #a51c1c;
+}
+
+.wrap.qvb-wrap .qvb-badge--no_show,
+.wrap.qvb-wrap .qvb-badge--neutral {
+	background: rgba(100, 116, 139, 0.14);
+	color: #455063;
+}
+
+.wrap.qvb-wrap .qvb-month-count {
+	background: rgba(255, 255, 255, 0.7);
+	border: 1px solid rgba(255, 255, 255, 0.9);
+	box-shadow: inset 0 1px 0 #fff;
+}
+
+/* ------------------------------------------------------------------------- */
+/* Calendar                                                                   */
+/* ------------------------------------------------------------------------- */
+
+body.qvb-screen .wrap.qvb-wrap .qvb-calendar-month,
+body.qvb-screen .wrap.qvb-wrap .qvb-calendar-week {
+	-webkit-backdrop-filter: blur(26px) saturate(180%);
+	backdrop-filter: blur(26px) saturate(180%);
+	background: linear-gradient(160deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.48));
+	border: 1px solid rgba(255, 255, 255, 0.85);
+	border-radius: 24px;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), var(--qvb-glass-shadow);
+}
+
+.wrap.qvb-wrap .qvb-month-head {
+	background: rgba(255, 255, 255, 0.5);
+	border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.wrap.qvb-wrap .qvb-month-cell {
+	border-color: rgba(15, 23, 42, 0.06);
+}
+
+.wrap.qvb-wrap .qvb-month-cell.is-outside {
+	background: rgba(255, 255, 255, 0.22);
+}
+
+.wrap.qvb-wrap .qvb-month-cell.is-weekend {
+	background: rgba(255, 255, 255, 0.14);
+}
+
+.wrap.qvb-wrap .qvb-month-cell.is-today {
+	background: linear-gradient(160deg, rgba(109, 94, 252, 0.16), rgba(109, 94, 252, 0.05));
+	box-shadow: inset 0 0 0 1.5px rgba(109, 94, 252, 0.45);
+}
+
+.wrap.qvb-wrap .qvb-month-day:hover {
+	background: rgba(109, 94, 252, 0.14);
+}
+
+.wrap.qvb-wrap .qvb-cal-event {
+	-webkit-backdrop-filter: blur(8px);
+	backdrop-filter: blur(8px);
+	background: rgba(255, 255, 255, 0.78);
+	border: 1px solid rgba(255, 255, 255, 0.85);
+	border-left-width: 3px;
+	border-left-color: var(--qvb-event-color, var(--qvb-accent));
+	border-radius: 8px;
+	box-shadow: 0 2px 6px -4px rgba(15, 23, 42, 0.5);
+	transition: transform 0.2s var(--qvb-spring), background 0.2s ease;
+}
+
+.wrap.qvb-wrap .qvb-cal-event:hover {
+	background: rgba(255, 255, 255, 0.95);
+	transform: translateY(-1px);
+}
+
+.wrap.qvb-wrap .qvb-week-col {
+	border-color: rgba(15, 23, 42, 0.06);
+}
+
+.wrap.qvb-wrap .qvb-week-col.is-today {
+	background: linear-gradient(180deg, rgba(109, 94, 252, 0.12), rgba(109, 94, 252, 0.02));
+}
+
+.wrap.qvb-wrap .qvb-week-col__head {
+	background: rgba(255, 255, 255, 0.42);
+	border-color: rgba(15, 23, 42, 0.06);
+}
+
+.wrap.qvb-wrap .qvb-week-add {
+	background: rgba(255, 255, 255, 0.85);
+	border-color: rgba(255, 255, 255, 0.9);
+	box-shadow: inset 0 1px 0 #fff, 0 2px 6px -4px rgba(15, 23, 42, 0.5);
+}
+
+/* ------------------------------------------------------------------------- */
+/* Timeline, slots, schedule                                                  */
+/* ------------------------------------------------------------------------- */
+
+.wrap.qvb-wrap .qvb-timeline__item {
+	border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+	padding: 13px 10px;
+	transition: background 0.18s ease;
+}
+
+.wrap.qvb-wrap .qvb-timeline__item:hover {
+	background: rgba(255, 255, 255, 0.55);
+	border-radius: 12px;
+}
+
+.wrap.qvb-wrap .qvb-timeline__body {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px 10px;
+}
+
+.wrap.qvb-wrap .qvb-timeline__body > span:not([class*="qvb-badge"])::before {
+	color: rgba(15, 23, 42, 0.28);
+	content: "·";
+	margin-right: 8px;
+}
+
+.wrap.qvb-wrap .qvb-timeline__body > .qvb-badge {
+	margin-left: auto;
+}
+
+.wrap.qvb-wrap .qvb-slot-panel {
+	background: rgba(255, 255, 255, 0.45);
+	border-radius: 20px;
+	margin-top: 18px;
+	padding: 16px;
+}
+
+.wrap.qvb-wrap .qvb-slot-results .qvb-slot {
+	-webkit-backdrop-filter: blur(12px);
+	backdrop-filter: blur(12px);
+	background: rgba(255, 255, 255, 0.82);
+	border: 1px solid rgba(255, 255, 255, 0.9);
+	border-radius: 12px;
+	box-shadow: inset 0 1px 0 #fff, 0 2px 6px -4px rgba(15, 23, 42, 0.4);
+	transition: transform 0.2s var(--qvb-spring), box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.wrap.qvb-wrap .qvb-slot-results .qvb-slot:hover {
+	background: #fff;
+	transform: translateY(-1px);
+}
+
+.wrap.qvb-wrap .qvb-slot-results .qvb-slot.is-selected {
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0)),
+		linear-gradient(135deg, #7c6bff, #5f4ee8);
+	border-color: rgba(255, 255, 255, 0.4);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 10px 20px -12px rgba(109, 94, 252, 0.9);
+	color: #fff;
+}
+
+.wrap.qvb-wrap .qvb-schedule-row,
+.wrap.qvb-wrap .qvb-hours-table tbody tr {
+	border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.wrap.qvb-wrap .qvb-hours-table thead th {
+	background: rgba(255, 255, 255, 0.5);
+}
+
+/* ------------------------------------------------------------------------- */
+/* Staff cards, empty states, misc                                            */
+/* ------------------------------------------------------------------------- */
+
+.wrap.qvb-wrap .qvb-staff-card {
+	border-radius: 22px;
+	padding: 20px;
+	transition: transform 0.28s var(--qvb-spring), box-shadow 0.28s ease;
+}
+
+.wrap.qvb-wrap .qvb-staff-card:hover {
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.95),
+		0 2px 4px rgba(15, 23, 42, 0.05),
+		0 24px 44px -24px rgba(15, 23, 42, 0.42);
+	transform: translateY(-2px);
+}
+
+.wrap.qvb-wrap .qvb-avatar {
+	background: linear-gradient(160deg, rgba(109, 94, 252, 0.18), rgba(56, 189, 248, 0.14));
+	border: 1px solid rgba(255, 255, 255, 0.85);
+	box-shadow: inset 0 1px 0 #fff, 0 6px 14px -10px rgba(15, 23, 42, 0.5);
+}
+
+.wrap.qvb-wrap .qvb-empty-state,
+.wrap.qvb-wrap .qvb-empty {
+	background: rgba(255, 255, 255, 0.4);
+	border: 1px dashed rgba(109, 94, 252, 0.3);
+	border-radius: 20px;
+}
+
+.wrap.qvb-wrap .qvb-settings-nav {
+	background: rgba(255, 255, 255, 0.5);
+	border: 1px solid rgba(255, 255, 255, 0.8);
+	border-radius: 18px;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+	padding: 8px;
+}
+
+.wrap.qvb-wrap .qvb-settings-nav a {
+	border-radius: 12px;
+	transition: background 0.18s ease, color 0.18s ease;
+}
+
+.wrap.qvb-wrap .qvb-settings-nav a.is-active {
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0)),
+		linear-gradient(135deg, #7c6bff, #5f4ee8);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 6px 14px -10px rgba(109, 94, 252, 0.9);
+	color: #fff;
+}
+
+/* Core notices keep their colour but pick up the glass shape. */
+.wrap.qvb-wrap .notice {
+	-webkit-backdrop-filter: blur(18px) saturate(160%);
+	backdrop-filter: blur(18px) saturate(160%);
+	border-radius: 16px;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 8px 20px -16px rgba(15, 23, 42, 0.5);
+}
+
+.wrap.qvb-wrap .subsubsub {
+	background: rgba(255, 255, 255, 0.5);
+	border: 1px solid rgba(255, 255, 255, 0.8);
+	border-radius: 999px;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+	display: inline-block;
+	padding: 7px 16px;
+}
+
+.wrap.qvb-wrap .subsubsub a {
+	color: var(--qvb-muted);
+	text-decoration: none;
+}
+
+.wrap.qvb-wrap .subsubsub a.current {
+	color: var(--qvb-accent-dark);
+	font-weight: 700;
+}
+
+/* ------------------------------------------------------------------------- */
+/* Sidebar                                                                   */
+/* ------------------------------------------------------------------------- */
+
+body.qvb-screen #adminmenu li.wp-has-current-submenu > a.menu-top,
+body.qvb-screen #adminmenu li.current > a.menu-top {
+	background: linear-gradient(135deg, rgba(124, 107, 255, 0.95), rgba(85, 70, 224, 0.95));
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+	color: #fff;
+}
+
+body.qvb-screen #adminmenu li.wp-has-current-submenu .wp-submenu {
+	background: rgba(12, 16, 32, 0.9);
+}
+
+body.qvb-screen #adminmenu .wp-submenu a[href*="page=qevora-booking"]:hover,
+body.qvb-screen #adminmenu .wp-submenu a[href*="page=qevora-booking"].current {
+	background: rgba(255, 255, 255, 0.14);
+	border-radius: 8px;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+	color: #fff;
+}
+
+body.qvb-screen #adminmenu .wp-submenu a[href*="page=qevora-booking"].current {
+	background: linear-gradient(135deg, rgba(124, 107, 255, 0.9), rgba(85, 70, 224, 0.9));
+	font-weight: 600;
+}
+
+/* ------------------------------------------------------------------------- */
+/* List tables rendered by WP_List_Table                                     */
+/* ------------------------------------------------------------------------- */
+
+.wrap.qvb-wrap .qvb-table-wrap--list {
+	padding: 10px 12px 4px;
+}
+
+.wrap.qvb-wrap .qvb-table-wrap--list .wp-list-table {
+	background: transparent;
+	border: 0;
+	box-shadow: none;
+}
+
+.wrap.qvb-wrap .qvb-table-wrap--list .wp-list-table thead th,
+.wrap.qvb-wrap .qvb-table-wrap--list .wp-list-table thead td {
+	background: rgba(255, 255, 255, 0.55);
+	border-bottom: 1px solid var(--qvb-glass-hairline);
+	color: #6b7385;
+	font-size: 10.5px;
+	font-weight: 700;
+	letter-spacing: 0.09em;
+	padding: 11px 12px;
+	text-transform: uppercase;
+}
+
+.wrap.qvb-wrap .qvb-table-wrap--list .wp-list-table thead th:first-child,
+.wrap.qvb-wrap .qvb-table-wrap--list .wp-list-table thead td:first-child {
+	border-radius: 13px 0 0 13px;
+	padding-left: 16px;
+}
+
+.wrap.qvb-wrap .qvb-table-wrap--list .wp-list-table thead th:last-child,
+.wrap.qvb-wrap .qvb-table-wrap--list .wp-list-table thead td:last-child {
+	border-radius: 0 13px 13px 0;
+	padding-right: 16px;
+}
+
+.wrap.qvb-wrap .qvb-table-wrap--list .wp-list-table tbody th,
+.wrap.qvb-wrap .qvb-table-wrap--list .wp-list-table tbody td {
+	border-bottom: 1px solid rgba(15, 23, 42, 0.055);
+	padding: 13px 12px;
+	vertical-align: middle;
+}
+
+.wrap.qvb-wrap .qvb-table-wrap--list .wp-list-table tbody tr:last-child th,
+.wrap.qvb-wrap .qvb-table-wrap--list .wp-list-table tbody tr:last-child td {
+	border-bottom: 0;
+}
+
+.wrap.qvb-wrap .qvb-table-wrap--list .wp-list-table tbody tr:nth-child(odd) {
+	background: rgba(255, 255, 255, 0.22);
+}
+
+.wrap.qvb-wrap .qvb-table-wrap--list .wp-list-table tbody tr:hover {
+	background: rgba(255, 255, 255, 0.5);
+}
+
+.wrap.qvb-wrap .qvb-table-wrap--list .wp-list-table tbody tr:hover td {
+	background: transparent;
+}
+
+.wrap.qvb-wrap .qvb-table-wrap--list .wp-list-table tfoot {
+	display: none;
+}
+
+.wrap.qvb-wrap .qvb-table-wrap--list .wp-list-table a.row-title,
+.wrap.qvb-wrap .qvb-table-wrap--list .wp-list-table strong a {
+	color: var(--qvb-accent-dark);
+	font-weight: 650;
+	text-decoration: none;
+}
+
+.wrap.qvb-wrap .qvb-table-wrap--list .wp-list-table a.row-title:hover,
+.wrap.qvb-wrap .qvb-table-wrap--list .wp-list-table strong a:hover {
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.wrap.qvb-wrap .qvb-table-wrap--list .wp-list-table .manage-column > a,
+.wrap.qvb-wrap .qvb-table-wrap--list .wp-list-table .manage-column > span {
+	align-items: center;
+	display: inline-flex;
+	flex-wrap: nowrap;
+	gap: 3px;
+	white-space: nowrap;
+}
+
+.wrap.qvb-wrap .qvb-table-wrap--list .wp-list-table .sorting-indicator {
+	float: none;
+	margin: 0 0 0 2px;
+}
+
+.wrap.qvb-wrap .qvb-table-wrap--list .wp-list-table .row-actions {
+	color: var(--qvb-muted);
+	font-size: 12px;
+}
+
+.wrap.qvb-wrap .qvb-table-wrap--list .tablenav {
+	height: auto;
+	margin: 4px 0 8px;
+}
+
+.wrap.qvb-wrap .qvb-table-wrap--list .tablenav .tablenav-pages {
+	margin: 0;
+}
+
+.wrap.qvb-wrap .qvb-table .qvb-row-actions,
+.wrap.qvb-wrap .qvb-table td.qvb-row-actions {
+	display: table-cell;
+	text-align: right;
+	white-space: nowrap;
+}
+
+.wrap.qvb-wrap .qvb-table td.qvb-row-actions > * {
+	display: inline-flex;
+	vertical-align: middle;
+}
+
+.wrap.qvb-wrap .qvb-table td.qvb-row-actions > * + * {
+	margin-left: 6px;
+}
+
+.wrap.qvb-wrap .qvb-table code {
+	background: rgba(255, 255, 255, 0.62);
+	border: 1px solid rgba(15, 23, 42, 0.08);
+	border-radius: 7px;
+	color: #5b6478;
+	font-size: 11.5px;
+	padding: 1px 7px;
+}
+
+.wrap.qvb-wrap .qvb-table tbody td {
+	padding-bottom: 13px;
+	padding-top: 13px;
+}
+
+.wrap.qvb-wrap .qvb-table tbody tr:hover td {
+	background: rgba(255, 255, 255, 0.4);
+}
+
+/* Cells must stay table cells: only their inner boxes may use flex/clamp. */
+.wrap.qvb-wrap .qvb-table td.qvb-clamp {
+	display: table-cell;
+}
+
+.wrap.qvb-wrap .qvb-table td.qvb-clamp > .qvb-clamp {
+	display: -webkit-box;
+}
+
+/* ------------------------------------------------------------------------- */
+/* Toolbars under filters                                                    */
+/* ------------------------------------------------------------------------- */
+
+.wrap.qvb-wrap .qvb-bulk {
+	background: rgba(255, 255, 255, 0.55);
+	border: 1px solid rgba(255, 255, 255, 0.85);
+	border-radius: 16px;
+	box-shadow: inset 0 1px 0 #fff, 0 8px 18px -18px rgba(15, 23, 42, 0.8);
+	padding: 8px 12px;
+}
+
+.wrap.qvb-wrap .qvb-bulk .qvb-muted {
+	font-size: 12px;
+}
+
+/* ------------------------------------------------------------------------- */
+/* Price prefix group                                                        */
+/* ------------------------------------------------------------------------- */
+
+.wrap.qvb-wrap .qvb-input-prefix {
+	-webkit-backdrop-filter: blur(14px) saturate(160%);
+	backdrop-filter: blur(14px) saturate(160%);
+	align-items: stretch;
+	background: rgba(255, 255, 255, 0.72);
+	border: 1px solid rgba(15, 23, 42, 0.12);
+	border-radius: 13px;
+	box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+	overflow: hidden;
+	transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.wrap.qvb-wrap .qvb-input-prefix:focus-within {
+	background: #fff;
+	border-color: var(--qvb-accent);
+	box-shadow: 0 0 0 3.5px rgba(109, 94, 252, 0.18);
+}
+
+.wrap.qvb-wrap .qvb-input-prefix > span {
+	align-items: center;
+	background: rgba(255, 255, 255, 0.24);
+	border: 0;
+	border-right: 1px solid rgba(15, 23, 42, 0.08);
+	border-radius: 0;
+	color: var(--qvb-muted);
+	display: inline-flex;
+	font-size: 13px;
+	justify-content: center;
+	min-width: 44px;
+	padding: 0 12px;
+}
+
+.wrap.qvb-wrap .qvb-input-prefix input,
+.wrap.qvb-wrap .qvb-input-prefix input:focus {
+	background: transparent !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	min-height: 36px;
+}
+
+/* Tables that live inside a card: no outer box, just hairline rows. */
+.wrap.qvb-wrap .qvb-card .qvb-table {
+	background: transparent;
+	border: 0;
+	box-shadow: none;
+	border-radius: 0;
+}
+
+.wrap.qvb-wrap .qvb-card .qvb-table thead th {
+	background: rgba(255, 255, 255, 0.5);
+	border-bottom: 1px solid var(--qvb-glass-hairline);
+}
+
+.wrap.qvb-wrap .qvb-card .qvb-table thead th:first-child {
+	border-radius: 12px 0 0 12px;
+}
+
+.wrap.qvb-wrap .qvb-card .qvb-table thead th:last-child {
+	border-radius: 0 12px 12px 0;
+}
+
+.wrap.qvb-wrap .qvb-card .qvb-table tbody td,
+.wrap.qvb-wrap .qvb-card .qvb-table tbody th {
+	border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.wrap.qvb-wrap .qvb-card .qvb-table tbody tr:last-child td,
+.wrap.qvb-wrap .qvb-card .qvb-table tbody tr:last-child th {
+	border-bottom: 0;
+}
+
+.wrap.qvb-wrap .qvb-card .qvb-table tbody tr:nth-child(odd) {
+	background: rgba(255, 255, 255, 0.22);
+}
+
+.wrap.qvb-wrap .qvb-card .qvb-table tbody tr:hover {
+	background: rgba(255, 255, 255, 0.45);
+}
+
+.wrap.qvb-wrap .qvb-card .qvb-table tbody tr:hover td {
+	background: transparent;
+}
+
+.wrap.qvb-wrap .qvb-card .qvb-table tbody th[scope="row"] {
+	color: var(--qvb-ink);
+	font-weight: 600;
+}
+
+/* Code samples read as small dark glass slabs. */
+.wrap.qvb-wrap .qvb-pre {
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+	background: linear-gradient(180deg, rgba(20, 26, 46, 0.94), rgba(13, 18, 34, 0.96));
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	border-radius: 14px;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 10px 22px -18px rgba(15, 23, 42, 0.9);
+	color: #dbe3f5;
+	font-size: 12.5px;
+	margin: 8px 0 0;
+	overflow-x: auto;
+	padding: 12px 14px;
+	white-space: pre-wrap;
+}
+
+/* Availability picker sits directly on the canvas: give it a glass bar. */
+.wrap.qvb-wrap .qvb-toolbar {
+	-webkit-backdrop-filter: blur(20px) saturate(170%);
+	backdrop-filter: blur(20px) saturate(170%);
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.45));
+	border: 1px solid rgba(255, 255, 255, 0.9);
+	border-radius: 16px;
+	box-shadow: var(--qvb-glass-inner), 0 10px 24px -22px rgba(15, 23, 42, 0.8);
+	margin-bottom: 18px;
+	padding: 8px 12px;
+}
+
+.wrap.qvb-wrap .qvb-toolbar label {
+	color: var(--qvb-ink);
+	font-size: 12.5px;
+	font-weight: 600;
+}
+
+/* One link colour across the plugin instead of core's blue on a violet skin. */
+.wrap.qvb-wrap a:not(.button):not(.button-primary):not(.button-link):not(.page-title-action):not(.qvb-btn) {
+	color: #4a3fd0;
+}
+
+.wrap.qvb-wrap a:not(.button):not(.button-primary):not(.button-link):not(.page-title-action):not(.qvb-btn):hover {
+	color: #3a2fb8;
+}
+
+/* ------------------------------------------------------------------------- */
+/* Quick actions + setup checklist                                           */
+/* ------------------------------------------------------------------------- */
+
+.wrap.qvb-wrap .qvb-quick {
+	gap: 10px;
+}
+
+.wrap.qvb-wrap .qvb-quick__link {
+	-webkit-backdrop-filter: blur(16px) saturate(170%);
+	backdrop-filter: blur(16px) saturate(170%);
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.52));
+	border: 1px solid rgba(255, 255, 255, 0.9);
+	border-radius: 14px;
+	box-shadow: inset 0 1px 0 #fff, 0 6px 16px -14px rgba(15, 23, 42, 0.8);
+	color: var(--qvb-ink);
+	font-size: 12.5px;
+	font-weight: 600;
+	justify-content: space-between;
+	padding: 12px 14px;
+	transition: transform 0.22s var(--qvb-spring), box-shadow 0.22s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.wrap.qvb-wrap .qvb-quick__link::after {
+	color: rgba(109, 94, 252, 0.75);
+	content: "\2192";
+	font-size: 13px;
+	font-weight: 700;
+	line-height: 1;
+	transition: transform 0.22s var(--qvb-spring);
+}
+
+.wrap.qvb-wrap .qvb-quick__link:hover {
+	background: #fff;
+	box-shadow: inset 0 1px 0 #fff, 0 14px 26px -18px rgba(15, 23, 42, 0.7);
+	color: var(--qvb-accent-dark);
+	transform: translateY(-2px);
+}
+
+.wrap.qvb-wrap .qvb-quick__link:hover::after {
+	transform: translateX(2px);
+}
+
+.wrap.qvb-wrap .qvb-checklist {
+	color: #3b4354;
+	font-size: 13px;
+	list-style: none;
+	margin: 12px 0 0;
+	padding: 0;
+}
+
+.wrap.qvb-wrap .qvb-checklist li {
+	align-items: flex-start;
+	display: flex;
+	gap: 10px;
+	margin-bottom: 10px;
+	padding: 0;
+}
+
+.wrap.qvb-wrap .qvb-checklist li::before {
+	align-items: center;
+	background: rgba(255, 255, 255, 0.7);
+	border: 1.5px solid rgba(15, 23, 42, 0.16);
+	border-radius: 50%;
+	color: transparent;
+	content: "\2713";
+	display: inline-flex;
+	flex: 0 0 18px;
+	font-size: 10px;
+	font-weight: 800;
+	height: 18px;
+	justify-content: center;
+	line-height: 1;
+	margin-top: 1px;
+	transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+	width: 18px;
+}
+
+.wrap.qvb-wrap .qvb-checklist li.is-done::before {
+	background: linear-gradient(180deg, #34d399, #059669);
+	border-color: rgba(255, 255, 255, 0.6);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 10px -6px rgba(5, 150, 105, 0.9);
+	color: #fff;
+}
+
+.wrap.qvb-wrap .qvb-checklist li.is-done {
+	color: #6b7385;
+}
+
+/* ------------------------------------------------------------------------- */
+/* Settings chrome                                                           */
+/* ------------------------------------------------------------------------- */
+
+.wrap.qvb-wrap .qvb-settings-nav {
+	-webkit-backdrop-filter: blur(24px) saturate(180%);
+	backdrop-filter: blur(24px) saturate(180%);
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.5));
+	border: 1px solid rgba(255, 255, 255, 0.9);
+	box-shadow: var(--qvb-glass-inner), 0 14px 30px -26px rgba(15, 23, 42, 0.8);
+}
+
+.wrap.qvb-wrap .qvb-settings-nav a {
+	color: #5b6478;
+	transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.wrap.qvb-wrap .qvb-settings-nav a:hover {
+	background: rgba(255, 255, 255, 0.9);
+	box-shadow: inset 0 1px 0 #fff, 0 6px 14px -12px rgba(15, 23, 42, 0.6);
+	color: var(--qvb-accent-dark);
+}
+
+.wrap.qvb-wrap .qvb-settings-submit {
+	-webkit-backdrop-filter: blur(24px) saturate(180%);
+	backdrop-filter: blur(24px) saturate(180%);
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.62));
+	border: 1px solid rgba(255, 255, 255, 0.95);
+	border-radius: 20px;
+	box-shadow: inset 0 1px 0 #fff, 0 18px 34px -24px rgba(15, 23, 42, 0.7);
+}
+
+/* ------------------------------------------------------------------------- */
+/* Staff cards                                                               */
+/* ------------------------------------------------------------------------- */
+
+.wrap.qvb-wrap .qvb-staff-card__meta {
+	gap: 0;
+}
+
+.wrap.qvb-wrap .qvb-staff-card__meta > div {
+	align-items: baseline;
+	border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+	display: flex;
+	gap: 12px;
+	justify-content: space-between;
+	padding: 7px 0;
+}
+
+.wrap.qvb-wrap .qvb-staff-card__meta > div:last-child {
+	border-bottom: 0;
+}
+
+.wrap.qvb-wrap .qvb-staff-card__meta dt {
+	color: var(--qvb-muted);
+	font-size: 12px;
+	margin: 0;
+}
+
+.wrap.qvb-wrap .qvb-staff-card__meta dd {
+	color: var(--qvb-ink);
+	font-size: 12.5px;
+	font-weight: 650;
+	margin: 0;
+	text-align: right;
+}
+
+.wrap.qvb-wrap .qvb-staff-card__actions {
+	align-items: center;
+}
+
+/* ------------------------------------------------------------------------- */
+/* Forms                                                                     */
+/* ------------------------------------------------------------------------- */
+
+@media (min-width: 1100px) {
+	.wrap.qvb-wrap .qvb-form-card .qvb-form-grid,
+	.wrap.qvb-wrap .qvb-panel .qvb-form-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.wrap.qvb-wrap .qvb-form-card .qvb-form-grid--three,
+	.wrap.qvb-wrap .qvb-panel .qvb-form-grid--three {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.wrap.qvb-wrap .qvb-form-card .qvb-form-grid--single {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+.wrap.qvb-wrap .qvb-field > label,
+.wrap.qvb-wrap .qvb-label {
+	color: var(--qvb-ink);
+	font-size: 12.5px;
+	letter-spacing: -0.005em;
+}
+
+.wrap.qvb-wrap .qvb-form-grid {
+	gap: 20px 22px;
+}
+
+/* Stacked cards hug their content instead of stretching to the tallest one. */
+.wrap.qvb-wrap .qvb-columns {
+	align-items: start;
+}
+
+/* ------------------------------------------------------------------------- */
+/* Motion + fallbacks                                                         */
+/* ------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+	body.qvb-screen #wpbody-content::before {
+		animation: none;
+	}
+
+	.wrap.qvb-wrap .qvb-stat,
+	.wrap.qvb-wrap .qvb-staff-card,
+	.wrap.qvb-wrap .qvb-btn,
+	.wrap.qvb-wrap .button,
+	.wrap.qvb-wrap .qvb-cal-event,
+	.wrap.qvb-wrap .qvb-slot {
+		transition: none;
+	}
+}
+
+@supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+	.wrap.qvb-wrap .qvb-admin-header,
+	.wrap.qvb-wrap .qvb-card,
+	.wrap.qvb-wrap .qvb-panel,
+	.wrap.qvb-wrap .qvb-form-card,
+	.wrap.qvb-wrap .qvb-filters,
+	.wrap.qvb-wrap .qvb-glass-panel,
+	.wrap.qvb-wrap .qvb-stat,
+	.wrap.qvb-wrap .qvb-staff-card,
+	.wrap.qvb-wrap .qvb-table-wrap > .qvb-table {
+		background: #fff;
+	}
+}
+
+@media (prefers-contrast: more) {
+	body.qvb-screen {
+		--qvb-glass-top: #fff;
+		--qvb-glass-bottom: #fff;
+		--qvb-glass-edge: rgba(15, 23, 42, 0.3);
+	}
+
+	body.qvb-screen #wpbody-content::before {
+		display: none;
+	}
+}

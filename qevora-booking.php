@@ -3,7 +3,7 @@
  * Plugin Name:       Qevora Booking
  * Plugin URI:        https://qevorasoftware.com/qevora-booking
  * Description:       All-in-one appointment booking for spas, salons, beauty parlours and massage centres. Free online booking with pay at the salon.
- * Version:           1.0.2
+ * Version:           1.0.3
  * Requires at least: 6.2
  * Requires PHP:      7.4
  * Author:            Qevora Software
@@ -19,7 +19,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'QVB_VERSION', '1.0.2' );
+define( 'QVB_VERSION', '1.0.3' );
 define( 'QVB_DB_VERSION', '1.0.0' );
 define( 'QVB_FILE', __FILE__ );
 define( 'QVB_DIR', plugin_dir_path( __FILE__ ) );
