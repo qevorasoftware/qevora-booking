@@ -284,9 +284,12 @@ One command, 60 assertions, exit code 0 only when everything passes:
 bash bin/test-playground.sh
 ```
 
-The script mounts the repository as `qevora-booking` and needs a WordPress directory to boot
-(`WP_PATH`, default `/home/user/wp/wordpress`) plus `@wp-playground/cli`
+The script mounts the repository as `qevora-booking` and needs a **disposable** WordPress directory
+to boot (`WP_PATH`, default `/home/user/wp/test-wordpress`) plus `@wp-playground/cli`
 (`PLAYGROUND_CLI`, or a local `node_modules` copy).
+
+> The suite drops and recreates every `qvb_*` table in the target WordPress. It refuses to run
+> against the live Playground demo (`/home/user/wp/wordpress`) unless `ALLOW_LIVE=1` is set.
 
 Coverage:
 

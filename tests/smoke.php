@@ -63,11 +63,32 @@ function qvb_error_text( $value ) {
 
 echo "== Bootstrap\n";
 
+$qvb_late_activation = false;
+
 if ( ! is_plugin_active( 'qevora-booking/qevora-booking.php' ) ) {
 	activate_plugin( 'qevora-booking/qevora-booking.php' );
+	$qvb_late_activation = true;
 }
 
 wp_set_current_user( 1 );
+
+if ( $qvb_late_activation ) {
+	// Activation happens after WordPress has already fired `init`, so the
+	// plugin's normal boot hook never runs. Register the public-facing pieces
+	// that this suite exercises by hand.
+	if ( ! shortcode_exists( 'qevora_booking' ) ) {
+		QVB_Shortcodes::init();
+	}
+
+	if ( ! WP_Block_Type_Registry::get_instance()->is_registered( 'qevora/booking' ) ) {
+		QVB_Gutenberg::register_block();
+	}
+
+	require_once QVB_DIR . 'public/class-public.php';
+	QVB_Public::init();
+	QVB_REST_API::init();
+	QVB_Notifications::init();
+}
 
 qvb_assert( class_exists( 'QVB_Bookings' ), 'plugin classes loaded' );
 qvb_assert( current_user_can( QVB_Capabilities::MANAGE ), 'administrator has the manage capability' );

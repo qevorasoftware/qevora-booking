@@ -8,10 +8,15 @@
 #   * @wp-playground/cli installed somewhere (npx or a local node_modules)
 #   * A WordPress directory that Playground can mount
 #
+# The test DROPS and recreates every qvb_* table in the target WordPress, so use a
+# disposable copy. The script refuses to run against the live Playground demo
+# (/home/user/wp/wordpress) unless ALLOW_LIVE=1 is set.
+#
 # Environment:
-#   WP_PATH           WordPress directory to mount (default: /home/user/wp/wordpress)
+#   WP_PATH           Disposable WordPress directory (default: /home/user/wp/test-wordpress)
 #   PLAYGROUND_CLI    Path to @wp-playground/cli/cli.js
-#   PLAYGROUND_PORT   Unused, kept for symmetry with the server helper
+#   QVB_LIVE_WP_PATH  Path that must not be touched (default: /home/user/wp/wordpress)
+#   ALLOW_LIVE        Set to 1 to explicitly allow the live demo path
 #
 # Usage:
 #   bash bin/test-playground.sh
@@ -21,11 +26,24 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-WP_PATH="${WP_PATH:-/home/user/wp/wordpress}"
+WP_PATH="${WP_PATH:-/home/user/wp/test-wordpress}"
 
 if [ ! -f "$WP_PATH/wp-load.php" ]; then
-  echo "WordPress not found at $WP_PATH (set WP_PATH)." >&2
+  echo "WordPress not found at $WP_PATH (set WP_PATH to a disposable WordPress copy)." >&2
   exit 1
+fi
+
+LIVE_PATH="${QVB_LIVE_WP_PATH:-/home/user/wp/wordpress}"
+
+if [ -d "$LIVE_PATH" ] && [ "${ALLOW_LIVE:-0}" != "1" ]; then
+  TARGET_REAL="$(cd "$WP_PATH" && pwd -P)"
+  LIVE_REAL="$(cd "$LIVE_PATH" && pwd -P)"
+
+  if [ "$TARGET_REAL" = "$LIVE_REAL" ]; then
+    echo "Refusing to run: $WP_PATH is the live Playground demo." >&2
+    echo "The test drops and recreates the Qevora tables. Set ALLOW_LIVE=1 to override." >&2
+    exit 1
+  fi
 fi
 
 CLI_JS="${PLAYGROUND_CLI:-}"
