@@ -103,7 +103,7 @@ By default nothing except scheduled tasks and caches. If you enable **Delete all
 
 = 1.0.4 =
 * Fixed: primary buttons (“Save customer”, “Save changes”, “Create booking”, …) rendered as plain white pills instead of the tinted accent glass. A `button.button` / `input[type="submit"].button` base rule outranked the accent rule on specificity, so the neutral style won. Primary actions are now excluded from the neutral rule and matched explicitly, including `input` submits and their hover state.
-* Fixed: dashboard stat cards now lay out as a 4×2 grid on wide screens instead of squeezing eight cards into one row.
+* Fixed: dashboard stat cards now cap at four per row on wide screens instead of squeezing eight into one row, and a short last row stretches to fill the width.
 * Fixed: the customer profile screen renders the booking history full-width above the detail columns, so no column is clipped at half width.
 * Improved: customer profile contact form uses a two-up field grid on desktop.
 * Tests: smoke suite is now 65 assertions (adds a CSS cascade guard for primary buttons); all 12 admin screens verified with 0 PHP fatals.
