@@ -358,6 +358,25 @@ qvb_assert(
 	$qvb_body_plugin . ' | ' . $qvb_body_other
 );
 
+/*
+ * Regression guard for the primary-button cascade.
+ *
+ * `button.button` (0-3-1) and `input[type="submit"].button` (0-4-3) outrank
+ * `.wrap.qvb-wrap .button-primary` (0-3-0), so the neutral white pill used to
+ * win on every primary action. The neutral group must keep excluding primary
+ * buttons, and the accent group must target them explicitly (inputs too).
+ */
+$qvb_glass_css = (string) file_get_contents( QVB_DIR . 'admin/css/glass.css' );
+$qvb_neutral   = strpos( $qvb_glass_css, '.wrap.qvb-wrap .button:not(.button-primary)' );
+$qvb_accent    = strpos( $qvb_glass_css, 'input[type="submit"].button-primary' );
+$qvb_bare_pill = (bool) preg_match( '/\.wrap\.qvb-wrap \.button-primary,\s*\n\s*\.wrap\.qvb-wrap input\[type="submit"\]\.button,/', $qvb_glass_css );
+
+qvb_assert(
+	false !== $qvb_neutral && false !== $qvb_accent && ! $qvb_bare_pill,
+	'primary buttons are excluded from the neutral pill and matched by the accent rule',
+	wp_json_encode( array( $qvb_neutral, $qvb_accent, $qvb_bare_pill ) )
+);
+
 $booking_id  = (int) $rebook['id'];
 $customer_id = (int) $rebook['booking']->customer_id;
 

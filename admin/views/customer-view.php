@@ -75,17 +75,17 @@ QVB_Admin::page_header(
 	<div class="qvb-stat"><span class="qvb-stat__label"><?php esc_html_e( 'Completed value', 'qevora-booking' ); ?></span><strong class="qvb-stat__value qvb-stat__value--small"><?php echo esc_html( QVB_Utils::money( $stats['spent'] ) ); ?></strong></div>
 </div>
 
-<div class="qvb-columns">
-	<div class="qvb-card qvb-columns__main">
-		<div class="qvb-card__head">
-			<h2><?php esc_html_e( 'Booking history', 'qevora-booking' ); ?></h2>
-			<a href="<?php echo esc_url( QVB_Admin::url( 'bookings', array( 's' => $customer->email ) ) ); ?>"><?php esc_html_e( 'Open in bookings', 'qevora-booking' ); ?></a>
-		</div>
+<div class="qvb-card qvb-history-card">
+	<div class="qvb-card__head">
+		<h2><?php esc_html_e( 'Booking history', 'qevora-booking' ); ?></h2>
+		<a href="<?php echo esc_url( QVB_Admin::url( 'bookings', array( 's' => $customer->email ) ) ); ?>"><?php esc_html_e( 'Open in bookings', 'qevora-booking' ); ?></a>
+	</div>
 
-		<?php if ( ! $bookings ) : ?>
-			<p class="qvb-empty"><?php esc_html_e( 'No bookings yet.', 'qevora-booking' ); ?></p>
-		<?php else : ?>
-			<table class="wp-list-table widefat striped qvb-table">
+	<?php if ( ! $bookings ) : ?>
+		<p class="qvb-empty"><?php esc_html_e( 'No bookings yet.', 'qevora-booking' ); ?></p>
+	<?php else : ?>
+		<div class="qvb-table-wrap qvb-table-wrap--history">
+			<table class="wp-list-table widefat striped qvb-table qvb-history-table">
 				<thead>
 					<tr>
 						<th scope="col"><?php esc_html_e( 'Reference', 'qevora-booking' ); ?></th>
@@ -102,7 +102,7 @@ QVB_Admin::page_header(
 							<td><a href="<?php echo esc_url( QVB_Admin::url( 'bookings', array( 'action' => 'edit', 'booking' => (int) $booking->id ) ) ); ?>"><code><?php echo esc_html( $booking->reference ); ?></code></a></td>
 							<td>
 								<?php echo esc_html( QVB_Utils::format_date( $booking->booking_date, 'M j, Y' ) ); ?>
-								<div class="qvb-muted"><?php echo esc_html( QVB_Utils::format_time( $booking->start_time ) ); ?></div>
+								<span class="qvb-muted"><?php echo esc_html( QVB_Utils::format_time( $booking->start_time ) ); ?></span>
 							</td>
 							<td><?php echo esc_html( $booking->service_name ); ?></td>
 							<td><?php echo $booking->staff_name ? esc_html( $booking->staff_name ) : '&mdash;'; ?></td>
@@ -112,10 +112,12 @@ QVB_Admin::page_header(
 					<?php endforeach; ?>
 				</tbody>
 			</table>
-		<?php endif; ?>
-	</div>
+		</div>
+	<?php endif; ?>
+</div>
 
-	<div class="qvb-columns__side">
+<div class="qvb-columns qvb-columns--sidebar">
+	<div class="qvb-columns__main">
 		<div class="qvb-card">
 			<div class="qvb-card__head"><h2><?php esc_html_e( 'Contact details', 'qevora-booking' ); ?></h2></div>
 			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
@@ -123,26 +125,30 @@ QVB_Admin::page_header(
 				<input type="hidden" name="id" value="<?php echo esc_attr( $customer->id ); ?>" />
 				<?php wp_nonce_field( 'qvb_save_customer_' . (int) $customer->id ); ?>
 
-				<p class="qvb-field">
-					<label for="qvb-customer-name"><?php esc_html_e( 'Name', 'qevora-booking' ); ?></label>
-					<input type="text" name="name" id="qvb-customer-name" value="<?php echo esc_attr( $customer->name ); ?>" required />
-				</p>
-				<p class="qvb-field">
-					<label for="qvb-customer-email"><?php esc_html_e( 'Email', 'qevora-booking' ); ?></label>
-					<input type="email" name="email" id="qvb-customer-email" value="<?php echo esc_attr( $customer->email ); ?>" required />
-				</p>
-				<p class="qvb-field">
-					<label for="qvb-customer-phone"><?php esc_html_e( 'Phone', 'qevora-booking' ); ?></label>
-					<input type="tel" name="phone" id="qvb-customer-phone" value="<?php echo esc_attr( $customer->phone ); ?>" />
-				</p>
-				<p class="qvb-field">
-					<label for="qvb-customer-notes"><?php esc_html_e( 'Private notes', 'qevora-booking' ); ?></label>
-					<textarea name="notes" id="qvb-customer-notes" rows="3"><?php echo esc_textarea( (string) $customer->notes ); ?></textarea>
-				</p>
-				<p><button type="submit" class="button button-primary widefat"><?php esc_html_e( 'Save customer', 'qevora-booking' ); ?></button></p>
+				<div class="qvb-form-grid qvb-form-grid--two">
+					<p class="qvb-field">
+						<label for="qvb-customer-name"><?php esc_html_e( 'Name', 'qevora-booking' ); ?></label>
+						<input type="text" name="name" id="qvb-customer-name" value="<?php echo esc_attr( $customer->name ); ?>" required />
+					</p>
+					<p class="qvb-field">
+						<label for="qvb-customer-email"><?php esc_html_e( 'Email', 'qevora-booking' ); ?></label>
+						<input type="email" name="email" id="qvb-customer-email" value="<?php echo esc_attr( $customer->email ); ?>" required />
+					</p>
+					<p class="qvb-field">
+						<label for="qvb-customer-phone"><?php esc_html_e( 'Phone', 'qevora-booking' ); ?></label>
+						<input type="tel" name="phone" id="qvb-customer-phone" value="<?php echo esc_attr( $customer->phone ); ?>" />
+					</p>
+					<p class="qvb-field qvb-field--full">
+						<label for="qvb-customer-notes"><?php esc_html_e( 'Private notes', 'qevora-booking' ); ?></label>
+						<textarea name="notes" id="qvb-customer-notes" rows="3"><?php echo esc_textarea( (string) $customer->notes ); ?></textarea>
+					</p>
+				</div>
+				<p><button type="submit" class="button button-primary"><?php esc_html_e( 'Save customer', 'qevora-booking' ); ?></button></p>
 			</form>
 		</div>
+	</div>
 
+	<div class="qvb-columns__side">
 		<div class="qvb-card">
 			<div class="qvb-card__head"><h2><?php esc_html_e( 'Privacy', 'qevora-booking' ); ?></h2></div>
 			<p class="qvb-help"><?php esc_html_e( 'Anonymising removes the name, email, phone, notes and IP hashes from this customer and their bookings. Booking dates, services and amounts remain for reporting. This cannot be undone.', 'qevora-booking' ); ?></p>

@@ -207,11 +207,16 @@ body.qvb-screen .wrap.qvb-wrap .qvb-admin-header {
 /* Buttons                                                                    */
 /* ------------------------------------------------------------------------- */
 
+/*
+ * Neutral glass pill. Primary actions are deliberately excluded with
+ * `:not(.button-primary)`: an `input[type="submit"].button` selector scores
+ * 0-4-3 and would otherwise outrank the 0-3-0 accent rule further down, which
+ * made every primary submit render as a white pill.
+ */
 .wrap.qvb-wrap .qvb-btn,
-.wrap.qvb-wrap .button,
-.wrap.qvb-wrap .button-primary,
-.wrap.qvb-wrap button.button,
-.wrap.qvb-wrap input[type="submit"].button,
+.wrap.qvb-wrap .button:not(.button-primary):not(.qvb-btn),
+.wrap.qvb-wrap button.button:not(.button-primary),
+.wrap.qvb-wrap input[type="submit"].button:not(.button-primary),
 .wrap.qvb-wrap .page-title-action {
 	-webkit-backdrop-filter: blur(18px) saturate(170%);
 	backdrop-filter: blur(18px) saturate(170%);
@@ -233,7 +238,7 @@ body.qvb-screen .wrap.qvb-wrap .qvb-admin-header {
 }
 
 .wrap.qvb-wrap .qvb-btn:hover,
-.wrap.qvb-wrap .button:hover,
+.wrap.qvb-wrap .button:not(.button-primary):hover,
 .wrap.qvb-wrap .button-primary:hover {
 	background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.8));
 	border-color: rgba(109, 94, 252, 0.45);
@@ -242,13 +247,12 @@ body.qvb-screen .wrap.qvb-wrap .qvb-admin-header {
 }
 
 .wrap.qvb-wrap .qvb-btn:active,
-.wrap.qvb-wrap .button:active,
-.wrap.qvb-wrap .button-primary:active {
+.wrap.qvb-wrap .button:active {
 	transform: translateY(0) scale(0.985);
 }
 
 .wrap.qvb-wrap .qvb-btn:focus-visible,
-.wrap.qvb-wrap .button:focus-visible,
+.wrap.qvb-wrap .button:not(.button-primary):focus-visible,
 .wrap.qvb-wrap .button-primary:focus-visible {
 	border-color: var(--qvb-accent);
 	box-shadow: 0 0 0 3px rgba(109, 94, 252, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.95);
@@ -258,6 +262,7 @@ body.qvb-screen .wrap.qvb-wrap .qvb-admin-header {
 /* Filled / primary actions get the tinted glass treatment. */
 .wrap.qvb-wrap .qvb-btn:not(.qvb-btn--ghost),
 .wrap.qvb-wrap .button-primary,
+.wrap.qvb-wrap input[type="submit"].button-primary,
 .wrap.qvb-wrap .page-title-action {
 	background:
 		linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 48%),
@@ -272,6 +277,7 @@ body.qvb-screen .wrap.qvb-wrap .qvb-admin-header {
 
 .wrap.qvb-wrap .qvb-btn:not(.qvb-btn--ghost):hover,
 .wrap.qvb-wrap .button-primary:hover,
+.wrap.qvb-wrap input[type="submit"].button-primary:hover,
 .wrap.qvb-wrap .page-title-action:hover {
 	background:
 		linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0) 48%),
@@ -452,7 +458,28 @@ body.qvb-screen .wrap.qvb-wrap .qvb-admin-header {
 /* ------------------------------------------------------------------------- */
 
 .wrap.qvb-wrap .qvb-stat-grid {
-	gap: 16px;
+	gap: 14px;
+	grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
+}
+
+.wrap.qvb-wrap .qvb-stat-grid--compact {
+	grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+/* Eight stat cards in one row squeeze the copy; use a 4 x 2 grid on desktop. */
+@media (min-width: 1200px) {
+	.wrap.qvb-wrap .qvb-stat-grid {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	.wrap.qvb-wrap .qvb-stat-grid--compact {
+		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+	}
+}
+
+.wrap.qvb-wrap .qvb-stat > .qvb-stat__meta:last-child {
+	line-height: 1.5;
+	white-space: normal;
 }
 
 .wrap.qvb-wrap .qvb-stat {
@@ -472,8 +499,14 @@ body.qvb-screen .wrap.qvb-wrap .qvb-admin-header {
 
 .wrap.qvb-wrap .qvb-stat__label {
 	color: #6b7385;
-	font-size: 10.5px;
-	letter-spacing: 0.1em;
+	font-size: 10px;
+	letter-spacing: 0.09em;
+	line-height: 1.3;
+}
+
+.wrap.qvb-wrap .qvb-stat__meta {
+	font-size: 11.5px;
+	line-height: 1.45;
 }
 
 .wrap.qvb-wrap .qvb-stat__value {
@@ -1177,6 +1210,40 @@ body.qvb-screen #adminmenu .wp-submenu a[href*="page=qevora-booking"].current {
 	border: 0;
 	box-shadow: none;
 	border-radius: 0;
+}
+
+/* Customer history spans the full width, so it needs no inner scroller. */
+.wrap.qvb-wrap .qvb-card.qvb-history-card {
+	margin-bottom: 20px;
+}
+
+.wrap.qvb-wrap .qvb-table-wrap--history {
+	background: transparent;
+	border: 0;
+	box-shadow: none;
+	overflow: visible;
+	padding: 0;
+}
+
+.wrap.qvb-wrap .qvb-history-table td:nth-child(2) .qvb-muted {
+	display: block;
+	font-size: 11.5px;
+	margin-top: 2px;
+}
+
+.wrap.qvb-wrap .qvb-history-table td,
+.wrap.qvb-wrap .qvb-history-table th {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.wrap.qvb-wrap .qvb-history-table td:first-child,
+.wrap.qvb-wrap .qvb-history-table th:first-child {
+	padding-left: 4px;
+}
+
+.wrap.qvb-wrap .qvb-history-table td code {
+	font-size: 11px;
 }
 
 .wrap.qvb-wrap .qvb-card .qvb-table thead th {

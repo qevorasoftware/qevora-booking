@@ -3,7 +3,7 @@
 All-in-one appointment booking for spas, salons, beauty parlours and massage centres.
 **Free online booking — customers pay at the salon.** No Stripe, no PayPal, no Razorpay, no subscriptions.
 
-[![Version](https://img.shields.io/badge/version-1.0.3-7c3aed)](#)
+[![Version](https://img.shields.io/badge/version-1.0.4-7c3aed)](#)
 [![WordPress](https://img.shields.io/badge/WordPress-6.2%20–%207.1-21759b)](#)
 [![PHP](https://img.shields.io/badge/PHP-7.4%20–%208.3-777bb4)](#)
 [![License](https://img.shields.io/badge/license-MIT-green)](#)
@@ -133,7 +133,7 @@ languages/                  qevora-booking.pot
 assets/                     icon and banner artwork
 bin/build.sh                produces both release ZIPs
 bin/test-playground.sh      runs the smoke test inside WordPress Playground
-tests/smoke.php             64-assertion automated suite
+tests/smoke.php             65-assertion automated suite
 docs/TEST-CHECKLIST.md      manual QA matrix + automated suite instructions
 docs/playground/            one-click Playground blueprint and demo seed
 ```
@@ -181,7 +181,7 @@ Two ways to test without installing anything on a server:
 
 ```bash
 # Browser demo (same blueprint as docs/playground/)
-open "https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/qevorasoftware/qevora-booking/v1.0.3/docs/playground/blueprint.json"
+open "https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/qevorasoftware/qevora-booking/v1.0.4/docs/playground/blueprint.json"
 
 # Automated suite
 bash bin/test-playground.sh

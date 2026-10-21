@@ -4,7 +4,7 @@ Tags: appointment booking, salon booking, spa booking, massage booking, staff sc
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -101,6 +101,13 @@ By default nothing except scheduled tasks and caches. If you enable **Delete all
 
 == Changelog ==
 
+= 1.0.4 =
+* Fixed: primary buttons (“Save customer”, “Save changes”, “Create booking”, …) rendered as plain white pills instead of the tinted accent glass. A `button.button` / `input[type="submit"].button` base rule outranked the accent rule on specificity, so the neutral style won. Primary actions are now excluded from the neutral rule and matched explicitly, including `input` submits and their hover state.
+* Fixed: dashboard stat cards now lay out as a 4×2 grid on wide screens instead of squeezing eight cards into one row.
+* Fixed: the customer profile screen renders the booking history full-width above the detail columns, so no column is clipped at half width.
+* Improved: customer profile contact form uses a two-up field grid on desktop.
+* Tests: smoke suite is now 65 assertions (adds a CSS cascade guard for primary buttons); all 12 admin screens verified with 0 PHP fatals.
+
 = 1.0.3 =
 * Added: Liquid Glass design layer for every admin screen and the public booking form — translucent surfaces with backdrop blur, specular edge highlights, soft layered shadows, a slow aurora backdrop and spring-eased hover/press motion.
 * Added: `admin/css/glass.css` and `public/css/glass.css`, loaded after the base stylesheets so layout, selectors and behaviour stay untouched. Both degrade to opaque surfaces when `backdrop-filter` is unsupported, when the visitor asks for reduced motion, or when `prefers-contrast: more` is set.
@@ -136,6 +143,9 @@ By default nothing except scheduled tasks and caches. If you enable **Delete all
 * Uninstall respects an explicit opt-in before deleting data.
 
 == Upgrade Notice ==
+
+= 1.0.4 =
+Fixes primary buttons rendering white instead of the accent glass, and tidies the dashboard stat grid and customer profile layout.
 
 = 1.0.3 =
 New Apple-inspired glass interface across the admin screens and the booking form.

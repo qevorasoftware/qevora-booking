@@ -24,7 +24,7 @@
       "step": "installPlugin",
       "pluginData": {
         "resource": "url",
-        "url": "https://raw.githubusercontent.com/qevorasoftware/qevora-booking/v1.0.3/releases/qevora-booking.zip"
+        "url": "https://raw.githubusercontent.com/qevorasoftware/qevora-booking/v1.0.4/releases/qevora-booking.zip"
       },
       "options": {
         "activate": true
