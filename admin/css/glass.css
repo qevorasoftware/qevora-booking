@@ -466,13 +466,25 @@ body.qvb-screen .wrap.qvb-wrap .qvb-admin-header {
 	grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 }
 
-/* Eight stat cards in one row squeeze the copy; use a 4 x 2 grid on desktop. */
+/*
+ * Seven or eight stat cards in one row squeeze the copy, so desktop caps the
+ * row at four. Flex is used instead of a 4-column grid because the last row is
+ * usually short (seven cards = 4 + 3): the remaining cards grow to fill the
+ * width instead of leaving an empty column at the right edge.
+ */
 @media (min-width: 1200px) {
 	.wrap.qvb-wrap .qvb-stat-grid {
-		grid-template-columns: repeat(4, minmax(0, 1fr));
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.wrap.qvb-wrap .qvb-stat-grid > .qvb-stat {
+		flex: 1 1 calc(25% - 11px);
+		min-width: 0;
 	}
 
 	.wrap.qvb-wrap .qvb-stat-grid--compact {
+		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 	}
 }
